@@ -1,0 +1,248 @@
+{
+  "Meta": {
+    "title": "Techno Groop – Profesjonalne usługi elektryczne",
+    "description": "Kompleksowe rozwiązania elektryczne, instalacje niskoprądowe, automatyka i fotowoltaika dla firm i generalnych wykonawców w Polsce i Belgii."
+  },
+  "Nav": {
+    "home": "Strona główna",
+    "about": "O nas",
+    "services": "Usługi",
+    "portfolio": "Realizacje",
+    "reviews": "Opinie",
+    "careers": "Kariera",
+    "contact": "Kontakt",
+    "getQuote": "Wycena"
+  },
+  "Hero": {
+    "tagline": "Twój partner w elektroinstalacjach",
+    "title": "Profesjonalne usługi elektryczne dla Twojego biznesu",
+    "subtitle": "Kompleksowe rozwiązania elektryczne, niskoprądowe i automatyka dla generalnych wykonawców w Polsce i Belgii. 22+ specjalistów, certyfikaty VCA, ubezpieczenie.",
+    "cta": "Zapytaj o wycenę",
+    "ctaSecondary": "Zobacz realizacje",
+    "stats": {
+      "projects": "Zrealizowanych projektów",
+      "employees": "Specjalistów",
+      "countries": "Kraje działalności",
+      "since": "Na rynku od"
+    }
+  },
+  "Services": {
+    "title": "Nasze usługi",
+    "subtitle": "Kompleksowe rozwiązania elektryczne i instalacyjne dla biznesu",
+    "residential": {
+      "title": "Elektroinstalacje mieszkaniowe",
+      "description": "Pełen zakres prac elektrycznych w budynkach mieszkalnych: instalacje, rozdzielnie, oświetlenie, gniazda."
+    },
+    "industrial": {
+      "title": "Elektroinstalacje przemysłowe",
+      "description": "Instalacje elektryczne dla hal produkcyjnych, magazynów i obiektów komercyjnych."
+    },
+    "lowCurrent": {
+      "title": "Systemy niskoprądowe",
+      "description": "Sieci LAN, CCTV, kontrola dostępu, systemy alarmowe i interkom."
+    },
+    "automation": {
+      "title": "Automatyka budynkowa",
+      "description": "Systemy BMS, KNX, inteligentne sterowanie oświetleniem i klimatyzacją."
+    },
+    "plumbing": {
+      "title": "Instalacje sanitarne",
+      "description": "Wodociągi, kanalizacja, ogrzewanie, wentylacja."
+    },
+    "solar": {
+      "title": "Fotowoltaika",
+      "description": "Montaż i podłączenie instalacji fotowoltaicznych dla biznesu."
+    },
+    "learnMore": "Dowiedz się więcej"
+  },
+  "Portfolio": {
+    "title": "Nasze realizacje",
+    "subtitle": "Projekty zrealizowane dla generalnych wykonawców w Polsce i Belgii",
+    "viewAll": "Zobacz wszystkie",
+    "viewProject": "Zobacz projekt",
+    "categories": {
+      "all": "Wszystkie",
+      "industrial": "Przemysłowe",
+      "commercial": "Komercyjne",
+      "residential": "Mieszkaniowe"
+    },
+    "projects": {
+      "logistics": {
+        "title": "Centrum logistyczne",
+        "location": "Antwerpia, Belgia",
+        "description": "Kompletna instalacja elektryczna i oświetleniowa hali magazynowej 15 000 m²."
+      },
+      "office": {
+        "title": "Biurowiec klasy A",
+        "location": "Warszawa, Polska",
+        "description": "Instalacje niskoprądowe, kontrola dostępu i system BMS."
+      },
+      "residential": {
+        "title": "Osiedle mieszkaniowe",
+        "location": "Brugia, Belgia",
+        "description": "Elektroinstalacje i systemy smart home w 48 apartamentach."
+      }
+    }
+  },
+  "Certificates": {
+    "title": "Certyfikaty i bezpieczeństwo",
+    "subtitle": "Pracujemy zgodnie z najwyższymi standardami bezpieczeństwa",
+    "vca": {
+      "title": "Certyfikat VCA",
+      "description": "Potwierdzenie zgodności z europejskimi standardami BHP."
+    },
+    "insurance": {
+      "title": "Pełne ubezpieczenie",
+      "description": "Ubezpieczenie OC i od następstw nieszczęśliwych wypadków."
+    },
+    "heights": {
+      "title": "Praca na wysokości",
+      "description": "Certyfikowane uprawnienia do pracy na rusztowaniach i podnośnikach."
+    },
+    "quality": {
+      "title": "Kontrola jakości",
+      "description": "Wewnętrzne procedury kontroli jakości każdego projektu."
+    }
+  },
+  "Locations": {
+    "title": "Gdzie działamy",
+    "subtitle": "Realizujemy projekty w Polsce i Belgii",
+    "poland": {
+      "title": "Polska",
+      "cities": "Warszawa i okolice"
+    },
+    "belgium": {
+      "title": "Belgia",
+      "cities": "Antwerpia, Brugia, Bruksela"
+    }
+  },
+  "About": {
+    "title": "O firmie Techno Groop",
+    "subtitle": "Profesjonalizm i doświadczenie w elektroinstalacjach",
+    "description": "Techno Groop Sp. z o.o. to dynamicznie rozwijająca się firma specjalizująca się w kompleksowych usługach elektrycznych i instalacyjnych. Działamy na rynku od 2023 roku, obsługując generalnych wykonawców w Polsce i Belgii.",
+    "mission": {
+      "title": "Nasza misja",
+      "description": "Dostarczamy niezawodne rozwiązania elektryczne, które pomagają naszym klientom realizować projekty terminowo i w budżecie."
+    },
+    "team": {
+      "title": "Nasz zespół",
+      "description": "Zespół 22 wykwalifikowanych specjalistów z certyfikatami VCA i uprawnieniami do pracy na wysokości. Planujemy rozwój do 50+ pracowników."
+    },
+    "values": {
+      "title": "Nasze wartości",
+      "quality": "Jakość",
+      "qualityDesc": "Każdy projekt realizujemy zgodnie z najwyższymi standardami.",
+      "safety": "Bezpieczeństwo",
+      "safetyDesc": "BHP to nasz priorytet — certyfikaty VCA, pełne ubezpieczenie.",
+      "reliability": "Niezawodność",
+      "reliabilityDesc": "Dotrzymujemy terminów i budżetów."
+    }
+  },
+  "Reviews": {
+    "title": "Opinie klientów",
+    "subtitle": "Co mówią o nas generalni wykonawcy",
+    "reviews": {
+      "review1": {
+        "text": "Profesjonalny zespół, terminowa realizacja, świetna komunikacja. Polecamy Techno Groop dla projektów elektrycznych.",
+        "author": "Jan Kowalski",
+        "company": "ABC Construction",
+        "role": "Project Manager"
+      },
+      "review2": {
+        "text": "Współpracujemy z Techno Groop od roku. Elastyczność i jakość pracy są na najwyższym poziomie.",
+        "author": "Pierre Dubois",
+        "company": "Belgian Builders NV",
+        "role": "CEO"
+      },
+      "review3": {
+        "text": "Szybka reakcja, konkurencyjne ceny, rzetelna ekipa. Na pewno będziemy kontynuować współpracę.",
+        "author": "Anna Nowak",
+        "company": "Warsaw Developers",
+        "role": "Kierownik budowy"
+      }
+    }
+  },
+  "Careers": {
+    "title": "Dołącz do naszego zespołu",
+    "subtitle": "Szukamy specjalistów do zespołu w Polsce i Belgii",
+    "description": "Techno Groop dynamicznie się rozwija. Aktualnie mamy 22 pracowników i planujemy wzrost do 50+. Szukamy ambitnych specjalistów.",
+    "benefits": {
+      "title": "Co oferujemy",
+      "salary": "Konkurencyjne wynagrodzenie",
+      "growth": "Możliwości rozwoju",
+      "training": "Szkolenia i certyfikaty",
+      "international": "Projekty międzynarodowe"
+    },
+    "positions": {
+      "title": "Aktualne oferty pracy",
+      "electrician": {
+        "title": "Elektryk instalacyjny",
+        "location": "Warszawa / Belgia",
+        "type": "Pełny etat"
+      },
+      "foreman": {
+        "title": "Brygadzista",
+        "location": "Antwerpia, Belgia",
+        "type": "Pełny etat"
+      },
+      "technician": {
+        "title": "Technik niskoprądowy",
+        "location": "Warszawa",
+        "type": "Pełny etat"
+      }
+    },
+    "cta": "Aplikuj teraz",
+    "noPosition": "Nie znalazłeś odpowiedniej oferty? Wyślij CV na"
+  },
+  "Contact": {
+    "title": "Skontaktuj się z nami",
+    "subtitle": "Zapytaj o wycenę lub umów się na spotkanie",
+    "form": {
+      "name": "Imię i nazwisko",
+      "company": "Firma",
+      "email": "Email",
+      "phone": "Telefon",
+      "message": "Wiadomość",
+      "submit": "Wyślij wiadomość",
+      "submitting": "Wysyłanie...",
+      "success": "Dziękujemy! Wiadomość została wysłana.",
+      "error": "Wystąpił błąd. Spróbuj ponownie."
+    },
+    "info": {
+      "title": "Dane kontaktowe",
+      "address": "Adres",
+      "phone": "Telefon",
+      "email": "Email",
+      "director": "Dyrektor"
+    },
+    "hours": {
+      "title": "Godziny pracy",
+      "weekdays": "Poniedziałek - Piątek: 8:00 - 17:00",
+      "weekend": "Sobota - Niedziela: Zamknięte"
+    }
+  },
+  "Footer": {
+    "description": "Kompleksowe usługi elektryczne i instalacyjne dla generalnych wykonawców w Polsce i Belgii.",
+    "quickLinks": "Szybkie linki",
+    "contact": "Kontakt",
+    "legal": "Dane prawne",
+    "regon": "REGON",
+    "nip": "NIP",
+    "krs": "KRS",
+    "rights": "Wszelkie prawa zastrzeżone.",
+    "privacy": "Polityka prywatności",
+    "terms": "Regulamin"
+  },
+  "CTA": {
+    "title": "Potrzebujesz wyceny?",
+    "subtitle": "Skontaktuj się z nami — odpowiemy w ciągu 24 godzin.",
+    "button": "Zapytaj o wycenę",
+    "call": "Lub zadzwoń"
+  },
+  "Common": {
+    "readMore": "Czytaj więcej",
+    "viewAll": "Zobacz wszystkie",
+    "back": "Wróć",
+    "loading": "Ładowanie..."
+  }
+}
