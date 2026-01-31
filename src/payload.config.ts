@@ -5,64 +5,23 @@ import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-// Collections
-import { Users, Media, Projects, Services, Reviews, Vacancies } from './payload/collections';
-
-// Globals
-import { Settings } from './payload/globals';
-
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
 /**
  * Payload CMS Configuration
- * Techno Groop - Admin Panel
+ * With localization support (EN + PL)
  */
 export default buildConfig({
-  // Admin panel settings
+  // Admin panel
   admin: {
-    user: Users.slug,
+    user: 'users',
     meta: {
       titleSuffix: ' | Techno Groop Admin',
-      // favicon: '/favicon.ico',
-      // ogImage: '/og-image.png',
     },
   },
 
-  // Collections (database tables)
-  collections: [
-    Users,
-    Media,
-    Projects,
-    Services,
-    Reviews,
-    Vacancies,
-  ],
-
-  // Global settings (singletons)
-  globals: [
-    Settings,
-  ],
-
-  // Rich text editor
-  editor: lexicalEditor({}),
-
-  // Secret for encrypting tokens
-  secret: process.env.PAYLOAD_SECRET || 'CHANGE_ME_IN_PRODUCTION',
-
-  // TypeScript output path
-  typescript: {
-    outputFile: path.resolve(dirname, 'payload-types.ts'),
-  },
-
-  // Database adapter (PostgreSQL for Vercel)
-  db: postgresAdapter({
-    pool: {
-      connectionString: process.env.DATABASE_URL || '',
-    },
-  }),
-
-  // Localization config
+  // Localization - English and Polish
   localization: {
     locales: [
       {
@@ -78,17 +37,316 @@ export default buildConfig({
     fallback: true,
   },
 
-  // File upload & storage
-  upload: {
-    limits: {
-      fileSize: 5000000, // 5MB
+  // Collections
+  collections: [
+    // Users for auth
+    {
+      slug: 'users',
+      auth: true,
+      admin: {
+        useAsTitle: 'email',
+      },
+      fields: [
+        {
+          name: 'name',
+          type: 'text',
+        },
+      ],
     },
+    // Media collection for file uploads (stored in Vercel Blob)
+    {
+      slug: 'media',
+      labels: {
+        singular: 'Media',
+        plural: 'Media',
+      },
+      upload: {
+        mimeTypes: ['image/*'],
+        staticDir: 'media',
+      },
+      admin: {
+        description: 'Upload images for projects, services, etc.',
+      },
+      fields: [
+        {
+          name: 'alt',
+          label: 'Alt Text',
+          type: 'text',
+          localized: true,
+          admin: {
+            description: 'Description for accessibility and SEO',
+          },
+        },
+      ],
+    },
+    // Services collection - "Nasze usługi" section
+    {
+      slug: 'services',
+      labels: {
+        singular: 'Service',
+        plural: 'Services',
+      },
+      admin: {
+        useAsTitle: 'title',
+        defaultColumns: ['title', 'icon', 'order'],
+        description: 'Manage services displayed on the website (Nasze usługi)',
+      },
+      fields: [
+        {
+          name: 'title',
+          label: 'Title',
+          type: 'text',
+          required: true,
+          localized: true, // EN + PL
+          admin: {
+            description: 'Service name (e.g., "Residential Electrical", "Elektryka mieszkaniowa")',
+          },
+        },
+        {
+          name: 'description',
+          label: 'Description',
+          type: 'textarea',
+          required: true,
+          localized: true, // EN + PL
+          admin: {
+            description: 'Brief description of the service',
+          },
+        },
+        {
+          name: 'icon',
+          label: 'Icon',
+          type: 'select',
+          required: true,
+          defaultValue: 'home',
+          options: [
+            { label: '🏠 Home (Residential)', value: 'home' },
+            { label: '🏭 Factory (Industrial)', value: 'factory' },
+            { label: '🖥️ Server (Low Current)', value: 'server' },
+            { label: '⚙️ Settings (Automation)', value: 'settings' },
+            { label: '💧 Droplets (Plumbing)', value: 'droplets' },
+            { label: '☀️ Sun (Solar)', value: 'sun' },
+          ],
+          admin: {
+            description: 'Icon displayed next to the service',
+          },
+        },
+        {
+          name: 'image',
+          label: 'Background Image',
+          type: 'text', // URL for now, can switch to upload later
+          admin: {
+            description: 'URL to background image (Unsplash/Pexels)',
+          },
+        },
+        {
+          name: 'order',
+          label: 'Display Order',
+          type: 'number',
+          required: true,
+          defaultValue: 0,
+          admin: {
+            description: 'Order in which service appears (lower = first)',
+          },
+        },
+        {
+          name: 'isActive',
+          label: 'Active',
+          type: 'checkbox',
+          defaultValue: true,
+          admin: {
+            description: 'Show this service on the website',
+          },
+        },
+      ],
+    },
+    // Projects collection - "Nasze realizacje" section
+    {
+      slug: 'projects',
+      labels: {
+        singular: 'Project',
+        plural: 'Projects',
+      },
+      admin: {
+        useAsTitle: 'title',
+        defaultColumns: ['title', 'category', 'country', 'year', 'featured'],
+        description: 'Manage portfolio projects (Nasze realizacje)',
+      },
+      fields: [
+        {
+          name: 'title',
+          label: 'Title',
+          type: 'text',
+          required: true,
+          localized: true,
+          admin: {
+            description: 'Project name (e.g., "Logistics Center", "Centrum logistyczne")',
+          },
+        },
+        {
+          name: 'description',
+          label: 'Description',
+          type: 'textarea',
+          required: true,
+          localized: true,
+          admin: {
+            description: 'Brief project description',
+          },
+        },
+        {
+          name: 'location',
+          label: 'Location',
+          type: 'text',
+          required: true,
+          localized: true,
+          admin: {
+            description: 'Project location (e.g., "Antwerp, Belgium", "Antwerpia, Belgia")',
+          },
+        },
+        {
+          name: 'category',
+          label: 'Category',
+          type: 'select',
+          required: true,
+          options: [
+            { label: '🏭 Industrial', value: 'industrial' },
+            { label: '🏢 Commercial', value: 'commercial' },
+            { label: '🏠 Residential', value: 'residential' },
+          ],
+          admin: {
+            description: 'Project category for filtering',
+          },
+        },
+        {
+          name: 'country',
+          label: 'Country',
+          type: 'select',
+          required: true,
+          options: [
+            { label: '🇵🇱 Poland', value: 'PL' },
+            { label: '🇧🇪 Belgium', value: 'BE' },
+          ],
+          admin: {
+            description: 'Country where project was completed',
+          },
+        },
+        {
+          name: 'year',
+          label: 'Year',
+          type: 'text',
+          required: true,
+          admin: {
+            description: 'Year of completion (e.g., "2024")',
+          },
+        },
+        {
+          name: 'image',
+          label: 'Main Image',
+          type: 'upload',
+          relationTo: 'media',
+          required: true,
+          admin: {
+            description: 'Main project image (displayed in portfolio grid)',
+          },
+        },
+        {
+          name: 'gallery',
+          label: 'Gallery',
+          type: 'array',
+          admin: {
+            description: 'Additional project images for gallery (optional)',
+          },
+          fields: [
+            {
+              name: 'image',
+              label: 'Image',
+              type: 'upload',
+              relationTo: 'media',
+              required: true,
+            },
+            {
+              name: 'caption',
+              label: 'Caption',
+              type: 'text',
+              localized: true,
+              admin: {
+                description: 'Optional image caption',
+              },
+            },
+          ],
+        },
+        {
+          name: 'featured',
+          label: 'Featured',
+          type: 'checkbox',
+          defaultValue: false,
+          admin: {
+            description: 'Show on homepage highlights',
+          },
+        },
+        {
+          name: 'order',
+          label: 'Display Order',
+          type: 'number',
+          defaultValue: 0,
+          admin: {
+            description: 'Order in portfolio (lower = first)',
+          },
+        },
+      ],
+    },
+  ],
+
+  // Global settings with localized Title field
+  globals: [
+    {
+      slug: 'settings',
+      label: 'Site Settings',
+      fields: [
+        {
+          name: 'title',
+          type: 'text',
+          required: true,
+          localized: true, // Enable localization for this field
+          defaultValue: 'Techno Groop',
+          admin: {
+            description: 'The main title of the website (supports multiple languages)',
+          },
+        },
+        {
+          name: 'description',
+          type: 'textarea',
+          localized: true, // Enable localization
+          admin: {
+            description: 'Site description for SEO',
+          },
+        },
+      ],
+    },
+  ],
+
+  // Rich text editor
+  editor: lexicalEditor({}),
+
+  // Secret
+  secret: process.env.PAYLOAD_SECRET || 'dev-secret-change-me',
+
+  // TypeScript
+  typescript: {
+    outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
 
-  // Vercel Blob storage for media
+  // Database - PostgreSQL (Neon)
+  db: postgresAdapter({
+    pool: {
+      connectionString: process.env.DATABASE_URL || '',
+    },
+    push: true, // Auto-sync schema in development
+  }),
+
+  // Plugins - Vercel Blob for media storage
   plugins: [
     vercelBlobStorage({
-      enabled: true,
+      enabled: !!process.env.BLOB_READ_WRITE_TOKEN,
       collections: {
         media: true,
       },
@@ -96,21 +354,6 @@ export default buildConfig({
     }),
   ],
 
-  // GraphQL settings (optional, disable if not needed)
-  graphQL: {
-    schemaOutputFile: path.resolve(dirname, 'generated-schema.graphql'),
-  },
-
-  // Serverless-friendly settings
+  // Server URL
   serverURL: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
-
-  // CORS for API access
-  cors: [
-    process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
-  ],
-
-  // CSRF protection
-  csrf: [
-    process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
-  ],
 });
