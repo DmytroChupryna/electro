@@ -60,6 +60,12 @@ export default buildConfig({
         singular: 'Media',
         plural: 'Media',
       },
+      access: {
+        read: () => true, // Public read access
+        create: ({ req }) => !!req.user, // Only authenticated users can create
+        update: ({ req }) => !!req.user,
+        delete: ({ req }) => !!req.user,
+      },
       upload: {
         mimeTypes: ['image/*'],
         staticDir: 'media',
@@ -85,6 +91,12 @@ export default buildConfig({
       labels: {
         singular: 'Service',
         plural: 'Services',
+      },
+      access: {
+        read: () => true, // Public read access for frontend
+        create: ({ req }) => !!req.user,
+        update: ({ req }) => !!req.user,
+        delete: ({ req }) => !!req.user,
       },
       admin: {
         useAsTitle: 'title',
@@ -165,6 +177,12 @@ export default buildConfig({
       labels: {
         singular: 'Project',
         plural: 'Projects',
+      },
+      access: {
+        read: () => true, // Public read access for frontend
+        create: ({ req }) => !!req.user,
+        update: ({ req }) => !!req.user,
+        delete: ({ req }) => !!req.user,
       },
       admin: {
         useAsTitle: 'title',
