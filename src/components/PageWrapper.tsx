@@ -175,13 +175,15 @@ export function Heading({
     3: 'text-xl md:text-2xl',
   };
 
-  const Tag = `h${level}` as keyof JSX.IntrinsicElements;
+  const combinedClassName = cn('font-bold', sizeClasses[level], textClasses[design], className);
 
-  return (
-    <Tag className={cn('font-bold', sizeClasses[level], textClasses[design], className)}>
-      {children}
-    </Tag>
-  );
+  if (level === 1) {
+    return <h1 className={combinedClassName}>{children}</h1>;
+  }
+  if (level === 3) {
+    return <h3 className={combinedClassName}>{children}</h3>;
+  }
+  return <h2 className={combinedClassName}>{children}</h2>;
 }
 
 // Design-aware text
