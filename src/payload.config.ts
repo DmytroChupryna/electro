@@ -372,6 +372,18 @@ export default buildConfig({
     }),
   ],
 
-  // Server URL
+  // Server URL - must match the deployment URL exactly
   serverURL: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+
+  // CORS settings for production
+  cors: [
+    process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+    'https://electro-a453.vercel.app',
+  ].filter(Boolean),
+
+  // CSRF protection
+  csrf: [
+    process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+    'https://electro-a453.vercel.app',
+  ].filter(Boolean),
 });
