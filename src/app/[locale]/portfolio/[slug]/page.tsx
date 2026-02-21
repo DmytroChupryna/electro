@@ -3,20 +3,20 @@
  * Fetches single project from Payload CMS and passes to client component
  */
 
-import { getProjectById } from '@/lib/payload';
+import { getProjectBySlug } from '@/lib/payload';
 import { notFound } from 'next/navigation';
 import ProjectDetailClient from './ProjectDetailClient';
 import JsonLd from '@/components/JsonLd';
 import { siteConfig, generateBreadcrumbSchema, generateProjectSchema } from '@/lib/seo';
 
 interface ProjectPageProps {
-  params: Promise<{ locale: string; id: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
-  const { locale, id } = await params;
+  const { locale, slug } = await params;
   
-  const project = await getProjectById(id, locale);
+  const project = await getProjectBySlug(slug, locale);
 
   if (!project) {
     notFound();
@@ -25,7 +25,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const breadcrumbData = generateBreadcrumbSchema([
     { name: 'Home', url: `${siteConfig.url}/${locale}` },
     { name: locale === 'pl' ? 'Portfolio' : 'Portfolio', url: `${siteConfig.url}/${locale}/portfolio` },
-    { name: project.title, url: `${siteConfig.url}/${locale}/portfolio/${id}` },
+    { name: project.title, url: `${siteConfig.url}/${locale}/portfolio/${slug}` },
   ]);
 
   const projectData = generateProjectSchema({
@@ -45,8 +45,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 }
 
 export async function generateMetadata({ params }: ProjectPageProps) {
-  const { locale, id } = await params;
-  const project = await getProjectById(id, locale);
+  const { locale, slug } = await params;
+  const project = await getProjectBySlug(slug, locale);
   
   if (!project) {
     return {
@@ -87,15 +87,15 @@ export async function generateMetadata({ params }: ProjectPageProps) {
     openGraph: {
       title,
       description,
-      url: `${siteConfig.url}/${locale}/portfolio/${id}`,
+      url: `${siteConfig.url}/${locale}/portfolio/${slug}`,
       type: 'article',
       images: project.image ? [{ url: project.image, alt: project.title }] : undefined,
     },
     alternates: {
-      canonical: `${siteConfig.url}/${locale}/portfolio/${id}`,
+      canonical: `${siteConfig.url}/${locale}/portfolio/${slug}`,
       languages: {
-        en: `${siteConfig.url}/en/portfolio/${id}`,
-        pl: `${siteConfig.url}/pl/portfolio/${id}`,
+        en: `${siteConfig.url}/en/portfolio/${slug}`,
+        pl: `${siteConfig.url}/pl/portfolio/${slug}`,
       },
     },
   };

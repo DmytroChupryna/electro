@@ -66,6 +66,7 @@ const servicesData = [
 // Projects data from prototypes
 const projectsData = [
   {
+    slug: 'logistics-center-antwerp',
     title: { en: 'Logistics Center', pl: 'Centrum logistyczne' },
     description: {
       en: 'Complete electrical and lighting installation for a 15,000 m² warehouse facility.',
@@ -80,6 +81,7 @@ const projectsData = [
     order: 1,
   },
   {
+    slug: 'office-building-warsaw',
     title: { en: 'Class A Office Building', pl: 'Biurowiec klasy A' },
     description: {
       en: 'Low-current installations, access control, and BMS system.',
@@ -94,6 +96,7 @@ const projectsData = [
     order: 2,
   },
   {
+    slug: 'residential-complex-bruges',
     title: { en: 'Residential Complex', pl: 'Osiedle mieszkaniowe' },
     description: {
       en: 'Electrical installations and smart home systems in 48 apartments.',
@@ -108,6 +111,7 @@ const projectsData = [
     order: 3,
   },
   {
+    slug: 'shopping-mall-brussels',
     title: { en: 'Shopping Mall Electrical', pl: 'Centrum handlowe' },
     description: {
       en: 'Complete electrical infrastructure for a 25,000 m² shopping center.',
@@ -122,6 +126,7 @@ const projectsData = [
     order: 4,
   },
   {
+    slug: 'solar-farm-warsaw',
     title: { en: 'Solar Farm Installation', pl: 'Farma fotowoltaiczna' },
     description: {
       en: 'Photovoltaic system installation for agricultural complex.',
@@ -136,6 +141,7 @@ const projectsData = [
     order: 5,
   },
   {
+    slug: 'smart-building-automation-antwerp',
     title: { en: 'Smart Building Automation', pl: 'Automatyka inteligentnego budynku' },
     description: {
       en: 'KNX and BMS integration for modern office complex.',
@@ -150,6 +156,7 @@ const projectsData = [
     order: 6,
   },
   {
+    slug: 'antwerp-prison-government-project',
     title: { en: 'Antwerp Prison - Government Project', pl: 'Wiezienie w Antwerpii - Projekt Rzadowy' },
     description: {
       en: 'Complete electrical and low-current installation for a new government correctional facility. High-security infrastructure including power distribution, structured cabling (Cat6a), control panels, cable tray systems, and building automation.',
@@ -376,6 +383,7 @@ export async function POST(request: Request) {
       const project = await payload.create({
         collection: 'projects',
         data: {
+          slug: projectData.slug,
           title: projectData.title.en,
           description: projectData.description.en,
           location: projectData.location.en,

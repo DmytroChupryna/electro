@@ -12,6 +12,7 @@ import {
   CheckCircle,
   Award,
   ArrowRight,
+  ArrowUpRight,
   Zap,
   ExternalLink,
 } from 'lucide-react';
@@ -19,6 +20,8 @@ import {
 export default function AboutClient() {
   const t = useTranslations('About');
   const tCTA = useTranslations('CTA');
+  const ui = useTranslations('UI');
+  const p = useTranslations('Partners');
   const { design } = useDesign();
 
   const iconBgClass = {
@@ -197,92 +200,69 @@ export default function AboutClient() {
         </div>
       </Section>
 
-      {/* Partners */}
-      <Section variant="secondary" className="py-20">
+      {/* Partners - Zaufana współpraca */}
+      <section className="py-24 bg-gradient-to-b from-slate-50 to-white">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-12">
-            <Text variant="accent" className="font-medium mb-4 tracking-wide uppercase text-sm">
-              {t('partners.label')}
-            </Text>
-            <Heading level={2} className="mb-4">{t('partners.title')}</Heading>
-            <Text variant="muted" className="max-w-2xl mx-auto">
-              {t('partners.subtitle')}
-            </Text>
+          <div className="max-w-2xl mx-auto text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-100 text-orange-600 text-sm font-medium mb-6">
+              <Award className="w-4 h-4" />
+              {ui('partnersLabel')}
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
+              {ui('trustedCollaborations')}
+            </h2>
           </div>
 
-          <div className={cn(
-            'grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto',
-            design === 'industrial' && 'gap-0 border-4 border-slate-900'
-          )}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {[
               {
-                name: 'EEG Group',
+                key: 'eegGroup',
                 logo: '/partners/eeg-logo.png',
-                key: 'eeg',
                 url: 'https://eeg.be/en/',
               },
               {
-                name: 'Netlink',
-                logo: '/partners/netlink-logo.png',
                 key: 'netlink',
+                logo: '/partners/netlink-logo.png',
                 url: 'https://www.netlink.be/',
               },
-            ].map((partner, i) => (
+            ].map((partner) => (
               <a
-                key={partner.name}
+                key={partner.key}
                 href={partner.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={cn(
-                  'group p-6 transition-all',
-                  design === 'corporate' && 'rounded-2xl bg-slate-900 border border-slate-800 hover:border-orange-500/50',
-                  design === 'industrial' && cn(
-                    'bg-white hover:bg-amber-50',
-                    i === 0 && 'border-r-4 border-slate-900'
-                  ),
-                  design === 'minimal' && 'rounded-3xl bg-white hover:bg-orange-50/50 shadow-xl shadow-slate-200/50 border border-slate-100 hover:shadow-2xl hover:shadow-orange-200/30 hover:-translate-y-1 transition-all duration-300'
-                )}
+                className="group p-8 rounded-3xl bg-white shadow-xl shadow-slate-200/50 border border-slate-100 hover:shadow-2xl hover:shadow-orange-200/30 hover:-translate-y-1 transition-all duration-300"
               >
                 {/* Logo */}
-                <div className="mb-4 h-12 flex items-center">
-                  <div className={cn(
-                    'p-3 rounded-xl',
-                    design === 'corporate' && 'bg-slate-800',
-                    design === 'industrial' && 'bg-slate-800',
-                    design === 'minimal' && 'bg-slate-800'
-                  )}>
+                <div className="mb-8 h-28 flex items-center">
+                  <div className="bg-slate-400 border border-slate-500 rounded-2xl p-6 group-hover:bg-slate-500 transition-colors">
                     <img
                       src={partner.logo}
-                      alt={`${partner.name} logo`}
-                      className="h-6 w-auto max-w-[120px] object-contain"
+                      alt={`${p(`${partner.key}.name`)} logo`}
+                      className="h-20 w-auto max-w-[260px] object-contain"
                     />
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between mb-4">
-                  <div>
-                    <h3 className={cn(
-                      'font-semibold group-hover:text-orange-500 transition-colors',
-                      design === 'corporate' && 'text-white',
-                      design === 'industrial' && 'text-slate-900 font-black uppercase',
-                      design === 'minimal' && 'text-slate-900'
-                    )}>
-                      {partner.name}
-                    </h3>
-                    <Text variant="accent" className="text-sm">{t(`partners.${partner.key}.tagline`)}</Text>
-                  </div>
-                  <ExternalLink className={cn(
-                    'w-5 h-5 opacity-50 group-hover:opacity-100 transition-opacity',
-                    design === 'corporate' && 'text-slate-400',
-                    design !== 'corporate' && 'text-slate-400'
-                  )} />
+                <div className="mb-3">
+                  <h3 className="text-xl font-bold text-slate-900 group-hover:text-orange-600 transition-colors">
+                    {p(`${partner.key}.name`)}
+                  </h3>
+                  <span className="text-sm font-medium text-orange-500">{p(`${partner.key}.role`)}</span>
                 </div>
-                <Text variant="muted" className="text-sm">{t(`partners.${partner.key}.description`)}</Text>
+                <p className="text-slate-600 leading-relaxed">
+                  {p(`${partner.key}.description`)}
+                </p>
+                {/* Arrow indicator */}
+                <div className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-slate-400 group-hover:text-orange-500 transition-colors">
+                  {ui('visitWebsite')}
+                  <ArrowUpRight className="w-4 h-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </div>
               </a>
             ))}
           </div>
         </div>
-      </Section>
+      </section>
 
       {/* CTA */}
       <Section variant="accent" className="py-20">

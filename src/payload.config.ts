@@ -200,6 +200,17 @@ export default buildConfig({
           },
         },
         {
+          name: 'slug',
+          label: 'URL Slug',
+          type: 'text',
+          required: true,
+          unique: true,
+          index: true,
+          admin: {
+            description: 'SEO-friendly URL slug (e.g., "logistics-center-antwerp")',
+          },
+        },
+        {
           name: 'description',
           label: 'Description',
           type: 'textarea',

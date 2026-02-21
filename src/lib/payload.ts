@@ -34,6 +34,7 @@ export type ProjectCategory = 'industrial' | 'commercial' | 'residential';
 // Project type from CMS
 export interface CMSProject {
   id: string;
+  slug: string;
   title: string;
   description: string;
   location: string;
@@ -111,6 +112,7 @@ export async function getProjects(locale: string = 'en', featuredOnly: boolean =
 
     return result.docs.map((doc) => ({
       id: String(doc.id),
+      slug: (doc.slug as string) || String(doc.id),
       title: doc.title as string,
       description: doc.description as string,
       location: doc.location as string,
@@ -156,6 +158,7 @@ export async function getProjectById(id: string, locale: string = 'en'): Promise
 
     return {
       id: String(doc.id),
+      slug: (doc.slug as string) || String(doc.id),
       title: doc.title as string,
       description: doc.description as string,
       location: doc.location as string,
@@ -169,6 +172,57 @@ export async function getProjectById(id: string, locale: string = 'en'): Promise
     };
   } catch (error) {
     console.error('Error fetching project:', error);
+    return null;
+  }
+}
+
+/**
+ * Get single project by slug from CMS
+ */
+export async function getProjectBySlug(slug: string, locale: string = 'en'): Promise<CMSProject | null> {
+  const payload = await getPayload({ config });
+
+  try {
+    const result = await payload.find({
+      collection: 'projects',
+      where: {
+        slug: { equals: slug },
+      },
+      locale: locale as 'en' | 'pl',
+      depth: 2,
+      limit: 1,
+    });
+
+    if (!result.docs || result.docs.length === 0) return null;
+
+    const doc = result.docs[0];
+
+    // Get gallery URLs
+    const galleryUrls: string[] = [];
+    if (doc.gallery && Array.isArray(doc.gallery)) {
+      for (const item of doc.gallery) {
+        if (item.url) {
+          galleryUrls.push(item.url as string);
+        }
+      }
+    }
+
+    return {
+      id: String(doc.id),
+      slug: (doc.slug as string) || String(doc.id),
+      title: doc.title as string,
+      description: doc.description as string,
+      location: doc.location as string,
+      category: doc.category as ProjectCategory,
+      country: doc.country as 'PL' | 'BE',
+      year: doc.year as string,
+      image: (doc.image as string) || '',
+      gallery: galleryUrls,
+      featured: doc.featured as boolean,
+      order: (doc.sortOrder as number) || 0,
+    };
+  } catch (error) {
+    console.error('Error fetching project by slug:', error);
     return null;
   }
 }

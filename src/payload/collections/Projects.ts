@@ -22,6 +22,16 @@ export const Projects: CollectionConfig = {
       },
     },
     {
+      name: 'slug',
+      type: 'text',
+      required: true,
+      unique: true,
+      index: true,
+      admin: {
+        description: 'URL-friendly slug (e.g., "smart-building-automation")',
+      },
+    },
+    {
       name: 'description',
       type: 'textarea',
       required: true,
@@ -96,6 +106,16 @@ export const Projects: CollectionConfig = {
       max: 2030,
       admin: {
         description: 'Year of completion',
+        position: 'sidebar',
+      },
+    },
+    {
+      name: 'sortOrder',
+      type: 'number',
+      required: false,
+      defaultValue: 0,
+      admin: {
+        description: 'Display order (lower = first)',
         position: 'sidebar',
       },
     },

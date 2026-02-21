@@ -60,7 +60,7 @@ export default function PortfolioClient({ projects }: PortfolioClientProps) {
               const Icon = categoryIcons[project.category] || Building2;
 
               return (
-                <Link key={project.id} href={`/portfolio/${project.id}`} className={cn(
+                <Link key={project.id} href={`/portfolio/${project.slug}`} className={cn(
                   'group cursor-pointer block',
                   design === 'minimal' && 'bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden hover:shadow-2xl hover:shadow-orange-200/30 hover:-translate-y-1 transition-all duration-300'
                 )}>
