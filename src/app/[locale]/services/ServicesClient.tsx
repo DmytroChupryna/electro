@@ -2,6 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
+import Image from 'next/image';
 import { useDesign } from '@/context/DesignContext';
 import PageWrapper, { Section, Heading, Text } from '@/components/PageWrapper';
 import { cn } from '@/lib/utils';
@@ -15,6 +16,15 @@ import {
   LucideIcon,
 } from 'lucide-react';
 import type { CMSService, IconName } from '@/lib/payload';
+
+// Service images for minimal design
+const serviceImages: Record<IconName, string> = {
+  home: '/projects/residential-complex.jpg',
+  factory: '/projects/logistics-center.jpg',
+  server: '/projects/antwerp-prison/data-cabling.png',
+  settings: '/projects/antwerp-prison/control-panel.png',
+  sun: '/projects/solar-farm.jpg',
+};
 
 // Icon components mapping
 const iconComponents: Record<IconName, LucideIcon> = {
@@ -64,83 +74,161 @@ export default function ServicesClient({ services }: ServicesClientProps) {
       {/* Services Grid - Data from CMS */}
       <Section variant="secondary" className="py-20">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className={cn(
-            'grid grid-cols-1 lg:grid-cols-2 gap-8',
-            design === 'industrial' && 'gap-0 border-4 border-slate-900'
-          )}>
-            {services.map((service, index) => {
-              const Icon = iconComponents[service.icon] || Home;
-              return (
-                <div
-                  key={service.id}
-                  className={cn(
-                    'group relative overflow-hidden transition-all',
-                    design === 'corporate' && 'rounded-2xl bg-slate-900 border border-slate-800 hover:border-orange-500/50',
-                    design === 'industrial' && cn(
-                      'bg-white hover:bg-amber-50',
-                      index < 4 && 'border-b-4 border-slate-900',
-                      index % 2 === 0 && 'border-r-4 border-slate-900'
-                    ),
-                    design === 'minimal' && 'bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 hover:shadow-2xl hover:shadow-orange-200/30 hover:-translate-y-1 transition-all duration-300'
-                  )}
-                >
-                  {/* Background Image - only for corporate */}
-                  {design === 'corporate' && service.image && (
-                    <div className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity">
-                      <img
-                        src={service.image}
-                        alt=""
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent" />
-                    </div>
-                  )}
-
-                  {/* Content */}
-                  <div className="relative p-10">
-                    <div className="flex items-start gap-6">
-                      <div className={cn(
-                        'w-16 h-16 flex items-center justify-center flex-shrink-0 transition-all',
-                        design === 'corporate' && 'rounded-xl bg-orange-500/10 group-hover:bg-orange-600',
-                        design === 'industrial' && 'bg-slate-900',
-                        design === 'minimal' && (index % 2 === 0 ? 'rounded-2xl bg-gradient-to-br from-orange-500 to-amber-500 shadow-lg shadow-orange-500/25 group-hover:scale-110' : 'rounded-2xl bg-gradient-to-br from-slate-700 to-slate-800 shadow-lg shadow-slate-500/25 group-hover:scale-110')
-                      )}>
-                        <Icon className={cn(
-                          'w-8 h-8 transition-colors',
-                          design === 'corporate' && 'text-orange-400 group-hover:text-white',
-                          design === 'industrial' && 'text-amber-500',
-                          design === 'minimal' && 'text-white'
-                        )} />
+          {/* Minimal design - with background images */}
+          {design === 'minimal' && (
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {services.slice(0, 3).map((service, index) => {
+                  const Icon = iconComponents[service.icon] || Home;
+                  const bgImage = serviceImages[service.icon] || '/projects/logistics-center.jpg';
+                  return (
+                    <div
+                      key={service.id}
+                      className="group relative rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 aspect-[4/3]"
+                    >
+                      <div className="absolute inset-0">
+                        <Image
+                          src={bgImage}
+                          alt={service.title}
+                          fill
+                          className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent" />
                       </div>
-                      <div>
-                        <span className={cn(
-                          'text-sm font-medium mb-2 block',
-                          design === 'corporate' && 'text-slate-500',
-                          design === 'industrial' && 'text-slate-400',
-                          design === 'minimal' && 'text-slate-300'
-                        )}>
-                          0{index + 1}
-                        </span>
-                        <h3 className={cn(
-                          'text-2xl font-bold mb-4',
-                          design === 'corporate' && 'text-white',
-                          design === 'industrial' && 'text-slate-900 font-black uppercase',
-                          design === 'minimal' && 'text-slate-900'
-                        )}>
-                          {/* Dynamic title from CMS */}
+                      <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                        <div className="flex items-center gap-3 mb-3">
+                          <div className="w-12 h-12 rounded-xl bg-orange-500 flex items-center justify-center">
+                            <Icon className="w-6 h-6 text-white" />
+                          </div>
+                          <span className="text-xs font-bold text-orange-400 bg-orange-500/20 px-3 py-1 rounded-full backdrop-blur-sm">
+                            0{index + 1}
+                          </span>
+                        </div>
+                        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-orange-300 transition-colors">
                           {service.title}
                         </h3>
-                        <Text variant="body" className="leading-relaxed">
-                          {/* Dynamic description from CMS */}
+                        <p className="text-slate-300 text-sm leading-relaxed line-clamp-2">
                           {service.description}
-                        </Text>
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 max-w-4xl mx-auto">
+                {services.slice(3).map((service, index) => {
+                  const Icon = iconComponents[service.icon] || Home;
+                  const bgImage = serviceImages[service.icon] || '/projects/logistics-center.jpg';
+                  return (
+                    <div
+                      key={service.id}
+                      className="group relative rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 aspect-[4/3]"
+                    >
+                      <div className="absolute inset-0">
+                        <Image
+                          src={bgImage}
+                          alt={service.title}
+                          fill
+                          className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent" />
+                      </div>
+                      <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                        <div className="flex items-center gap-3 mb-3">
+                          <div className="w-12 h-12 rounded-xl bg-orange-500 flex items-center justify-center">
+                            <Icon className="w-6 h-6 text-white" />
+                          </div>
+                          <span className="text-xs font-bold text-orange-400 bg-orange-500/20 px-3 py-1 rounded-full backdrop-blur-sm">
+                            0{index + 4}
+                          </span>
+                        </div>
+                        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-orange-300 transition-colors">
+                          {service.title}
+                        </h3>
+                        <p className="text-slate-300 text-sm leading-relaxed line-clamp-2">
+                          {service.description}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </>
+          )}
+
+          {/* Corporate and Industrial designs */}
+          {design !== 'minimal' && (
+            <div className={cn(
+              'grid grid-cols-1 lg:grid-cols-2 gap-8',
+              design === 'industrial' && 'gap-0 border-4 border-slate-900'
+            )}>
+              {services.map((service, index) => {
+                const Icon = iconComponents[service.icon] || Home;
+                return (
+                  <div
+                    key={service.id}
+                    className={cn(
+                      'group relative overflow-hidden transition-all',
+                      design === 'corporate' && 'rounded-2xl bg-slate-900 border border-slate-800 hover:border-orange-500/50',
+                      design === 'industrial' && cn(
+                        'bg-white hover:bg-amber-50',
+                        index < 4 && 'border-b-4 border-slate-900',
+                        index % 2 === 0 && 'border-r-4 border-slate-900'
+                      )
+                    )}
+                  >
+                    {/* Background Image - only for corporate */}
+                    {design === 'corporate' && service.image && (
+                      <div className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity">
+                        <img
+                          src={service.image}
+                          alt=""
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent" />
+                      </div>
+                    )}
+
+                    {/* Content */}
+                    <div className="relative p-10">
+                      <div className="flex items-start gap-6">
+                        <div className={cn(
+                          'w-16 h-16 flex items-center justify-center flex-shrink-0 transition-all',
+                          design === 'corporate' && 'rounded-xl bg-orange-500/10 group-hover:bg-orange-600',
+                          design === 'industrial' && 'bg-slate-900'
+                        )}>
+                          <Icon className={cn(
+                            'w-8 h-8 transition-colors',
+                            design === 'corporate' && 'text-orange-400 group-hover:text-white',
+                            design === 'industrial' && 'text-amber-500'
+                          )} />
+                        </div>
+                        <div>
+                          <span className={cn(
+                            'text-sm font-medium mb-2 block',
+                            design === 'corporate' && 'text-slate-500',
+                            design === 'industrial' && 'text-slate-400'
+                          )}>
+                            0{index + 1}
+                          </span>
+                          <h3 className={cn(
+                            'text-2xl font-bold mb-4',
+                            design === 'corporate' && 'text-white',
+                            design === 'industrial' && 'text-slate-900 font-black uppercase'
+                          )}>
+                            {service.title}
+                          </h3>
+                          <Text variant="body" className="leading-relaxed">
+                            {service.description}
+                          </Text>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
+          )}
         </div>
       </Section>
 
