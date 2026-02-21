@@ -257,25 +257,27 @@ export default buildConfig({
         },
         {
           name: 'image',
-          label: 'Main Image URL',
-          type: 'text',
+          label: 'Main Image',
+          type: 'upload',
+          relationTo: 'media',
           required: true,
           admin: {
-            description: 'URL to main project image (e.g., /projects/project-name/image.png)',
+            description: 'Main project image (uploaded to Vercel Blob)',
           },
         },
         {
           name: 'gallery',
-          label: 'Gallery URLs',
+          label: 'Gallery',
           type: 'array',
           admin: {
-            description: 'Additional project image URLs (optional)',
+            description: 'Additional project images for gallery (optional)',
           },
           fields: [
             {
-              name: 'url',
-              label: 'Image URL',
-              type: 'text',
+              name: 'image',
+              label: 'Image',
+              type: 'upload',
+              relationTo: 'media',
               required: true,
             },
             {
