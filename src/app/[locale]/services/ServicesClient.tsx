@@ -76,84 +76,44 @@ export default function ServicesClient({ services }: ServicesClientProps) {
         <div className="container mx-auto px-4 lg:px-8">
           {/* Minimal design - with background images */}
           {design === 'minimal' && (
-            <>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {services.slice(0, 3).map((service, index) => {
-                  const Icon = iconComponents[service.icon] || Home;
-                  const bgImage = serviceImages[service.icon] || '/projects/logistics-center.jpg';
-                  return (
-                    <div
-                      key={service.id}
-                      className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-500 aspect-[16/9]"
-                    >
-                      <div className="absolute inset-0">
-                        <Image
-                          src={bgImage}
-                          alt={service.title}
-                          fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent" />
-                      </div>
-                      <div className="absolute inset-0 p-5 flex flex-col justify-end">
-                        <div className="flex items-center gap-2 mb-2">
-                          <div className="w-9 h-9 rounded-lg bg-orange-500 flex items-center justify-center">
-                            <Icon className="w-5 h-5 text-white" />
-                          </div>
-                          <span className="text-xs font-bold text-orange-400 bg-orange-500/20 px-2 py-0.5 rounded-full backdrop-blur-sm">
-                            0{index + 1}
-                          </span>
-                        </div>
-                        <h3 className="text-lg font-bold text-white mb-1 group-hover:text-orange-300 transition-colors">
-                          {service.title}
-                        </h3>
-                        <p className="text-slate-300 text-xs leading-relaxed line-clamp-2">
-                          {service.description}
-                        </p>
-                      </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {services.map((service, index) => {
+                const Icon = iconComponents[service.icon] || Home;
+                const bgImage = serviceImages[service.icon] || '/projects/logistics-center.jpg';
+                return (
+                  <div
+                    key={service.id}
+                    className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-500 aspect-[5/2]"
+                  >
+                    <div className="absolute inset-0">
+                      <Image
+                        src={bgImage}
+                        alt={service.title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-slate-900/20" />
                     </div>
-                  );
-                })}
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 max-w-4xl mx-auto">
-                {services.slice(3).map((service, index) => {
-                  const Icon = iconComponents[service.icon] || Home;
-                  const bgImage = serviceImages[service.icon] || '/projects/logistics-center.jpg';
-                  return (
-                    <div
-                      key={service.id}
-                      className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-500 aspect-[16/9]"
-                    >
-                      <div className="absolute inset-0">
-                        <Image
-                          src={bgImage}
-                          alt={service.title}
-                          fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent" />
-                      </div>
-                      <div className="absolute inset-0 p-5 flex flex-col justify-end">
-                        <div className="flex items-center gap-2 mb-2">
-                          <div className="w-9 h-9 rounded-lg bg-orange-500 flex items-center justify-center">
-                            <Icon className="w-5 h-5 text-white" />
-                          </div>
-                          <span className="text-xs font-bold text-orange-400 bg-orange-500/20 px-2 py-0.5 rounded-full backdrop-blur-sm">
-                            0{index + 4}
-                          </span>
+                    <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                      <div className="flex items-center gap-2 mb-3">
+                        <div className="w-12 h-12 rounded-lg bg-orange-500 flex items-center justify-center shadow-lg">
+                          <Icon className="w-6 h-6 text-white" />
                         </div>
-                        <h3 className="text-lg font-bold text-white mb-1 group-hover:text-orange-300 transition-colors">
-                          {service.title}
-                        </h3>
-                        <p className="text-slate-300 text-xs leading-relaxed line-clamp-2">
-                          {service.description}
-                        </p>
+                        <span className="text-sm font-bold text-orange-300 bg-slate-900/60 px-3 py-1 rounded-full backdrop-blur-sm border border-orange-500/30">
+                          0{index + 1}
+                        </span>
                       </div>
+                      <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 group-hover:text-orange-300 transition-colors drop-shadow-lg">
+                        {service.title}
+                      </h3>
+                      <p className="text-slate-100 text-base md:text-lg leading-relaxed line-clamp-2 drop-shadow-md">
+                        {service.description}
+                      </p>
                     </div>
-                  );
-                })}
-              </div>
-            </>
+                  </div>
+                );
+              })}
+            </div>
           )}
 
           {/* Corporate and Industrial designs */}

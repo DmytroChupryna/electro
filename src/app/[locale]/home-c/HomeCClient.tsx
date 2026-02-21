@@ -239,7 +239,7 @@ function ServicesSection() {
             return (
               <div
                 key={service.key}
-                className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-500 aspect-[16/9]"
+                className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-500 aspect-[5/2]"
               >
                 {/* Background Image */}
                 <div className="absolute inset-0">
@@ -250,7 +250,7 @@ function ServicesSection() {
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-slate-900/20" />
                 </div>
                 
                 {/* Content */}
@@ -263,10 +263,10 @@ function ServicesSection() {
                       0{index + 1}
                     </span>
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-1 group-hover:text-orange-300 transition-colors">
+                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 group-hover:text-orange-300 transition-colors drop-shadow-lg">
                     {t(`${service.key}.title`)}
                   </h3>
-                  <p className="text-slate-300 text-xs leading-relaxed line-clamp-2">
+                  <p className="text-slate-100 text-base md:text-lg leading-relaxed line-clamp-2 drop-shadow-md">
                     {t(`${service.key}.description`)}
                   </p>
                 </div>
@@ -280,7 +280,7 @@ function ServicesSection() {
             return (
               <div
                 key={service.key}
-                className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-500 aspect-[16/9]"
+                className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-500 aspect-[5/2]"
               >
                 {/* Background Image */}
                 <div className="absolute inset-0">
@@ -291,7 +291,7 @@ function ServicesSection() {
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-slate-900/20" />
                 </div>
                 
                 {/* Content */}
@@ -304,10 +304,10 @@ function ServicesSection() {
                       0{index + 4}
                     </span>
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-1 group-hover:text-orange-300 transition-colors">
+                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 group-hover:text-orange-300 transition-colors drop-shadow-lg">
                     {t(`${service.key}.title`)}
                   </h3>
-                  <p className="text-slate-300 text-xs leading-relaxed line-clamp-2">
+                  <p className="text-slate-100 text-base md:text-lg leading-relaxed line-clamp-2 drop-shadow-md">
                     {t(`${service.key}.description`)}
                   </p>
                 </div>
