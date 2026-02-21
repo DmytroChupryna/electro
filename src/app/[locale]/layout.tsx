@@ -1,6 +1,7 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 import { Geist, Geist_Mono, Sora } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/react';
 import { cn } from '@/lib/utils';
 import '../globals.css';
 import DesignSwitcher from '@/components/DesignSwitcher';
@@ -157,6 +158,7 @@ export default async function LocaleLayout({
             {children}
             <DesignSwitcher />
           </DesignProvider>
+          <Analytics />
         </NextIntlClientProvider>
       </body>
     </html>
