@@ -263,12 +263,9 @@ function ServicesSection() {
                       0{index + 1}
                     </span>
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 group-hover:text-orange-300 transition-colors drop-shadow-lg">
+                  <h3 className="text-2xl md:text-3xl font-bold text-white group-hover:text-orange-300 transition-colors drop-shadow-lg">
                     {t(`${service.key}.title`)}
                   </h3>
-                  <p className="text-slate-100 text-base md:text-lg leading-relaxed line-clamp-2 drop-shadow-md">
-                    {t(`${service.key}.description`)}
-                  </p>
                 </div>
               </div>
             );
@@ -304,12 +301,9 @@ function ServicesSection() {
                       0{index + 4}
                     </span>
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 group-hover:text-orange-300 transition-colors drop-shadow-lg">
+                  <h3 className="text-2xl md:text-3xl font-bold text-white group-hover:text-orange-300 transition-colors drop-shadow-lg">
                     {t(`${service.key}.title`)}
                   </h3>
-                  <p className="text-slate-100 text-base md:text-lg leading-relaxed line-clamp-2 drop-shadow-md">
-                    {t(`${service.key}.description`)}
-                  </p>
                 </div>
               </div>
             );
