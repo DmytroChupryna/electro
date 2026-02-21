@@ -2,6 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
+import Image from 'next/image';
 import Footer from '@/components/Footer';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import {
@@ -211,18 +212,15 @@ function ServicesSection() {
   const ui = useTranslations('UI');
 
   const services = [
-    { key: 'residential', icon: Home, color: 'from-orange-500 to-amber-500' },
-    { key: 'industrial', icon: Factory, color: 'from-slate-700 to-slate-800' },
-    { key: 'lowCurrent', icon: Server, color: 'from-orange-500 to-amber-500' },
-    { key: 'automation', icon: Settings, color: 'from-slate-700 to-slate-800' },
-    { key: 'solar', icon: Sun, color: 'from-amber-500 to-orange-500' },
+    { key: 'residential', icon: Home, image: '/projects/residential-complex.jpg' },
+    { key: 'industrial', icon: Factory, image: '/projects/logistics-center.jpg' },
+    { key: 'lowCurrent', icon: Server, image: '/projects/antwerp-prison/data-cabling.png' },
+    { key: 'automation', icon: Settings, image: '/projects/antwerp-prison/control-panel.png' },
+    { key: 'solar', icon: Sun, image: '/projects/solar-farm.jpg' },
   ];
 
   return (
-    <section className="py-32 bg-white relative">
-      {/* Decorative background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-orange-50/30 to-transparent" />
-      
+    <section className="py-32 bg-slate-50 relative">
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-100 text-orange-600 text-sm font-medium mb-6">
@@ -241,20 +239,37 @@ function ServicesSection() {
             return (
               <div
                 key={service.key}
-                className="group bg-white rounded-3xl p-8 shadow-xl shadow-slate-200/50 border border-slate-100 hover:shadow-2xl hover:shadow-orange-200/30 hover:-translate-y-1 transition-all duration-300"
+                className="group relative rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 aspect-[4/3]"
               >
-                <div className="flex items-start justify-between mb-6">
-                  <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center shadow-lg`}>
-                    <Icon className="w-7 h-7 text-white" />
-                  </div>
-                  <span className="text-xs font-bold text-slate-300 bg-slate-50 px-3 py-1 rounded-full">0{index + 1}</span>
+                {/* Background Image */}
+                <div className="absolute inset-0">
+                  <Image
+                    src={service.image}
+                    alt={t(`${service.key}.title`)}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  {/* Gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-orange-600 transition-colors">
-                  {t(`${service.key}.title`)}
-                </h3>
-                <p className="text-slate-500 leading-relaxed">
-                  {t(`${service.key}.description`)}
-                </p>
+                
+                {/* Content */}
+                <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-xl bg-orange-500 flex items-center justify-center">
+                      <Icon className="w-5 h-5 text-white" />
+                    </div>
+                    <span className="text-xs font-bold text-orange-400 bg-orange-500/20 px-3 py-1 rounded-full backdrop-blur-sm">
+                      0{index + 1}
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-orange-300 transition-colors">
+                    {t(`${service.key}.title`)}
+                  </h3>
+                  <p className="text-slate-300 text-sm leading-relaxed line-clamp-2">
+                    {t(`${service.key}.description`)}
+                  </p>
+                </div>
               </div>
             );
           })}
@@ -265,20 +280,37 @@ function ServicesSection() {
             return (
               <div
                 key={service.key}
-                className="group bg-white rounded-3xl p-8 shadow-xl shadow-slate-200/50 border border-slate-100 hover:shadow-2xl hover:shadow-orange-200/30 hover:-translate-y-1 transition-all duration-300"
+                className="group relative rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 aspect-[4/3]"
               >
-                <div className="flex items-start justify-between mb-6">
-                  <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center shadow-lg`}>
-                    <Icon className="w-7 h-7 text-white" />
-                  </div>
-                  <span className="text-xs font-bold text-slate-300 bg-slate-50 px-3 py-1 rounded-full">0{index + 4}</span>
+                {/* Background Image */}
+                <div className="absolute inset-0">
+                  <Image
+                    src={service.image}
+                    alt={t(`${service.key}.title`)}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  {/* Gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-orange-600 transition-colors">
-                  {t(`${service.key}.title`)}
-                </h3>
-                <p className="text-slate-500 leading-relaxed">
-                  {t(`${service.key}.description`)}
-                </p>
+                
+                {/* Content */}
+                <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-xl bg-orange-500 flex items-center justify-center">
+                      <Icon className="w-5 h-5 text-white" />
+                    </div>
+                    <span className="text-xs font-bold text-orange-400 bg-orange-500/20 px-3 py-1 rounded-full backdrop-blur-sm">
+                      0{index + 4}
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-orange-300 transition-colors">
+                    {t(`${service.key}.title`)}
+                  </h3>
+                  <p className="text-slate-300 text-sm leading-relaxed line-clamp-2">
+                    {t(`${service.key}.description`)}
+                  </p>
+                </div>
               </div>
             );
           })}
