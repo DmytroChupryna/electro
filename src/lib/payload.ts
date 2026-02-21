@@ -75,7 +75,7 @@ export async function getServices(locale: string = 'en'): Promise<CMSService[]> 
       description: doc.description as string,
       icon: doc.icon as IconName,
       image: doc.image as string | null,
-      order: doc.order as number,
+      order: doc.sortOrder as number,
       isActive: doc.isActive as boolean,
     }));
   } catch (error) {
@@ -119,7 +119,7 @@ export async function getProjects(locale: string = 'en', featuredOnly: boolean =
       year: doc.year as string,
       image: (doc.image as string) || '',
       featured: doc.featured as boolean,
-      order: (doc.order as number) || 0,
+      order: (doc.sortOrder as number) || 0,
       gallery: [], // Gallery loaded separately for detail page
     }));
   } catch (error) {
@@ -165,7 +165,7 @@ export async function getProjectById(id: string, locale: string = 'en'): Promise
       image: (doc.image as string) || '',
       gallery: galleryUrls,
       featured: doc.featured as boolean,
-      order: (doc.order as number) || 0,
+      order: (doc.sortOrder as number) || 0,
     };
   } catch (error) {
     console.error('Error fetching project:', error);

@@ -342,7 +342,7 @@ export async function POST(request: Request) {
           description: serviceData.description.en,
           icon: serviceData.icon,
           image: serviceData.image,
-          order: serviceData.order,
+          sortOrder: serviceData.order,
           isActive: true,
         },
         locale: 'en',
@@ -385,7 +385,7 @@ export async function POST(request: Request) {
           image: projectData.imageUrl,
           gallery: galleryItems.length > 0 ? galleryItems : undefined,
           featured: projectData.featured,
-          order: projectData.order,
+          sortOrder: projectData.order,
         },
         locale: 'en',
       });

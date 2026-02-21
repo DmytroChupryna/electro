@@ -150,7 +150,7 @@ export default buildConfig({
           },
         },
         {
-          name: 'order',
+          name: 'sortOrder',
           label: 'Display Order',
           type: 'number',
           required: true,
@@ -299,7 +299,7 @@ export default buildConfig({
           },
         },
         {
-          name: 'order',
+          name: 'sortOrder',
           label: 'Display Order',
           type: 'number',
           defaultValue: 0,
