@@ -234,18 +234,21 @@ async function uploadImageFromUrl(
       contentType = mimeTypes[ext] || 'image/jpeg';
     } else {
       // Remote URL - fetch from internet
+      console.log(`Fetching image from: ${imageUrl}`);
       const response = await fetch(imageUrl);
       if (!response.ok) {
-        console.error(`Failed to fetch image: ${imageUrl}`);
+        console.error(`Failed to fetch image: ${imageUrl} - Status: ${response.status}`);
         return null;
       }
 
       const arrayBuffer = await response.arrayBuffer();
       buffer = Buffer.from(arrayBuffer);
       contentType = response.headers.get('content-type') || 'image/jpeg';
+      console.log(`Fetched image: ${buffer.length} bytes, type: ${contentType}`);
     }
 
     // Create media entry with file
+    console.log(`Creating media entry for: ${filename} (${buffer.length} bytes)`);
     const media = await payload.create({
       collection: 'media',
       data: {
@@ -259,9 +262,12 @@ async function uploadImageFromUrl(
       },
     });
 
+    console.log(`Media created with ID: ${media.id}`);
     return media.id;
   } catch (error) {
-    console.error(`Error uploading image ${filename}:`, error);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    console.error(`Error uploading image ${filename}:`, errorMessage);
+    console.error('Full error:', JSON.stringify(error, Object.getOwnPropertyNames(error), 2));
     return null;
   }
 }
@@ -362,7 +368,7 @@ export async function POST(request: Request) {
       );
 
       if (!imageId) {
-        results.push(`⚠️ Skipped project (no image): ${projectData.title.en}`);
+        results.push(`⚠️ Skipped project (no image): ${projectData.title.en} - tried URL: ${projectData.imageUrl}`);
         continue;
       }
 
