@@ -56,76 +56,86 @@ export interface CMSSettings {
  * Get all active services from CMS
  */
 export async function getServices(locale: string = 'en'): Promise<CMSService[]> {
-  const payload = await getPayload({ config });
+  try {
+    const payload = await getPayload({ config });
 
-  const result = await payload.find({
-    collection: 'services',
-    where: {
-      isActive: { equals: true },
-    },
-    sort: 'order',
-    locale: locale as 'en' | 'pl',
-    limit: 100,
-  });
+    const result = await payload.find({
+      collection: 'services',
+      where: {
+        isActive: { equals: true },
+      },
+      sort: 'order',
+      locale: locale as 'en' | 'pl',
+      limit: 100,
+    });
 
-  return result.docs.map((doc) => ({
-    id: String(doc.id),
-    title: doc.title as string,
-    description: doc.description as string,
-    icon: doc.icon as IconName,
-    image: doc.image as string | null,
-    order: doc.order as number,
-    isActive: doc.isActive as boolean,
-  }));
+    return result.docs.map((doc) => ({
+      id: String(doc.id),
+      title: doc.title as string,
+      description: doc.description as string,
+      icon: doc.icon as IconName,
+      image: doc.image as string | null,
+      order: doc.order as number,
+      isActive: doc.isActive as boolean,
+    }));
+  } catch (error) {
+    console.error('Error fetching services:', error);
+    return [];
+  }
 }
 
 /**
  * Get all projects from CMS
  */
 export async function getProjects(locale: string = 'en', featuredOnly: boolean = false): Promise<CMSProject[]> {
-  const payload = await getPayload({ config });
+  try {
+    const payload = await getPayload({ config });
 
-  // Build query options
-  const queryOptions: Parameters<typeof payload.find>[0] = {
-    collection: 'projects',
-    sort: 'order',
-    locale: locale as 'en' | 'pl',
-    limit: 100,
-    depth: 1, // Include related media
-  };
-
-  // Add featured filter if needed
-  if (featuredOnly) {
-    queryOptions.where = {
-      featured: { equals: true },
+    // Build query options
+    const queryOptions: Parameters<typeof payload.find>[0] = {
+      collection: 'projects',
+      sort: 'order',
+      locale: locale as 'en' | 'pl',
+      limit: 100,
+      depth: 1, // Include related media
     };
-  }
 
-  const result = await payload.find(queryOptions);
-
-  return result.docs.map((doc) => {
-    // Get image URL from Media relationship
-    let imageUrl = '';
-    if (doc.image && typeof doc.image === 'object' && 'url' in doc.image) {
-      imageUrl = (doc.image as { url?: string }).url || '';
-    } else if (typeof doc.image === 'string') {
-      imageUrl = doc.image;
+    // Add featured filter if needed
+    if (featuredOnly) {
+      queryOptions.where = {
+        featured: { equals: true },
+      };
     }
 
-    return {
-      id: String(doc.id),
-      title: doc.title as string,
-      description: doc.description as string,
-      location: doc.location as string,
-      category: doc.category as ProjectCategory,
-      country: doc.country as 'PL' | 'BE',
-      year: doc.year as string,
-      image: imageUrl,
-      featured: doc.featured as boolean,
-      order: (doc.order as number) || 0,
-      gallery: [], // Gallery loaded separately for detail page
-    };
-  });
+    const result = await payload.find(queryOptions);
+
+    return result.docs.map((doc) => {
+      // Get image URL from Media relationship
+      let imageUrl = '';
+      if (doc.image && typeof doc.image === 'object' && 'url' in doc.image) {
+        imageUrl = (doc.image as { url?: string }).url || '';
+      } else if (typeof doc.image === 'string') {
+        imageUrl = doc.image;
+      }
+
+      return {
+        id: String(doc.id),
+        title: doc.title as string,
+        description: doc.description as string,
+        location: doc.location as string,
+        category: doc.category as ProjectCategory,
+        country: doc.country as 'PL' | 'BE',
+        year: doc.year as string,
+        image: imageUrl,
+        featured: doc.featured as boolean,
+        order: (doc.order as number) || 0,
+        gallery: [], // Gallery loaded separately for detail page
+      };
+    });
+  } catch (error) {
+    console.error('Error fetching projects:', error);
+    return [];
+  }
 }
 
 /**
@@ -185,15 +195,23 @@ export async function getProjectById(id: string, locale: string = 'en'): Promise
  * Get global settings from CMS
  */
 export async function getSettings(locale: string = 'en'): Promise<CMSSettings> {
-  const payload = await getPayload({ config });
+  try {
+    const payload = await getPayload({ config });
 
-  const settings = await payload.findGlobal({
-    slug: 'settings',
-    locale: locale as 'en' | 'pl',
-  });
+    const settings = await payload.findGlobal({
+      slug: 'settings',
+      locale: locale as 'en' | 'pl',
+    });
 
-  return {
-    title: settings.title as string,
-    description: settings.description as string | null,
-  };
+    return {
+      title: settings.title as string,
+      description: settings.description as string | null,
+    };
+  } catch (error) {
+    console.error('Error fetching settings:', error);
+    return {
+      title: 'Techno Groop',
+      description: null,
+    };
+  }
 }
