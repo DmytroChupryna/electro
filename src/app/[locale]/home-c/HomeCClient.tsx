@@ -239,7 +239,7 @@ function ServicesSection() {
             return (
               <div
                 key={service.key}
-                className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-500 aspect-[5/2]"
+                className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-500 aspect-[3/1]"
               >
                 {/* Background Image */}
                 <div className="absolute inset-0">
@@ -280,7 +280,7 @@ function ServicesSection() {
             return (
               <div
                 key={service.key}
-                className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-500 aspect-[5/2]"
+                className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-500 aspect-[3/1]"
               >
                 {/* Background Image */}
                 <div className="absolute inset-0">
