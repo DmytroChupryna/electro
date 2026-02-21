@@ -84,30 +84,30 @@ export default function ServicesClient({ services }: ServicesClientProps) {
                   return (
                     <div
                       key={service.id}
-                      className="group relative rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 aspect-[4/3]"
+                      className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-500 aspect-[16/9]"
                     >
                       <div className="absolute inset-0">
                         <Image
                           src={bgImage}
                           alt={service.title}
                           fill
-                          className="object-cover transition-transform duration-700 group-hover:scale-110"
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent" />
                       </div>
-                      <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                        <div className="flex items-center gap-3 mb-3">
-                          <div className="w-12 h-12 rounded-xl bg-orange-500 flex items-center justify-center">
-                            <Icon className="w-6 h-6 text-white" />
+                      <div className="absolute inset-0 p-5 flex flex-col justify-end">
+                        <div className="flex items-center gap-2 mb-2">
+                          <div className="w-9 h-9 rounded-lg bg-orange-500 flex items-center justify-center">
+                            <Icon className="w-5 h-5 text-white" />
                           </div>
-                          <span className="text-xs font-bold text-orange-400 bg-orange-500/20 px-3 py-1 rounded-full backdrop-blur-sm">
+                          <span className="text-xs font-bold text-orange-400 bg-orange-500/20 px-2 py-0.5 rounded-full backdrop-blur-sm">
                             0{index + 1}
                           </span>
                         </div>
-                        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-orange-300 transition-colors">
+                        <h3 className="text-lg font-bold text-white mb-1 group-hover:text-orange-300 transition-colors">
                           {service.title}
                         </h3>
-                        <p className="text-slate-300 text-sm leading-relaxed line-clamp-2">
+                        <p className="text-slate-300 text-xs leading-relaxed line-clamp-2">
                           {service.description}
                         </p>
                       </div>
@@ -122,30 +122,30 @@ export default function ServicesClient({ services }: ServicesClientProps) {
                   return (
                     <div
                       key={service.id}
-                      className="group relative rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 aspect-[4/3]"
+                      className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-500 aspect-[16/9]"
                     >
                       <div className="absolute inset-0">
                         <Image
                           src={bgImage}
                           alt={service.title}
                           fill
-                          className="object-cover transition-transform duration-700 group-hover:scale-110"
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent" />
                       </div>
-                      <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                        <div className="flex items-center gap-3 mb-3">
-                          <div className="w-12 h-12 rounded-xl bg-orange-500 flex items-center justify-center">
-                            <Icon className="w-6 h-6 text-white" />
+                      <div className="absolute inset-0 p-5 flex flex-col justify-end">
+                        <div className="flex items-center gap-2 mb-2">
+                          <div className="w-9 h-9 rounded-lg bg-orange-500 flex items-center justify-center">
+                            <Icon className="w-5 h-5 text-white" />
                           </div>
-                          <span className="text-xs font-bold text-orange-400 bg-orange-500/20 px-3 py-1 rounded-full backdrop-blur-sm">
+                          <span className="text-xs font-bold text-orange-400 bg-orange-500/20 px-2 py-0.5 rounded-full backdrop-blur-sm">
                             0{index + 4}
                           </span>
                         </div>
-                        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-orange-300 transition-colors">
+                        <h3 className="text-lg font-bold text-white mb-1 group-hover:text-orange-300 transition-colors">
                           {service.title}
                         </h3>
-                        <p className="text-slate-300 text-sm leading-relaxed line-clamp-2">
+                        <p className="text-slate-300 text-xs leading-relaxed line-clamp-2">
                           {service.description}
                         </p>
                       </div>
