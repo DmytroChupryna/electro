@@ -75,8 +75,7 @@ const projectsData = [
     category: 'industrial',
     country: 'BE',
     year: '2024',
-    imageUrl: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80',
-    imageName: 'logistics-center.jpg',
+    imageUrl: '/projects/logistics-center.jpg',
     featured: true,
     order: 1,
   },
@@ -90,8 +89,7 @@ const projectsData = [
     category: 'commercial',
     country: 'PL',
     year: '2024',
-    imageUrl: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80',
-    imageName: 'office-building.jpg',
+    imageUrl: '/projects/office-building.jpg',
     featured: true,
     order: 2,
   },
@@ -105,8 +103,7 @@ const projectsData = [
     category: 'residential',
     country: 'BE',
     year: '2023',
-    imageUrl: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80',
-    imageName: 'residential-complex.jpg',
+    imageUrl: '/projects/residential-complex.jpg',
     featured: true,
     order: 3,
   },
@@ -120,8 +117,7 @@ const projectsData = [
     category: 'commercial',
     country: 'BE',
     year: '2024',
-    imageUrl: 'https://images.unsplash.com/photo-1567449303078-57ad995bd17f?w=800&q=80',
-    imageName: 'shopping-mall.jpg',
+    imageUrl: '/projects/shopping-mall.jpg',
     featured: false,
     order: 4,
   },
@@ -135,8 +131,7 @@ const projectsData = [
     category: 'industrial',
     country: 'PL',
     year: '2023',
-    imageUrl: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=80',
-    imageName: 'solar-farm.jpg',
+    imageUrl: '/projects/solar-farm.jpg',
     featured: false,
     order: 5,
   },
@@ -150,8 +145,7 @@ const projectsData = [
     category: 'commercial',
     country: 'BE',
     year: '2024',
-    imageUrl: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
-    imageName: 'smart-building.jpg',
+    imageUrl: '/projects/smart-building.jpg',
     featured: false,
     order: 6,
   },
@@ -166,7 +160,6 @@ const projectsData = [
     country: 'BE',
     year: '2024',
     imageUrl: '/projects/antwerp-prison/switchboard.png',
-    imageName: 'antwerp-prison.png',
     featured: true,
     order: 7,
     gallery: [
@@ -357,35 +350,13 @@ export async function POST(request: Request) {
       results.push(`Created service: ${serviceData.title.en}`);
     }
 
-    // Create projects with localization and uploaded images
+    // Create projects with localization (using static URLs)
     for (const projectData of projectsData) {
-      // Upload image first
-      const imageId = await uploadImageFromUrl(
-        payload,
-        projectData.imageUrl,
-        projectData.imageName,
-        projectData.title.en
-      );
-
-      if (!imageId) {
-        results.push(`⚠️ Skipped project (no image): ${projectData.title.en} - tried URL: ${projectData.imageUrl}`);
-        continue;
-      }
-
-      // Upload gallery images if present
-      const galleryItems: { image: string | number }[] = [];
+      // Build gallery items from URLs
+      const galleryItems: { url: string }[] = [];
       if (projectData.gallery && Array.isArray(projectData.gallery)) {
-        for (let i = 0; i < projectData.gallery.length; i++) {
-          const galleryUrl = projectData.gallery[i];
-          const galleryImageId = await uploadImageFromUrl(
-            payload,
-            galleryUrl,
-            `gallery-${projectData.imageName.replace('.png', '')}-${i + 1}.png`,
-            `${projectData.title.en} - Gallery ${i + 1}`
-          );
-          if (galleryImageId) {
-            galleryItems.push({ image: galleryImageId });
-          }
+        for (const galleryUrl of projectData.gallery) {
+          galleryItems.push({ url: galleryUrl });
         }
       }
 
@@ -399,7 +370,7 @@ export async function POST(request: Request) {
           category: projectData.category,
           country: projectData.country,
           year: projectData.year,
-          image: imageId,
+          image: projectData.imageUrl,
           gallery: galleryItems.length > 0 ? galleryItems : undefined,
           featured: projectData.featured,
           order: projectData.order,
@@ -419,7 +390,7 @@ export async function POST(request: Request) {
         locale: 'pl',
       });
 
-      results.push(`Created project: ${projectData.title.en} (with image)`);
+      results.push(`Created project: ${projectData.title.en}`);
     }
 
     // Update global settings - English

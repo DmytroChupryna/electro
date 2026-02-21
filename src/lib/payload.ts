@@ -109,29 +109,19 @@ export async function getProjects(locale: string = 'en', featuredOnly: boolean =
 
     const result = await payload.find(queryOptions);
 
-    return result.docs.map((doc) => {
-      // Get image URL from Media relationship
-      let imageUrl = '';
-      if (doc.image && typeof doc.image === 'object' && 'url' in doc.image) {
-        imageUrl = (doc.image as { url?: string }).url || '';
-      } else if (typeof doc.image === 'string') {
-        imageUrl = doc.image;
-      }
-
-      return {
-        id: String(doc.id),
-        title: doc.title as string,
-        description: doc.description as string,
-        location: doc.location as string,
-        category: doc.category as ProjectCategory,
-        country: doc.country as 'PL' | 'BE',
-        year: doc.year as string,
-        image: imageUrl,
-        featured: doc.featured as boolean,
-        order: (doc.order as number) || 0,
-        gallery: [], // Gallery loaded separately for detail page
-      };
-    });
+    return result.docs.map((doc) => ({
+      id: String(doc.id),
+      title: doc.title as string,
+      description: doc.description as string,
+      location: doc.location as string,
+      category: doc.category as ProjectCategory,
+      country: doc.country as 'PL' | 'BE',
+      year: doc.year as string,
+      image: (doc.image as string) || '',
+      featured: doc.featured as boolean,
+      order: (doc.order as number) || 0,
+      gallery: [], // Gallery loaded separately for detail page
+    }));
   } catch (error) {
     console.error('Error fetching projects:', error);
     return [];
@@ -154,20 +144,12 @@ export async function getProjectById(id: string, locale: string = 'en'): Promise
 
     if (!doc) return null;
 
-    // Get main image URL
-    let imageUrl = '';
-    if (doc.image && typeof doc.image === 'object' && 'url' in doc.image) {
-      imageUrl = (doc.image as { url?: string }).url || '';
-    } else if (typeof doc.image === 'string') {
-      imageUrl = doc.image;
-    }
-
-    // Get gallery image URLs
+    // Get gallery URLs
     const galleryUrls: string[] = [];
     if (doc.gallery && Array.isArray(doc.gallery)) {
       for (const item of doc.gallery) {
-        if (item.image && typeof item.image === 'object' && 'url' in item.image) {
-          galleryUrls.push((item.image as { url?: string }).url || '');
+        if (item.url) {
+          galleryUrls.push(item.url as string);
         }
       }
     }
@@ -180,7 +162,7 @@ export async function getProjectById(id: string, locale: string = 'en'): Promise
       category: doc.category as ProjectCategory,
       country: doc.country as 'PL' | 'BE',
       year: doc.year as string,
-      image: imageUrl,
+      image: (doc.image as string) || '',
       gallery: galleryUrls,
       featured: doc.featured as boolean,
       order: (doc.order as number) || 0,
