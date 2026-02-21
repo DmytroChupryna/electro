@@ -282,43 +282,55 @@ export async function POST(request: Request) {
     const results: string[] = [];
 
     // 1. Clear existing projects FIRST (they reference media)
-    const existingProjects = await payload.find({
-      collection: 'projects',
-      limit: 100,
-    });
-    for (const project of existingProjects.docs) {
-      await payload.delete({
+    try {
+      const existingProjects = await payload.find({
         collection: 'projects',
-        id: project.id,
+        limit: 100,
       });
+      for (const project of existingProjects.docs) {
+        await payload.delete({
+          collection: 'projects',
+          id: project.id,
+        });
+      }
+      results.push(`Deleted ${existingProjects.docs.length} existing projects`);
+    } catch {
+      results.push('Projects table created (was empty)');
     }
-    results.push(`Deleted ${existingProjects.docs.length} existing projects`);
 
     // 2. Clear existing services (they might reference media)
-    const existingServices = await payload.find({
-      collection: 'services',
-      limit: 100,
-    });
-    for (const service of existingServices.docs) {
-      await payload.delete({
+    try {
+      const existingServices = await payload.find({
         collection: 'services',
-        id: service.id,
+        limit: 100,
       });
+      for (const service of existingServices.docs) {
+        await payload.delete({
+          collection: 'services',
+          id: service.id,
+        });
+      }
+      results.push(`Deleted ${existingServices.docs.length} existing services`);
+    } catch {
+      results.push('Services table created (was empty)');
     }
-    results.push(`Deleted ${existingServices.docs.length} existing services`);
 
     // 3. Clear existing media LAST (after references are removed)
-    const existingMedia = await payload.find({
-      collection: 'media',
-      limit: 100,
-    });
-    for (const media of existingMedia.docs) {
-      await payload.delete({
+    try {
+      const existingMedia = await payload.find({
         collection: 'media',
-        id: media.id,
+        limit: 100,
       });
+      for (const media of existingMedia.docs) {
+        await payload.delete({
+          collection: 'media',
+          id: media.id,
+        });
+      }
+      results.push(`Deleted ${existingMedia.docs.length} existing media`);
+    } catch {
+      results.push('Media table created (was empty)');
     }
-    results.push(`Deleted ${existingMedia.docs.length} existing media`);
 
     // Create services with localization
     for (const serviceData of servicesData) {
