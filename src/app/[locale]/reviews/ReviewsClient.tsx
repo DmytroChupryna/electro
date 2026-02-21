@@ -150,13 +150,13 @@ export default function ReviewsClient() {
             design === 'industrial' && 'border-4 border-slate-900 bg-white p-8'
           )}>
             {[
-              { value: '50+', label: 'Completed Projects' },
-              { value: '100%', label: 'Client Satisfaction' },
-              { value: 'VCA', label: 'Certified Team' },
-              { value: '2', label: 'Countries' },
+              { value: '50+', labelKey: 'projects' },
+              { value: '100%', labelKey: 'satisfaction' },
+              { value: 'VCA', labelKey: 'certified' },
+              { value: '2', labelKey: 'countries' },
             ].map((stat, i) => (
               <>
-                <div key={stat.label} className={cn(design === 'minimal' && 'bg-white rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 px-8 py-6')}>
+                <div key={stat.labelKey} className={cn(design === 'minimal' && 'bg-white rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 px-8 py-6')}>
                   <div className={cn(
                     'text-4xl font-bold mb-2',
                     design === 'corporate' && 'text-white',
@@ -165,7 +165,7 @@ export default function ReviewsClient() {
                   )}>
                     {stat.value}
                   </div>
-                  <Text variant="muted">{stat.label}</Text>
+                  <Text variant="muted">{t(`stats.${stat.labelKey}`)}</Text>
                 </div>
                 {i < 3 && design === 'corporate' && (
                   <div className="w-px h-16 bg-slate-800 hidden md:block" />

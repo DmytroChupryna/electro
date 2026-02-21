@@ -185,6 +185,12 @@
         "company": "Warsaw Developers",
         "role": "Site Manager"
       }
+    },
+    "stats": {
+      "projects": "Completed Projects",
+      "satisfaction": "Client Satisfaction",
+      "certified": "Certified Team",
+      "countries": "Countries"
     }
   },
   "Careers": {

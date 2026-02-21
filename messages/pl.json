@@ -185,6 +185,12 @@
         "company": "Warsaw Developers",
         "role": "Kierownik budowy"
       }
+    },
+    "stats": {
+      "projects": "Zrealizowanych projektów",
+      "satisfaction": "Satysfakcji klientów",
+      "certified": "Certyfikowany zespół",
+      "countries": "Kraje działalności"
     }
   },
   "Careers": {
