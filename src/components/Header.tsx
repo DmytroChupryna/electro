@@ -51,13 +51,12 @@ export default function Header({ variant }: HeaderProps) {
       <header className="fixed top-0 left-0 right-0 z-50 bg-amber-500 border-b-4 border-slate-900">
         <div className="container mx-auto px-4 lg:px-8 py-4">
           <nav className="flex items-center justify-between">
-            <Link href="/home-b" className="flex items-center gap-3">
-              <div className="bg-slate-900 p-2">
-                <Zap className="w-8 h-8 text-amber-500 fill-current" />
-              </div>
-              <span className="text-2xl font-black tracking-tighter text-slate-900 uppercase">
-                Techno Groop
-              </span>
+            <Link href="/home-b" className="flex items-center">
+              <img 
+                src="/logo.png" 
+                alt="Techno Groop" 
+                className="h-12 w-auto"
+              />
             </Link>
 
             <div className="hidden lg:flex items-center gap-8">
@@ -113,36 +112,37 @@ export default function Header({ variant }: HeaderProps) {
     );
   }
 
-  // Minimal-specific header
+  // Enhanced Minimal-specific header
   if (design === 'minimal') {
     return (
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100">
-        <div className="container mx-auto px-4 lg:px-8 py-5">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-xl border-b border-slate-100 shadow-sm shadow-slate-100/50">
+        <div className="container mx-auto px-4 lg:px-8 py-4">
           <nav className="flex items-center justify-between">
-            <Link href="/home-c" className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-blue-600" />
-              <span className="text-lg font-medium tracking-tight text-slate-900">
-                Techno Groop
-              </span>
+            <Link href="/home-c" className="flex items-center group">
+              <img 
+                src="/logo.png" 
+                alt="Techno Groop" 
+                className="h-10 w-auto transition-transform group-hover:scale-105"
+              />
             </Link>
 
-            <div className="hidden lg:flex items-center gap-10">
+            <div className="hidden lg:flex items-center gap-1 bg-slate-50 rounded-full px-2 py-1">
               {navLinks.slice(0, 4).map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-sm text-slate-500 hover:text-slate-900 transition-colors"
+                  className="text-sm text-slate-600 hover:text-slate-900 hover:bg-white px-4 py-2 rounded-full transition-all"
                 >
                   {link.label}
                 </Link>
               ))}
             </div>
 
-            <div className="hidden lg:flex items-center gap-4">
+            <div className="hidden lg:flex items-center gap-3">
               <LanguageSwitcher variant="light" />
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-2 text-sm font-medium text-slate-900 border-b border-slate-900 pb-0.5 hover:text-blue-600 hover:border-blue-600 transition-colors"
+                className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 text-white text-sm font-medium shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 hover:scale-105 transition-all"
               >
                 {t('getQuote')}
               </Link>
@@ -150,21 +150,21 @@ export default function Header({ variant }: HeaderProps) {
 
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 text-slate-900"
+              className="lg:hidden p-2.5 text-slate-900 bg-slate-100 rounded-xl hover:bg-slate-200 transition-colors"
               aria-label="Toggle menu"
             >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </nav>
 
           {isMobileMenuOpen && (
-            <div className="lg:hidden mt-4 py-4 bg-white rounded-2xl shadow-xl">
+            <div className="lg:hidden mt-4 py-4 bg-white rounded-2xl shadow-2xl shadow-slate-200/50 border border-slate-100">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block py-3 px-6 text-slate-700 hover:bg-slate-50 transition-colors"
+                  className="block py-3 px-6 text-slate-700 hover:bg-orange-50 hover:text-orange-600 transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -195,20 +195,14 @@ export default function Header({ variant }: HeaderProps) {
           {/* Logo */}
           <Link
             href="/home-a"
-            className="flex items-center gap-3 group"
+            className="flex items-center group"
             aria-label="Techno Groop - Home"
           >
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center transition-transform group-hover:scale-105">
-              <Zap className="w-6 h-6 text-white fill-current" />
-            </div>
-            <span
-              className={cn(
-                'text-xl font-bold tracking-tight transition-colors',
-                isDark || isTransparent ? 'text-white' : 'text-slate-900'
-              )}
-            >
-              TECHNO GROOP
-            </span>
+            <img 
+              src="/logo.png" 
+              alt="Techno Groop" 
+              className="h-10 w-auto transition-transform group-hover:scale-105"
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -238,7 +232,7 @@ export default function Header({ variant }: HeaderProps) {
                 'px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200',
                 isDark || isTransparent
                   ? 'bg-amber-500 text-slate-900 hover:bg-amber-400'
-                  : 'bg-blue-600 text-white hover:bg-blue-700'
+                  : 'bg-orange-600 text-white hover:bg-orange-700'
               )}
             >
               {t('getQuote')}

@@ -8,7 +8,6 @@ import { cn } from '@/lib/utils';
 import {
   Server,
   Settings,
-  Droplets,
   Sun,
   Home,
   Factory,
@@ -23,7 +22,6 @@ const iconComponents: Record<IconName, LucideIcon> = {
   factory: Factory,
   server: Server,
   settings: Settings,
-  droplets: Droplets,
   sun: Sun,
 };
 
@@ -34,6 +32,8 @@ interface ServicesClientProps {
 export default function ServicesClient({ services }: ServicesClientProps) {
   const t = useTranslations('Services');
   const tCTA = useTranslations('CTA');
+  const tLoc = useTranslations('Locations');
+  const ui = useTranslations('UI');
   const { design } = useDesign();
 
   return (
@@ -44,11 +44,11 @@ export default function ServicesClient({ services }: ServicesClientProps) {
           <div className="max-w-4xl">
             {design === 'industrial' ? (
               <div className="inline-block bg-amber-500 text-slate-900 font-black px-4 py-2 mb-4 uppercase tracking-widest text-sm">
-                Our Services
+                {ui('servicesLabel')}
               </div>
             ) : (
               <Text variant="accent" className="font-medium mb-4 tracking-wide uppercase text-sm">
-                Our Services
+                {ui('servicesLabel')}
               </Text>
             )}
             <Heading level={1} className="mb-6 leading-tight">
@@ -75,13 +75,13 @@ export default function ServicesClient({ services }: ServicesClientProps) {
                   key={service.id}
                   className={cn(
                     'group relative overflow-hidden transition-all',
-                    design === 'corporate' && 'rounded-2xl bg-slate-900 border border-slate-800 hover:border-blue-500/50',
+                    design === 'corporate' && 'rounded-2xl bg-slate-900 border border-slate-800 hover:border-orange-500/50',
                     design === 'industrial' && cn(
                       'bg-white hover:bg-amber-50',
                       index < 4 && 'border-b-4 border-slate-900',
                       index % 2 === 0 && 'border-r-4 border-slate-900'
                     ),
-                    design === 'minimal' && 'bg-white hover:bg-slate-50 rounded-2xl'
+                    design === 'minimal' && 'bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 hover:shadow-2xl hover:shadow-orange-200/30 hover:-translate-y-1 transition-all duration-300'
                   )}
                 >
                   {/* Background Image - only for corporate */}
@@ -100,16 +100,16 @@ export default function ServicesClient({ services }: ServicesClientProps) {
                   <div className="relative p-10">
                     <div className="flex items-start gap-6">
                       <div className={cn(
-                        'w-16 h-16 flex items-center justify-center flex-shrink-0 transition-colors',
-                        design === 'corporate' && 'rounded-xl bg-blue-500/10 group-hover:bg-blue-600',
+                        'w-16 h-16 flex items-center justify-center flex-shrink-0 transition-all',
+                        design === 'corporate' && 'rounded-xl bg-orange-500/10 group-hover:bg-orange-600',
                         design === 'industrial' && 'bg-slate-900',
-                        design === 'minimal' && 'rounded-2xl bg-slate-100 group-hover:bg-blue-100'
+                        design === 'minimal' && (index % 2 === 0 ? 'rounded-2xl bg-gradient-to-br from-orange-500 to-amber-500 shadow-lg shadow-orange-500/25 group-hover:scale-110' : 'rounded-2xl bg-gradient-to-br from-slate-700 to-slate-800 shadow-lg shadow-slate-500/25 group-hover:scale-110')
                       )}>
                         <Icon className={cn(
                           'w-8 h-8 transition-colors',
-                          design === 'corporate' && 'text-blue-400 group-hover:text-white',
+                          design === 'corporate' && 'text-orange-400 group-hover:text-white',
                           design === 'industrial' && 'text-amber-500',
-                          design === 'minimal' && 'text-slate-400 group-hover:text-blue-600'
+                          design === 'minimal' && 'text-white'
                         )} />
                       </div>
                       <div>
@@ -148,8 +148,8 @@ export default function ServicesClient({ services }: ServicesClientProps) {
       <Section variant="primary" className="py-20">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-12">
-            <Heading level={2} className="mb-4">We Operate In</Heading>
-            <Text variant="muted">Same services available in both countries</Text>
+            <Heading level={2} className="mb-4">{tLoc('title')}</Heading>
+            <Text variant="muted">{tLoc('subtitle')}</Text>
           </div>
 
           <div className="flex flex-wrap justify-center gap-8">
@@ -157,27 +157,40 @@ export default function ServicesClient({ services }: ServicesClientProps) {
               'flex items-center gap-4 px-8 py-4',
               design === 'corporate' && 'rounded-full bg-slate-950 border border-slate-800',
               design === 'industrial' && 'bg-white border-4 border-slate-900',
-              design === 'minimal' && 'rounded-full bg-slate-100'
+              design === 'minimal' && 'rounded-2xl bg-white shadow-xl shadow-slate-200/50 border border-slate-100'
             )}>
-              <span className="text-3xl">🇵🇱</span>
+              <img src="/coats/poland.png" alt="Poland" className="w-10 h-6 object-cover rounded" />
               <span className={cn(
-                'font-medium',
+                'font-semibold',
                 design === 'corporate' && 'text-white',
                 design !== 'corporate' && 'text-slate-900'
-              )}>Poland (Warsaw)</span>
+              )}>{tLoc('poland')}</span>
             </div>
             <div className={cn(
               'flex items-center gap-4 px-8 py-4',
               design === 'corporate' && 'rounded-full bg-slate-950 border border-slate-800',
               design === 'industrial' && 'bg-amber-500 border-4 border-slate-900',
-              design === 'minimal' && 'rounded-full bg-slate-100'
+              design === 'minimal' && 'rounded-2xl bg-white shadow-xl shadow-slate-200/50 border border-slate-100'
             )}>
-              <span className="text-3xl">🇧🇪</span>
+              <img src="/coats/belgium.png" alt="Belgium" className="w-10 h-6 object-cover rounded" />
               <span className={cn(
-                'font-medium',
+                'font-semibold',
                 design === 'corporate' && 'text-white',
                 design !== 'corporate' && 'text-slate-900'
-              )}>Belgium (Antwerp, Bruges, Brussels)</span>
+              )}>{tLoc('belgium')}</span>
+            </div>
+            <div className={cn(
+              'flex items-center gap-4 px-8 py-4',
+              design === 'corporate' && 'rounded-full bg-slate-950 border border-slate-800',
+              design === 'industrial' && 'bg-white border-4 border-slate-900',
+              design === 'minimal' && 'rounded-2xl bg-white shadow-xl shadow-slate-200/50 border border-slate-100'
+            )}>
+              <img src="/coats/eu-flag.png" alt="EU" className="w-10 h-6 object-cover rounded" />
+              <span className={cn(
+                'font-semibold',
+                design === 'corporate' && 'text-white',
+                design !== 'corporate' && 'text-slate-900'
+              )}>{tLoc('eu')}</span>
             </div>
           </div>
         </div>
@@ -194,7 +207,7 @@ export default function ServicesClient({ services }: ServicesClientProps) {
           </h2>
           <p className={cn(
             'mb-8 max-w-xl mx-auto',
-            design === 'corporate' && 'text-blue-100',
+            design === 'corporate' && 'text-orange-100',
             design === 'industrial' && 'text-slate-700',
             design === 'minimal' && 'text-slate-300'
           )}>
@@ -204,10 +217,10 @@ export default function ServicesClient({ services }: ServicesClientProps) {
             <Link
               href="/contact"
               className={cn(
-                'inline-flex items-center gap-2 px-8 py-4 font-semibold transition-colors',
-                design === 'corporate' && 'rounded-full bg-white text-blue-600 hover:bg-blue-50',
+                'inline-flex items-center gap-2 px-8 py-4 font-semibold transition-all',
+                design === 'corporate' && 'rounded-full bg-white text-orange-600 hover:bg-orange-50',
                 design === 'industrial' && 'bg-slate-900 text-amber-500 hover:bg-slate-800 font-black uppercase',
-                design === 'minimal' && 'rounded-full bg-white text-slate-900 hover:bg-slate-100'
+                design === 'minimal' && 'rounded-full bg-white text-orange-600 shadow-xl shadow-orange-900/20 hover:shadow-2xl hover:scale-105'
               )}
             >
               {tCTA('button')}
@@ -216,10 +229,10 @@ export default function ServicesClient({ services }: ServicesClientProps) {
             <a
               href="tel:+48578992316"
               className={cn(
-                'inline-flex items-center gap-2 px-8 py-4 font-semibold transition-colors',
-                design === 'corporate' && 'rounded-full bg-blue-500 text-white hover:bg-blue-400',
+                'inline-flex items-center gap-2 px-8 py-4 font-semibold transition-all',
+                design === 'corporate' && 'rounded-full bg-orange-500 text-white hover:bg-orange-400',
                 design === 'industrial' && 'border-4 border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-amber-500 font-black uppercase',
-                design === 'minimal' && 'rounded-full border border-white text-white hover:bg-white hover:text-slate-900'
+                design === 'minimal' && 'rounded-full bg-white/10 backdrop-blur-sm border border-white/30 text-white hover:bg-white/20'
               )}
             >
               +48 578 992 316

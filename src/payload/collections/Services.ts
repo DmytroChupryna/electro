@@ -39,7 +39,6 @@ export const Services: CollectionConfig = {
         { label: 'Industrial (Factory)', value: 'factory' },
         { label: 'Low Current (Server)', value: 'server' },
         { label: 'Automation (Settings)', value: 'settings' },
-        { label: 'Plumbing (Droplets)', value: 'droplets' },
         { label: 'Solar (Sun)', value: 'sun' },
       ],
       admin: {

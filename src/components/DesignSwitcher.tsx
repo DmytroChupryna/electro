@@ -21,7 +21,7 @@ export default function DesignSwitcher() {
   };
 
   const designs = [
-    { id: 'corporate' as DesignVariant, route: 'home-a', label: 'Corporate', color: 'bg-blue-600' },
+    { id: 'corporate' as DesignVariant, route: 'home-a', label: 'Corporate', color: 'bg-orange-600' },
     { id: 'industrial' as DesignVariant, route: 'home-b', label: 'Industrial', color: 'bg-amber-500' },
     { id: 'minimal' as DesignVariant, route: 'home-c', label: 'Minimal', color: 'bg-slate-200' },
   ];

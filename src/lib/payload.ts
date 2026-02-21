@@ -12,7 +12,6 @@ export const iconMap = {
   factory: 'Factory',
   server: 'Server',
   settings: 'Settings',
-  droplets: 'Droplets',
   sun: 'Sun',
 } as const;
 
@@ -42,6 +41,7 @@ export interface CMSProject {
   country: 'PL' | 'BE';
   year: string;
   image: string;
+  gallery?: string[];
   featured: boolean;
   order: number;
 }
@@ -123,8 +123,62 @@ export async function getProjects(locale: string = 'en', featuredOnly: boolean =
       image: imageUrl,
       featured: doc.featured as boolean,
       order: (doc.order as number) || 0,
+      gallery: [], // Gallery loaded separately for detail page
     };
   });
+}
+
+/**
+ * Get single project by ID from CMS
+ */
+export async function getProjectById(id: string, locale: string = 'en'): Promise<CMSProject | null> {
+  const payload = await getPayload({ config });
+
+  try {
+    const doc = await payload.findByID({
+      collection: 'projects',
+      id: id,
+      locale: locale as 'en' | 'pl',
+      depth: 2, // Include nested media in gallery
+    });
+
+    if (!doc) return null;
+
+    // Get main image URL
+    let imageUrl = '';
+    if (doc.image && typeof doc.image === 'object' && 'url' in doc.image) {
+      imageUrl = (doc.image as { url?: string }).url || '';
+    } else if (typeof doc.image === 'string') {
+      imageUrl = doc.image;
+    }
+
+    // Get gallery image URLs
+    const galleryUrls: string[] = [];
+    if (doc.gallery && Array.isArray(doc.gallery)) {
+      for (const item of doc.gallery) {
+        if (item.image && typeof item.image === 'object' && 'url' in item.image) {
+          galleryUrls.push((item.image as { url?: string }).url || '');
+        }
+      }
+    }
+
+    return {
+      id: String(doc.id),
+      title: doc.title as string,
+      description: doc.description as string,
+      location: doc.location as string,
+      category: doc.category as ProjectCategory,
+      country: doc.country as 'PL' | 'BE',
+      year: doc.year as string,
+      image: imageUrl,
+      gallery: galleryUrls,
+      featured: doc.featured as boolean,
+      order: (doc.order as number) || 0,
+    };
+  } catch (error) {
+    console.error('Error fetching project:', error);
+    return null;
+  }
 }
 
 /**

@@ -1,7 +1,7 @@
 {
   "Meta": {
-    "title": "Techno Groop – Professional Electrical Services",
-    "description": "Comprehensive electrical solutions, low-current installations, automation, and photovoltaics for businesses and general contractors in Poland and Belgium."
+    "title": "Techno Groop – Electrical, Low-Current & Server Room Installation | VCA Certified | Poland & Belgium",
+    "description": "From trench excavation to server room fit-out: comprehensive electrical installations, structured cabling (Cat6/Cat6a), KNX automation, and BMS integration. VCA-certified crews operating in Poland and Belgium."
   },
   "Nav": {
     "home": "Home",
@@ -14,9 +14,9 @@
     "getQuote": "Get Quote"
   },
   "Hero": {
-    "tagline": "Your partner in electrical installations",
-    "title": "Professional electrical services for your business",
-    "subtitle": "Comprehensive electrical, low-current, and automation solutions for general contractors in Poland and Belgium. 22+ specialists, VCA certified, fully insured.",
+    "tagline": "Professional Electrical Installation",
+    "title": "Designing The Future.",
+    "subtitle": "We specialize in professional electrical installation and know how to make your electrical systems safe, reliable, and long-lasting. We take on projects of any complexity - from private homes to commercial and industrial buildings. Our main advantage is an experienced team, honest approach, and attention to detail. We ensure you simply forget about electrical problems.",
     "cta": "Request a Quote",
     "ctaSecondary": "View Projects",
     "stats": {
@@ -28,119 +28,144 @@
   },
   "Services": {
     "title": "Our Services",
-    "subtitle": "Comprehensive electrical and installation solutions for business",
+    "subtitle": "End-to-end electrical and low-current solutions — from ground works to commissioning",
     "residential": {
       "title": "Residential Electrical",
-      "description": "Full range of electrical work in residential buildings: installations, panels, lighting, outlets."
+      "description": "Complete electrical installations for multi-family and single-family buildings: distribution boards, lighting circuits, socket outlets, underfloor heating controls, and EV charger pre-wiring."
     },
     "industrial": {
-      "title": "Industrial Electrical",
-      "description": "Electrical installations for production halls, warehouses, and commercial facilities."
+      "title": "Industrial & Commercial Electrical",
+      "description": "High-power installations for production halls, warehouses, and logistics centers: cable tray systems, main switchboards, power factor correction, and emergency lighting (EN 1838)."
     },
     "lowCurrent": {
-      "title": "Low-Current Systems",
-      "description": "LAN networks, CCTV, access control, alarm systems, and intercom."
+      "title": "Low-Current & Data Systems",
+      "description": "Structured cabling (Cat6/Cat6a/fiber), server room fit-out, CCTV (IP & analog), access control, intrusion alarms, intercom, and public-address systems."
     },
     "automation": {
-      "title": "Building Automation",
-      "description": "BMS systems, KNX, smart lighting and HVAC control."
-    },
-    "plumbing": {
-      "title": "Plumbing & HVAC",
-      "description": "Water supply, sewage, heating, ventilation systems."
+      "title": "Building Automation (BMS)",
+      "description": "KNX/DALI lighting control, HVAC integration, BACnet/Modbus gateways, energy metering, and centralized building management system (BMS) programming."
     },
     "solar": {
-      "title": "Photovoltaics",
-      "description": "Installation and connection of solar panel systems for business."
+      "title": "Photovoltaics & Energy Storage",
+      "description": "Commercial PV system installation, inverter commissioning, grid connection, and battery energy storage system (BESS) integration for peak shaving."
     },
     "learnMore": "Learn More"
   },
   "Portfolio": {
     "title": "Our Projects",
-    "subtitle": "Projects completed for general contractors in Poland and Belgium",
+    "subtitle": "Turnkey electrical and low-current projects delivered for general contractors in Poland and Belgium",
     "viewAll": "View All",
     "viewProject": "View Project",
+    "gallery": "Project Gallery",
+    "backToPortfolio": "Back to Portfolio",
+    "interestedCta": "Interested in a Similar Project?",
+    "interestedCtaDescription": "Contact us to discuss your electrical installation needs.",
+    "getQuote": "Get a Quote",
     "categories": {
       "all": "All",
       "industrial": "Industrial",
       "commercial": "Commercial",
-      "residential": "Residential"
+      "residential": "Residential",
+      "automation": "Automation"
     },
     "projects": {
       "logistics": {
         "title": "Logistics Center",
         "location": "Antwerp, Belgium",
-        "description": "Complete electrical and lighting installation for a 15,000 m² warehouse facility."
+        "description": "Complete electrical and lighting installation for a 15,000 m² warehouse facility including LED high-bay lighting and emergency systems."
       },
       "office": {
         "title": "Class A Office Building",
         "location": "Warsaw, Poland",
-        "description": "Low-current installations, access control, and BMS system."
+        "description": "Structured cabling (Cat6a), access control, CCTV, and full BMS integration with KNX lighting control."
       },
       "residential": {
         "title": "Residential Complex",
         "location": "Bruges, Belgium",
-        "description": "Electrical installations and smart home systems in 48 apartments."
+        "description": "Electrical installations, smart home pre-wiring, and fiber backbone in 48 premium apartments."
+      },
+      "prison": {
+        "title": "Antwerp Prison - Government Project",
+        "location": "Antwerp, Belgium",
+        "description": "Complete electrical and low-current installation for a new government correctional facility. High-security infrastructure including power distribution, Cat6a cabling, control panels, and building automation."
       }
     }
   },
   "Certificates": {
     "title": "Certificates & Safety",
-    "subtitle": "We work according to the highest safety standards",
+    "subtitle": "European safety standards compliance for every project",
     "vca": {
       "title": "VCA Certificate",
-      "description": "Confirmation of compliance with European health and safety standards."
+      "description": "All crew members hold valid VCA (Safety, Health and Environment) certification — mandatory for sites in Belgium and the Netherlands."
     },
     "insurance": {
-      "title": "Full Insurance",
-      "description": "Liability insurance and accident coverage."
+      "title": "Full Insurance Coverage",
+      "description": "Comprehensive liability insurance (€2M+) and workers' compensation covering all operations in PL and BE."
     },
     "heights": {
       "title": "Height Work Certified",
-      "description": "Certified qualifications for working on scaffolding and lifts."
+      "description": "Certified for scaffolding, boom lifts (MEWP), and rope access — enabling work on high-rise and industrial structures."
     },
     "quality": {
-      "title": "Quality Control",
-      "description": "Internal quality control procedures for every project."
+      "title": "Quality Assurance",
+      "description": "Internal QA/QC procedures: inspection and test plans (ITP), photo documentation, and as-built drawings for every project."
     }
   },
   "Locations": {
     "title": "Where We Operate",
-    "subtitle": "We deliver projects in Poland and Belgium",
-    "poland": {
-      "title": "Poland",
-      "cities": "Warsaw and surroundings"
-    },
-    "belgium": {
-      "title": "Belgium",
-      "cities": "Antwerp, Bruges, Brussels"
-    }
+    "subtitle": "Delivering projects across the European Union",
+    "poland": "Poland",
+    "belgium": "Belgium",
+    "eu": "European Union"
   },
   "About": {
+    "label": "About Us",
     "title": "About Techno Groop",
-    "subtitle": "Professionalism and experience in electrical installations",
-    "description": "Techno Groop Sp. z o.o. is a dynamically growing company specializing in comprehensive electrical and installation services. We have been operating since 2023, serving general contractors in Poland and Belgium.",
+    "subtitle": "Full-scope electrical contractor for general contractors",
+    "description": "Techno Groop Sp. z o.o. is a rapidly growing electrical and low-current contractor specializing in turnkey solutions — from initial trench excavation and conduit installation through structured cabling, power distribution, and final BMS commissioning. Since 2023, we have partnered with leading general contractors on industrial, commercial, and residential projects across Poland and Belgium.",
+    "stats": {
+      "founded": "Founded",
+      "specialists": "Specialists",
+      "projects": "Projects",
+      "countries": "Countries"
+    },
+    "director": {
+      "role": "Director / CEO"
+    },
+    "partners": {
+      "label": "Partnerships",
+      "title": "Our Trusted Partners",
+      "subtitle": "We collaborate with leading European companies to deliver comprehensive solutions",
+      "eeg": {
+        "tagline": "Building Technology",
+        "description": "90 years of experience. 850+ employees. HVAC, electrical & medical installations."
+      },
+      "netlink": {
+        "tagline": "Network Infrastructure",
+        "description": "Complete solutions for structured cabling, switching, WiFi & server infrastructure."
+      }
+    },
     "mission": {
       "title": "Our Mission",
-      "description": "We deliver reliable electrical solutions that help our clients complete projects on time and within budget."
+      "description": "To deliver reliable, on-time electrical infrastructure that helps general contractors meet milestones, pass inspections, and hand over projects without delays."
     },
     "team": {
       "title": "Our Team",
-      "description": "A team of 22 qualified specialists with VCA certificates and height work qualifications. We plan to grow to 50+ employees."
+      "description": "22 qualified electricians and low-current technicians — all VCA-certified, trained for height work, and experienced in Cat6/Cat6a cabling, KNX programming, and BMS integration. We're scaling to 50+ specialists to meet growing demand."
     },
     "values": {
       "title": "Our Values",
       "quality": "Quality",
-      "qualityDesc": "We execute every project according to the highest standards.",
+      "qualityDesc": "IEC/EN-compliant installations, tested and documented. No punch-list surprises.",
       "safety": "Safety",
-      "safetyDesc": "Health and safety is our priority — VCA certificates, full insurance.",
+      "safetyDesc": "VCA-certified crews, daily toolbox talks, full insurance — zero compromise.",
       "reliability": "Reliability",
-      "reliabilityDesc": "We meet deadlines and budgets."
+      "reliabilityDesc": "We meet deadlines. If we commit to a date, we deliver."
     }
   },
   "Reviews": {
     "title": "Client Reviews",
-    "subtitle": "What general contractors say about us",
+    "subtitle": "What general contractors say about working with Techno Groop",
     "reviews": {
       "review1": {
         "text": "Professional team, timely delivery, great communication. We recommend Techno Groop for electrical projects.",
@@ -164,14 +189,14 @@
   },
   "Careers": {
     "title": "Join Our Team",
-    "subtitle": "We're looking for specialists in Poland and Belgium",
-    "description": "Techno Groop is growing dynamically. We currently have 22 employees and plan to grow to 50+. We're looking for ambitious specialists.",
+    "subtitle": "We're hiring electricians and low-current technicians in Poland and Belgium",
+    "description": "Techno Groop is growing fast — from 22 to 50+ specialists. Join our VCA-certified crews working on industrial, commercial, and residential projects across two countries.",
     "benefits": {
       "title": "What We Offer",
       "salary": "Competitive Salary",
-      "growth": "Growth Opportunities",
-      "training": "Training & Certifications",
-      "international": "International Projects"
+      "growth": "Career Progression",
+      "training": "VCA & Technical Training",
+      "international": "Cross-Border Projects"
     },
     "positions": {
       "title": "Current Openings",
@@ -181,7 +206,7 @@
         "type": "Full-time"
       },
       "foreman": {
-        "title": "Foreman",
+        "title": "Site Foreman",
         "location": "Antwerp, Belgium",
         "type": "Full-time"
       },
@@ -192,21 +217,26 @@
       }
     },
     "cta": "Apply Now",
-    "noPosition": "Didn't find a suitable position? Send your CV to"
+    "noPosition": "Didn't find a matching role? Send your CV to"
   },
   "Contact": {
-    "title": "Contact Us",
-    "subtitle": "Request a quote or schedule a meeting",
+    "title": "Get in Touch",
+    "subtitle": "Request a quote for your electrical or low-current project — we respond within 24 hours",
     "form": {
       "name": "Full Name",
       "company": "Company",
       "email": "Email",
       "phone": "Phone",
-      "message": "Message",
-      "submit": "Send Message",
+      "message": "Project Details",
+      "submit": "Send Request",
       "submitting": "Sending...",
-      "success": "Thank you! Your message has been sent.",
-      "error": "An error occurred. Please try again."
+      "success": "Thank you! We'll get back to you within 24 hours.",
+      "error": "An error occurred. Please try again.",
+      "namePlaceholder": "John Doe",
+      "companyPlaceholder": "Your Company",
+      "emailPlaceholder": "you@company.com",
+      "phonePlaceholder": "+1 XXX XXX XXXX",
+      "messagePlaceholder": "Tell us about your project..."
     },
     "info": {
       "title": "Contact Information",
@@ -222,7 +252,7 @@
     }
   },
   "Footer": {
-    "description": "Comprehensive electrical and installation services for general contractors in Poland and Belgium.",
+    "description": "Turnkey electrical, low-current, and automation services for general contractors in Poland and Belgium. VCA certified. Fully insured.",
     "quickLinks": "Quick Links",
     "contact": "Contact",
     "legal": "Legal Information",
@@ -234,8 +264,8 @@
     "terms": "Terms of Service"
   },
   "CTA": {
-    "title": "Need a Quote?",
-    "subtitle": "Contact us — we'll respond within 24 hours.",
+    "title": "Ready to Start Your Project?",
+    "subtitle": "Get a detailed quote for electrical, low-current, or automation work — response within 24 hours.",
     "button": "Request a Quote",
     "call": "Or call us"
   },
@@ -244,5 +274,40 @@
     "viewAll": "View All",
     "back": "Back",
     "loading": "Loading..."
+  },
+  "UI": {
+    "vcaBadge": "VCA Certified · Fully Insured",
+    "vcaCertified": "VCA Certified",
+    "safetyExcellence": "Safety Excellence",
+    "safetyCompliance": "European safety standards compliance for all operations",
+    "safetyFirst": "Safety First",
+    "trustedByBest": "Trusted By The Best",
+    "yearsExp": "Years exp.",
+    "servicesLabel": "Services",
+    "portfolioLabel": "Portfolio",
+    "viewProject": "View Project",
+    "safetyQuality": "Safety & Quality",
+    "partnersLabel": "Partners",
+    "trustedCollaborations": "Trusted Collaborations",
+    "readyToStart": "Ready to Start?",
+    "locationsLabel": "Locations",
+    "visitWebsite": "Visit website",
+    "comprehensiveSolutions": "Comprehensive electrical solutions for every project scale"
+  },
+  "Partners": {
+    "title": "Our Partners",
+    "subtitle": "We collaborate with leading European companies to deliver comprehensive solutions",
+    "trustedPartnerships": "Trusted Partnerships",
+    "officialPartner": "Official Partner",
+    "eegGroup": {
+      "name": "EEG Group",
+      "role": "Building Technology Leader",
+      "description": "Building technology leader with 90 years of experience. HVAC, electrical, sanitary & medical installations."
+    },
+    "netlink": {
+      "name": "Netlink",
+      "role": "Network Infrastructure",
+      "description": "Network infrastructure specialists. Structured cabling, switching, WiFi & server solutions."
+    }
   }
 }

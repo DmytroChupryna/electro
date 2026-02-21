@@ -1,0 +1,50 @@
+{
+  "name": "Techno Groop - Professional Electrical Services",
+  "short_name": "Techno Groop",
+  "description": "Professional electrical installation, low-current systems, and building automation services for general contractors in Poland and Belgium.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#F25A24",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["business", "services"],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Services",
+      "url": "/en/services",
+      "description": "View our electrical services"
+    },
+    {
+      "name": "Portfolio",
+      "url": "/en/portfolio",
+      "description": "See our completed projects"
+    },
+    {
+      "name": "Contact",
+      "url": "/en/contact",
+      "description": "Get in touch with us"
+    }
+  ]
+}

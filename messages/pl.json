@@ -1,7 +1,7 @@
 {
   "Meta": {
-    "title": "Techno Groop – Profesjonalne usługi elektryczne",
-    "description": "Kompleksowe rozwiązania elektryczne, instalacje niskoprądowe, automatyka i fotowoltaika dla firm i generalnych wykonawców w Polsce i Belgii."
+    "title": "Techno Groop - Elektroinstalacje, Systemy Niskoprądowe i Serwerownie | Certyfikat VCA | Polska i Belgia",
+    "description": "Od wykopów i trasowania kabli po wyposażenie serwerowni: kompleksowe instalacje elektryczne, okablowanie strukturalne (Cat6/Cat6a), automatyka KNX i integracja BMS. Ekipy z certyfikatem VCA działające w Polsce i Belgii."
   },
   "Nav": {
     "home": "Strona główna",
@@ -14,9 +14,9 @@
     "getQuote": "Wycena"
   },
   "Hero": {
-    "tagline": "Twój partner w elektroinstalacjach",
-    "title": "Profesjonalne usługi elektryczne dla Twojego biznesu",
-    "subtitle": "Kompleksowe rozwiązania elektryczne, niskoprądowe i automatyka dla generalnych wykonawców w Polsce i Belgii. 22+ specjalistów, certyfikaty VCA, ubezpieczenie.",
+    "tagline": "Profesjonalne instalacje elektryczne",
+    "title": "Projektujemy przyszłość.",
+    "subtitle": "Zajmujemy się profesjonalnymi pracami elektroinstalacyjnymi i wiemy, jak sprawić, by instalacja elektryczna była bezpieczna, niezawodna i trwała. Realizujemy obiekty o dowolnej złożoności - od domów prywatnych po budynki komercyjne i przemysłowe. Naszą główną zaletą jest doświadczony zespół, uczciwe podejście i dbałość o szczegóły. Robimy wszystko, abyś o problemach z elektrycznością po prostu zapomniał.",
     "cta": "Zapytaj o wycenę",
     "ctaSecondary": "Zobacz realizacje",
     "stats": {
@@ -28,119 +28,144 @@
   },
   "Services": {
     "title": "Nasze usługi",
-    "subtitle": "Kompleksowe rozwiązania elektryczne i instalacyjne dla biznesu",
+    "subtitle": "Kompleksowe rozwiązania elektryczne i niskoprądowe - od prac ziemnych po uruchomienie",
     "residential": {
       "title": "Elektroinstalacje mieszkaniowe",
-      "description": "Pełen zakres prac elektrycznych w budynkach mieszkalnych: instalacje, rozdzielnie, oświetlenie, gniazda."
+      "description": "Kompletne instalacje elektryczne dla budynków wielorodzinnych i jednorodzinnych: rozdzielnie, obwody oświetleniowe, gniazda, sterowanie ogrzewaniem podłogowym i przygotowanie pod ładowarki EV."
     },
     "industrial": {
-      "title": "Elektroinstalacje przemysłowe",
-      "description": "Instalacje elektryczne dla hal produkcyjnych, magazynów i obiektów komercyjnych."
+      "title": "Elektroinstalacje przemysłowe i komercyjne",
+      "description": "Instalacje wysokiej mocy dla hal produkcyjnych, magazynów i centrów logistycznych: korytka kablowe, rozdzielnie główne, kompensacja mocy biernej i oświetlenie awaryjne (EN 1838)."
     },
     "lowCurrent": {
-      "title": "Systemy niskoprądowe",
-      "description": "Sieci LAN, CCTV, kontrola dostępu, systemy alarmowe i interkom."
+      "title": "Systemy niskoprądowe i sieci danych",
+      "description": "Okablowanie strukturalne (Cat6/Cat6a/światłowód), wyposażenie serwerowni, CCTV (IP i analog), kontrola dostępu, systemy alarmowe, interkom i nagłośnienie."
     },
     "automation": {
-      "title": "Automatyka budynkowa",
-      "description": "Systemy BMS, KNX, inteligentne sterowanie oświetleniem i klimatyzacją."
-    },
-    "plumbing": {
-      "title": "Instalacje sanitarne",
-      "description": "Wodociągi, kanalizacja, ogrzewanie, wentylacja."
+      "title": "Automatyka budynkowa (BMS)",
+      "description": "Sterowanie oświetleniem KNX/DALI, integracja HVAC, bramki BACnet/Modbus, pomiary energii i programowanie centralnego systemu zarządzania budynkiem (BMS)."
     },
     "solar": {
-      "title": "Fotowoltaika",
-      "description": "Montaż i podłączenie instalacji fotowoltaicznych dla biznesu."
+      "title": "Fotowoltaika i magazyny energii",
+      "description": "Montaż instalacji PV dla biznesu, uruchomienie falowników, przyłączenie do sieci i integracja magazynów energii (BESS) do redukcji szczytów mocy."
     },
     "learnMore": "Dowiedz się więcej"
   },
   "Portfolio": {
     "title": "Nasze realizacje",
-    "subtitle": "Projekty zrealizowane dla generalnych wykonawców w Polsce i Belgii",
+    "subtitle": "Kompleksowe projekty elektryczne i niskoprądowe dla generalnych wykonawców w Polsce i Belgii",
     "viewAll": "Zobacz wszystkie",
     "viewProject": "Zobacz projekt",
+    "gallery": "Galeria projektu",
+    "backToPortfolio": "Powrot do portfolio",
+    "interestedCta": "Zainteresowany podobnym projektem?",
+    "interestedCtaDescription": "Skontaktuj sie z nami, aby omowic swoje potrzeby instalacyjne.",
+    "getQuote": "Zapytaj o wycene",
     "categories": {
       "all": "Wszystkie",
       "industrial": "Przemysłowe",
       "commercial": "Komercyjne",
-      "residential": "Mieszkaniowe"
+      "residential": "Mieszkaniowe",
+      "automation": "Automatyka"
     },
     "projects": {
       "logistics": {
         "title": "Centrum logistyczne",
         "location": "Antwerpia, Belgia",
-        "description": "Kompletna instalacja elektryczna i oświetleniowa hali magazynowej 15 000 m²."
+        "description": "Kompletna instalacja elektryczna i oświetleniowa hali magazynowej 15 000 m2 z oświetleniem LED high-bay i systemami awaryjnymi."
       },
       "office": {
         "title": "Biurowiec klasy A",
         "location": "Warszawa, Polska",
-        "description": "Instalacje niskoprądowe, kontrola dostępu i system BMS."
+        "description": "Okablowanie strukturalne (Cat6a), kontrola dostępu, CCTV i pełna integracja BMS ze sterowaniem oświetleniem KNX."
       },
       "residential": {
         "title": "Osiedle mieszkaniowe",
         "location": "Brugia, Belgia",
-        "description": "Elektroinstalacje i systemy smart home w 48 apartamentach."
+        "description": "Elektroinstalacje, przygotowanie pod smart home i szkielet światłowodowy w 48 apartamentach premium."
+      },
+      "prison": {
+        "title": "Wiezienie w Antwerpii - Projekt Rzadowy",
+        "location": "Antwerpia, Belgia",
+        "description": "Kompleksowa instalacja elektryczna i niskopradowa dla nowego rzadowego zakladu karnego. Infrastruktura wysokiego bezpieczenstwa obejmujaca dystrybucje mocy, okablowanie Cat6a, rozdzielnie i automatyke budynkowa."
       }
     }
   },
   "Certificates": {
     "title": "Certyfikaty i bezpieczeństwo",
-    "subtitle": "Pracujemy zgodnie z najwyższymi standardami bezpieczeństwa",
+    "subtitle": "Zgodność z europejskimi standardami bezpieczeństwa w każdym projekcie",
     "vca": {
       "title": "Certyfikat VCA",
-      "description": "Potwierdzenie zgodności z europejskimi standardami BHP."
+      "description": "Wszyscy członkowie ekipy posiadają aktualny certyfikat VCA (Bezpieczeństwo, Zdrowie i Środowisko) - wymagany na budowach w Belgii i Holandii."
     },
     "insurance": {
       "title": "Pełne ubezpieczenie",
-      "description": "Ubezpieczenie OC i od następstw nieszczęśliwych wypadków."
+      "description": "Kompleksowe ubezpieczenie OC (2M EUR+) i NNW obejmujące wszystkie operacje w PL i BE."
     },
     "heights": {
       "title": "Praca na wysokości",
-      "description": "Certyfikowane uprawnienia do pracy na rusztowaniach i podnośnikach."
+      "description": "Certyfikaty na rusztowania, podnośniki koszowe (MEWP) i dostęp linowy - umożliwiające pracę w obiektach wysokościowych i przemysłowych."
     },
     "quality": {
-      "title": "Kontrola jakości",
-      "description": "Wewnętrzne procedury kontroli jakości każdego projektu."
+      "title": "Zapewnienie jakości",
+      "description": "Wewnętrzne procedury QA/QC: plany kontroli i badań (ITP), dokumentacja fotograficzna i rysunki powykonawcze dla każdego projektu."
     }
   },
   "Locations": {
     "title": "Gdzie działamy",
-    "subtitle": "Realizujemy projekty w Polsce i Belgii",
-    "poland": {
-      "title": "Polska",
-      "cities": "Warszawa i okolice"
-    },
-    "belgium": {
-      "title": "Belgia",
-      "cities": "Antwerpia, Brugia, Bruksela"
-    }
+    "subtitle": "Realizujemy projekty w całej Unii Europejskiej",
+    "poland": "Polska",
+    "belgium": "Belgia",
+    "eu": "Unia Europejska"
   },
   "About": {
+    "label": "O nas",
     "title": "O firmie Techno Groop",
-    "subtitle": "Profesjonalizm i doświadczenie w elektroinstalacjach",
-    "description": "Techno Groop Sp. z o.o. to dynamicznie rozwijająca się firma specjalizująca się w kompleksowych usługach elektrycznych i instalacyjnych. Działamy na rynku od 2023 roku, obsługując generalnych wykonawców w Polsce i Belgii.",
+    "subtitle": "Kompleksowy wykonawca elektryczny dla generalnych wykonawców",
+    "description": "Techno Groop Sp. z o.o. to dynamicznie rozwijający się wykonawca instalacji elektrycznych i niskoprądowych specjalizujący się w rozwiązaniach pod klucz - od wykopów i montażu rur ochronnych przez okablowanie strukturalne, dystrybucję mocy po uruchomienie BMS. Od 2023 roku współpracujemy z wiodącymi generalnymi wykonawcami przy projektach przemysłowych, komercyjnych i mieszkaniowych w Polsce i Belgii.",
+    "stats": {
+      "founded": "Założona",
+      "specialists": "Specjalistów",
+      "projects": "Projektów",
+      "countries": "Kraje"
+    },
+    "director": {
+      "role": "Dyrektor / CEO"
+    },
+    "partners": {
+      "label": "Partnerzy",
+      "title": "Nasi zaufani partnerzy",
+      "subtitle": "Współpracujemy z wiodącymi europejskimi firmami, aby dostarczać kompleksowe rozwiązania",
+      "eeg": {
+        "tagline": "Technologia budynkowa",
+        "description": "90 lat doświadczenia. 850+ pracowników. Instalacje HVAC, elektryczne i medyczne."
+      },
+      "netlink": {
+        "tagline": "Infrastruktura sieciowa",
+        "description": "Kompleksowe rozwiązania: okablowanie strukturalne, switching, WiFi i infrastruktura serwerowa."
+      }
+    },
     "mission": {
       "title": "Nasza misja",
-      "description": "Dostarczamy niezawodne rozwiązania elektryczne, które pomagają naszym klientom realizować projekty terminowo i w budżecie."
+      "description": "Dostarczać niezawodną infrastrukturę elektryczną, która pomaga generalnym wykonawcom realizować kamienie milowe, przechodzić odbiory i przekazywać projekty bez opóźnień."
     },
     "team": {
       "title": "Nasz zespół",
-      "description": "Zespół 22 wykwalifikowanych specjalistów z certyfikatami VCA i uprawnieniami do pracy na wysokości. Planujemy rozwój do 50+ pracowników."
+      "description": "22 wykwalifikowanych elektryków i techników niskoprądowych - wszyscy z certyfikatem VCA, przeszkoleni do pracy na wysokości, doświadczeni w okablowaniu Cat6/Cat6a, programowaniu KNX i integracji BMS. Rozwijamy się do 50+ specjalistów, aby sprostać rosnącemu zapotrzebowaniu."
     },
     "values": {
       "title": "Nasze wartości",
       "quality": "Jakość",
-      "qualityDesc": "Każdy projekt realizujemy zgodnie z najwyższymi standardami.",
+      "qualityDesc": "Instalacje zgodne z IEC/EN, przetestowane i udokumentowane. Bez niespodzianek na odbiorach.",
       "safety": "Bezpieczeństwo",
-      "safetyDesc": "BHP to nasz priorytet — certyfikaty VCA, pełne ubezpieczenie.",
+      "safetyDesc": "Ekipy z certyfikatem VCA, codzienne odprawy BHP, pełne ubezpieczenie - zero kompromisów.",
       "reliability": "Niezawodność",
-      "reliabilityDesc": "Dotrzymujemy terminów i budżetów."
+      "reliabilityDesc": "Dotrzymujemy terminów. Jeśli zobowiązujemy się do daty, dostarczamy."
     }
   },
   "Reviews": {
     "title": "Opinie klientów",
-    "subtitle": "Co mówią o nas generalni wykonawcy",
+    "subtitle": "Co mówią generalni wykonawcy o współpracy z Techno Groop",
     "reviews": {
       "review1": {
         "text": "Profesjonalny zespół, terminowa realizacja, świetna komunikacja. Polecamy Techno Groop dla projektów elektrycznych.",
@@ -164,14 +189,14 @@
   },
   "Careers": {
     "title": "Dołącz do naszego zespołu",
-    "subtitle": "Szukamy specjalistów do zespołu w Polsce i Belgii",
-    "description": "Techno Groop dynamicznie się rozwija. Aktualnie mamy 22 pracowników i planujemy wzrost do 50+. Szukamy ambitnych specjalistów.",
+    "subtitle": "Zatrudniamy elektryków i techników niskoprądowych w Polsce i Belgii",
+    "description": "Techno Groop szybko się rozwija - z 22 do 50+ specjalistów. Dołącz do naszych ekip z certyfikatem VCA pracujących przy projektach przemysłowych, komercyjnych i mieszkaniowych w dwóch krajach.",
     "benefits": {
       "title": "Co oferujemy",
       "salary": "Konkurencyjne wynagrodzenie",
-      "growth": "Możliwości rozwoju",
-      "training": "Szkolenia i certyfikaty",
-      "international": "Projekty międzynarodowe"
+      "growth": "Rozwój kariery",
+      "training": "Szkolenia VCA i techniczne",
+      "international": "Projekty transgraniczne"
     },
     "positions": {
       "title": "Aktualne oferty pracy",
@@ -196,17 +221,22 @@
   },
   "Contact": {
     "title": "Skontaktuj się z nami",
-    "subtitle": "Zapytaj o wycenę lub umów się na spotkanie",
+    "subtitle": "Zapytaj o wycenę projektu elektrycznego lub niskoprądowego - odpowiadamy w ciągu 24 godzin",
     "form": {
       "name": "Imię i nazwisko",
       "company": "Firma",
       "email": "Email",
       "phone": "Telefon",
-      "message": "Wiadomość",
-      "submit": "Wyślij wiadomość",
+      "message": "Szczegóły projektu",
+      "submit": "Wyślij zapytanie",
       "submitting": "Wysyłanie...",
-      "success": "Dziękujemy! Wiadomość została wysłana.",
-      "error": "Wystąpił błąd. Spróbuj ponownie."
+      "success": "Dziękujemy! Odpowiemy w ciągu 24 godzin.",
+      "error": "Wystąpił błąd. Spróbuj ponownie.",
+      "namePlaceholder": "Jan Kowalski",
+      "companyPlaceholder": "Nazwa firmy",
+      "emailPlaceholder": "email@firma.pl",
+      "phonePlaceholder": "+48 XXX XXX XXX",
+      "messagePlaceholder": "Opisz swój projekt..."
     },
     "info": {
       "title": "Dane kontaktowe",
@@ -222,7 +252,7 @@
     }
   },
   "Footer": {
-    "description": "Kompleksowe usługi elektryczne i instalacyjne dla generalnych wykonawców w Polsce i Belgii.",
+    "description": "Kompleksowe usługi elektryczne, niskoprądowe i automatyka dla generalnych wykonawców w Polsce i Belgii. Certyfikat VCA. Pełne ubezpieczenie.",
     "quickLinks": "Szybkie linki",
     "contact": "Kontakt",
     "legal": "Dane prawne",
@@ -234,8 +264,8 @@
     "terms": "Regulamin"
   },
   "CTA": {
-    "title": "Potrzebujesz wyceny?",
-    "subtitle": "Skontaktuj się z nami — odpowiemy w ciągu 24 godzin.",
+    "title": "Gotowy rozpocząć projekt?",
+    "subtitle": "Uzyskaj szczegółową wycenę prac elektrycznych, niskoprądowych lub automatyki - odpowiedź w ciągu 24 godzin.",
     "button": "Zapytaj o wycenę",
     "call": "Lub zadzwoń"
   },
@@ -244,5 +274,40 @@
     "viewAll": "Zobacz wszystkie",
     "back": "Wróć",
     "loading": "Ładowanie..."
+  },
+  "UI": {
+    "vcaBadge": "Certyfikat VCA · Pełne ubezpieczenie",
+    "vcaCertified": "Certyfikat VCA",
+    "safetyExcellence": "Najwyższe standardy bezpieczeństwa",
+    "safetyCompliance": "Zgodność z europejskimi normami bezpieczeństwa we wszystkich operacjach",
+    "safetyFirst": "Bezpieczeństwo przede wszystkim",
+    "trustedByBest": "Zaufani przez najlepszych",
+    "yearsExp": "Lat doświadczenia",
+    "servicesLabel": "Usługi",
+    "portfolioLabel": "Realizacje",
+    "viewProject": "Zobacz projekt",
+    "safetyQuality": "Bezpieczeństwo i jakość",
+    "partnersLabel": "Partnerzy",
+    "trustedCollaborations": "Zaufana współpraca",
+    "readyToStart": "Gotowy do startu?",
+    "locationsLabel": "Lokalizacje",
+    "visitWebsite": "Odwiedź stronę",
+    "comprehensiveSolutions": "Kompleksowe rozwiązania elektryczne dla każdej skali projektu"
+  },
+  "Partners": {
+    "title": "Nasi partnerzy",
+    "subtitle": "Współpracujemy z wiodącymi europejskimi firmami, aby dostarczać kompleksowe rozwiązania",
+    "trustedPartnerships": "Zaufane partnerstwa",
+    "officialPartner": "Oficjalny partner",
+    "eegGroup": {
+      "name": "EEG Group",
+      "role": "Lider technologii budynkowych",
+      "description": "Lider technologii budynkowych z 90-letnim doświadczeniem. Instalacje HVAC, elektryczne, sanitarne i medyczne."
+    },
+    "netlink": {
+      "name": "Netlink",
+      "role": "Infrastruktura sieciowa",
+      "description": "Specjaliści od infrastruktury sieciowej. Okablowanie strukturalne, przełączniki, WiFi i rozwiązania serwerowe."
+    }
   }
 }

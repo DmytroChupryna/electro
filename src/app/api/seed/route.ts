@@ -52,16 +52,6 @@ const servicesData = [
     order: 4,
   },
   {
-    title: { en: 'Plumbing & HVAC', pl: 'Instalacje sanitarne' },
-    description: {
-      en: 'Water supply, sewage, heating, ventilation systems.',
-      pl: 'Wodociągi, kanalizacja, ogrzewanie, wentylacja.',
-    },
-    icon: 'droplets',
-    image: 'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=800&q=80',
-    order: 5,
-  },
-  {
     title: { en: 'Photovoltaics', pl: 'Fotowoltaika' },
     description: {
       en: 'Installation and connection of solar panel systems for business.',
@@ -69,7 +59,7 @@ const servicesData = [
     },
     icon: 'sun',
     image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=80',
-    order: 6,
+    order: 5,
   },
 ];
 
@@ -165,6 +155,31 @@ const projectsData = [
     featured: false,
     order: 6,
   },
+  {
+    title: { en: 'Antwerp Prison - Government Project', pl: 'Wiezienie w Antwerpii - Projekt Rzadowy' },
+    description: {
+      en: 'Complete electrical and low-current installation for a new government correctional facility. High-security infrastructure including power distribution, structured cabling (Cat6a), control panels, cable tray systems, and building automation.',
+      pl: 'Kompleksowa instalacja elektryczna i niskopradowa dla nowego rzadowego zakladu karnego. Infrastruktura wysokiego bezpieczenstwa obejmujaca dystrybucje mocy, okablowanie strukturalne (Cat6a), rozdzielnie, systemy korytek kablowych i automatyke budynkowa.',
+    },
+    location: { en: 'Antwerp, Belgium', pl: 'Antwerpia, Belgia' },
+    category: 'industrial',
+    country: 'BE',
+    year: '2024',
+    imageUrl: '/projects/antwerp-prison/switchboard.png',
+    imageName: 'antwerp-prison.png',
+    featured: true,
+    order: 7,
+    gallery: [
+      '/projects/antwerp-prison/cable-routing-1.png',
+      '/projects/antwerp-prison/conduit-installation.png',
+      '/projects/antwerp-prison/switchboard.png',
+      '/projects/antwerp-prison/control-panel.png',
+      '/projects/antwerp-prison/data-cabling.png',
+      '/projects/antwerp-prison/cable-routing-2.png',
+      '/projects/antwerp-prison/team-planning.png',
+      '/projects/antwerp-prison/team-work.png',
+    ],
+  },
 ];
 
 // Global settings data
@@ -179,8 +194,11 @@ const settingsData = {
   },
 };
 
+import * as fs from 'fs';
+import * as path from 'path';
+
 /**
- * Upload image from URL to Media collection
+ * Upload image from URL or local file to Media collection
  */
 async function uploadImageFromUrl(
   payload: Awaited<ReturnType<typeof getPayload>>,
@@ -189,18 +207,43 @@ async function uploadImageFromUrl(
   alt: string
 ): Promise<number | string | null> {
   try {
-    // Fetch image from URL
-    const response = await fetch(imageUrl);
-    if (!response.ok) {
-      console.error(`Failed to fetch image: ${imageUrl}`);
-      return null;
+    let buffer: Buffer;
+    let contentType: string;
+
+    // Check if it's a local file path (starts with /)
+    if (imageUrl.startsWith('/')) {
+      // Local file - read from public folder
+      const publicPath = path.join(process.cwd(), 'public', imageUrl);
+      
+      if (!fs.existsSync(publicPath)) {
+        console.error(`Local file not found: ${publicPath}`);
+        return null;
+      }
+      
+      buffer = fs.readFileSync(publicPath);
+      
+      // Determine content type from extension
+      const ext = path.extname(imageUrl).toLowerCase();
+      const mimeTypes: Record<string, string> = {
+        '.png': 'image/png',
+        '.jpg': 'image/jpeg',
+        '.jpeg': 'image/jpeg',
+        '.gif': 'image/gif',
+        '.webp': 'image/webp',
+      };
+      contentType = mimeTypes[ext] || 'image/jpeg';
+    } else {
+      // Remote URL - fetch from internet
+      const response = await fetch(imageUrl);
+      if (!response.ok) {
+        console.error(`Failed to fetch image: ${imageUrl}`);
+        return null;
+      }
+
+      const arrayBuffer = await response.arrayBuffer();
+      buffer = Buffer.from(arrayBuffer);
+      contentType = response.headers.get('content-type') || 'image/jpeg';
     }
-
-    const arrayBuffer = await response.arrayBuffer();
-    const buffer = Buffer.from(arrayBuffer);
-
-    // Get content type
-    const contentType = response.headers.get('content-type') || 'image/jpeg';
 
     // Create media entry with file
     const media = await payload.create({
@@ -236,7 +279,33 @@ export async function POST(request: Request) {
     const payload = await getPayload({ config });
     const results: string[] = [];
 
-    // Clear existing media (optional - be careful in production!)
+    // 1. Clear existing projects FIRST (they reference media)
+    const existingProjects = await payload.find({
+      collection: 'projects',
+      limit: 100,
+    });
+    for (const project of existingProjects.docs) {
+      await payload.delete({
+        collection: 'projects',
+        id: project.id,
+      });
+    }
+    results.push(`Deleted ${existingProjects.docs.length} existing projects`);
+
+    // 2. Clear existing services (they might reference media)
+    const existingServices = await payload.find({
+      collection: 'services',
+      limit: 100,
+    });
+    for (const service of existingServices.docs) {
+      await payload.delete({
+        collection: 'services',
+        id: service.id,
+      });
+    }
+    results.push(`Deleted ${existingServices.docs.length} existing services`);
+
+    // 3. Clear existing media LAST (after references are removed)
     const existingMedia = await payload.find({
       collection: 'media',
       limit: 100,
@@ -248,20 +317,6 @@ export async function POST(request: Request) {
       });
     }
     results.push(`Deleted ${existingMedia.docs.length} existing media`);
-
-    // Clear existing services
-    const existingServices = await payload.find({
-      collection: 'services',
-      limit: 100,
-    });
-
-    for (const service of existingServices.docs) {
-      await payload.delete({
-        collection: 'services',
-        id: service.id,
-      });
-    }
-    results.push(`Deleted ${existingServices.docs.length} existing services`);
 
     // Create services with localization
     for (const serviceData of servicesData) {
@@ -293,20 +348,6 @@ export async function POST(request: Request) {
       results.push(`Created service: ${serviceData.title.en}`);
     }
 
-    // Clear existing projects
-    const existingProjects = await payload.find({
-      collection: 'projects',
-      limit: 100,
-    });
-
-    for (const project of existingProjects.docs) {
-      await payload.delete({
-        collection: 'projects',
-        id: project.id,
-      });
-    }
-    results.push(`Deleted ${existingProjects.docs.length} existing projects`);
-
     // Create projects with localization and uploaded images
     for (const projectData of projectsData) {
       // Upload image first
@@ -322,6 +363,23 @@ export async function POST(request: Request) {
         continue;
       }
 
+      // Upload gallery images if present
+      const galleryItems: { image: string | number }[] = [];
+      if (projectData.gallery && Array.isArray(projectData.gallery)) {
+        for (let i = 0; i < projectData.gallery.length; i++) {
+          const galleryUrl = projectData.gallery[i];
+          const galleryImageId = await uploadImageFromUrl(
+            payload,
+            galleryUrl,
+            `gallery-${projectData.imageName.replace('.png', '')}-${i + 1}.png`,
+            `${projectData.title.en} - Gallery ${i + 1}`
+          );
+          if (galleryImageId) {
+            galleryItems.push({ image: galleryImageId });
+          }
+        }
+      }
+
       // Create with English locale
       const project = await payload.create({
         collection: 'projects',
@@ -332,7 +390,8 @@ export async function POST(request: Request) {
           category: projectData.category,
           country: projectData.country,
           year: projectData.year,
-          image: imageId, // Now using uploaded media ID
+          image: imageId,
+          gallery: galleryItems.length > 0 ? galleryItems : undefined,
           featured: projectData.featured,
           order: projectData.order,
         },

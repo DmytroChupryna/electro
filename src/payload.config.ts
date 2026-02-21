@@ -135,7 +135,6 @@ export default buildConfig({
             { label: '🏭 Factory (Industrial)', value: 'factory' },
             { label: '🖥️ Server (Low Current)', value: 'server' },
             { label: '⚙️ Settings (Automation)', value: 'settings' },
-            { label: '💧 Droplets (Plumbing)', value: 'droplets' },
             { label: '☀️ Sun (Solar)', value: 'sun' },
           ],
           admin: {

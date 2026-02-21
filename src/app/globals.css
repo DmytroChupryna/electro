@@ -5,15 +5,17 @@
   --font-sans: var(--font-geist-sans);
   --font-display: var(--font-sora);
   
-  /* Brand Colors - Techno Groop */
-  --color-brand-primary: #0066FF;
-  --color-brand-primary-dark: #0052CC;
-  --color-brand-accent: #FFB800;
-  --color-brand-accent-dark: #E5A600;
+  /* Brand Colors - Techno Groop (from logo) */
+  --color-brand-primary: #F25A24;
+  --color-brand-primary-dark: #D94E1E;
+  --color-brand-primary-light: #F57247;
+  --color-brand-accent: #000000;
+  --color-brand-accent-dark: #000000;
+  --color-brand-accent-light: #1A1A1A;
   
   /* Neutrals */
-  --color-surface-dark: #0A0F1C;
-  --color-surface-dark-elevated: #111827;
+  --color-surface-dark: #1A1A1A;
+  --color-surface-dark-elevated: #2D2D2D;
   --color-surface-light: #FFFFFF;
   --color-surface-light-muted: #F8FAFC;
 }

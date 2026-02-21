@@ -3,7 +3,6 @@
 import { usePathname, useRouter } from '@/i18n/routing';
 import { useLocale } from 'next-intl';
 import { cn } from '@/lib/utils';
-import { Globe } from 'lucide-react';
 
 interface LanguageSwitcherProps {
   className?: string;
@@ -15,25 +14,56 @@ export default function LanguageSwitcher({ className, variant = 'dark' }: Langua
   const currentPathname = usePathname();
   const locale = useLocale();
 
-  const toggleLocale = () => {
-    const nextLocale = locale === 'pl' ? 'en' : 'pl';
-    router.replace(currentPathname, { locale: nextLocale });
+  const switchToLocale = (newLocale: 'en' | 'pl') => {
+    if (newLocale !== locale) {
+      router.replace(currentPathname, { locale: newLocale });
+    }
   };
 
   return (
-    <button
-      onClick={toggleLocale}
-      aria-label={locale === 'pl' ? 'Switch to English' : 'Przełącz na polski'}
+    <div
       className={cn(
-        'inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200',
+        'inline-flex items-center rounded-full p-0.5 text-xs font-semibold transition-all duration-200',
         variant === 'dark'
-          ? 'bg-white/10 text-white hover:bg-white/20'
-          : 'bg-slate-100 text-slate-700 hover:bg-slate-200',
+          ? 'bg-white/10'
+          : 'bg-slate-200',
         className
       )}
+      role="group"
+      aria-label="Language switcher"
     >
-      <Globe className="w-4 h-4" />
-      <span className="uppercase">{locale === 'pl' ? 'EN' : 'PL'}</span>
-    </button>
+      <button
+        onClick={() => switchToLocale('en')}
+        aria-pressed={locale === 'en'}
+        className={cn(
+          'px-2.5 py-1 rounded-full cursor-pointer transition-all duration-300 ease-in-out',
+          locale === 'en'
+            ? variant === 'dark'
+              ? 'bg-white text-slate-900'
+              : 'bg-orange-600 text-white shadow-sm'
+            : variant === 'dark'
+              ? 'text-white/70 hover:text-white hover:bg-white/10'
+              : 'text-slate-500 hover:text-slate-700 hover:bg-slate-300/50'
+        )}
+      >
+        EN
+      </button>
+      <button
+        onClick={() => switchToLocale('pl')}
+        aria-pressed={locale === 'pl'}
+        className={cn(
+          'px-2.5 py-1 rounded-full cursor-pointer transition-all duration-300 ease-in-out',
+          locale === 'pl'
+            ? variant === 'dark'
+              ? 'bg-white text-slate-900'
+              : 'bg-orange-600 text-white shadow-sm'
+            : variant === 'dark'
+              ? 'text-white/70 hover:text-white hover:bg-white/10'
+              : 'text-slate-500 hover:text-slate-700 hover:bg-slate-300/50'
+        )}
+      >
+        PL
+      </button>
+    </div>
   );
 }

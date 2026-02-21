@@ -58,7 +58,7 @@ export function Section({
     corporate: {
       primary: 'bg-slate-900 text-white',
       secondary: 'bg-slate-950 text-white',
-      accent: 'bg-gradient-to-r from-blue-600 to-blue-700 text-white',
+      accent: 'bg-gradient-to-r from-orange-600 to-orange-700 text-white',
     },
     industrial: {
       primary: 'bg-white text-slate-900',
@@ -66,9 +66,9 @@ export function Section({
       accent: 'bg-amber-500 text-slate-900',
     },
     minimal: {
-      primary: 'bg-white text-slate-900',
-      secondary: 'bg-slate-50 text-slate-900',
-      accent: 'bg-slate-900 text-white',
+      primary: 'bg-gradient-to-br from-white via-orange-50/20 to-white text-slate-900',
+      secondary: 'bg-gradient-to-b from-slate-50 to-white text-slate-900',
+      accent: 'bg-gradient-to-br from-orange-500 via-orange-600 to-amber-600 text-white',
     },
   };
 
@@ -94,15 +94,15 @@ export function Card({
   const cardClasses = {
     corporate: cn(
       'rounded-2xl bg-slate-950 border border-slate-800',
-      hover && 'hover:border-blue-500/50 transition-all'
+      hover && 'hover:border-orange-500/50 transition-all'
     ),
     industrial: cn(
       'bg-white border-4 border-slate-900',
       hover && 'hover:bg-amber-50 transition-colors'
     ),
     minimal: cn(
-      'rounded-2xl bg-slate-50',
-      hover && 'hover:bg-slate-100 transition-colors'
+      'rounded-3xl bg-white shadow-xl shadow-slate-200/50 border border-slate-100',
+      hover && 'hover:shadow-2xl hover:shadow-orange-200/30 hover:-translate-y-1 transition-all duration-300'
     ),
   };
 
@@ -136,8 +136,8 @@ export function Button({
       secondary: 'border-4 border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-white font-black uppercase',
     },
     minimal: {
-      primary: 'bg-blue-600 text-white hover:bg-blue-700 rounded-full',
-      secondary: 'bg-slate-100 text-slate-900 hover:bg-slate-200 rounded-full',
+      primary: 'bg-gradient-to-r from-orange-500 to-amber-500 text-white rounded-full shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 hover:scale-105',
+      secondary: 'bg-white text-slate-700 rounded-full shadow-lg shadow-slate-200/50 border border-slate-200 hover:border-orange-300 hover:text-orange-600',
     },
   };
 
@@ -166,7 +166,7 @@ export function Heading({
   const textClasses = {
     corporate: 'text-white',
     industrial: 'text-slate-900 font-black tracking-tight uppercase',
-    minimal: 'text-slate-900 font-light',
+    minimal: 'text-slate-900 font-bold',
   };
 
   const sizeClasses = {
@@ -202,7 +202,7 @@ export function Text({
     corporate: {
       body: 'text-slate-300',
       muted: 'text-slate-500',
-      accent: 'text-blue-400',
+      accent: 'text-orange-400',
     },
     industrial: {
       body: 'text-slate-700',
@@ -212,7 +212,7 @@ export function Text({
     minimal: {
       body: 'text-slate-600',
       muted: 'text-slate-400',
-      accent: 'text-blue-600',
+      accent: 'text-orange-600',
     },
   };
 
