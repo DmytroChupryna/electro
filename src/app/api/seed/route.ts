@@ -351,35 +351,13 @@ export async function POST(request: Request) {
       results.push(`Created service: ${serviceData.title.en}`);
     }
 
-    // Create projects with localization and uploaded images
+    // Create projects with localization (using static URLs)
     for (const projectData of projectsData) {
-      // Upload image first
-      const imageId = await uploadImageFromUrl(
-        payload,
-        projectData.imageUrl,
-        projectData.imageName,
-        projectData.title.en
-      );
-
-      if (!imageId) {
-        results.push(`⚠️ Skipped project (no image): ${projectData.title.en}`);
-        continue;
-      }
-
-      // Upload gallery images if present
-      const galleryItems: { image: string | number }[] = [];
+      // Build gallery items from URLs
+      const galleryItems: { url: string }[] = [];
       if (projectData.gallery && Array.isArray(projectData.gallery)) {
-        for (let i = 0; i < projectData.gallery.length; i++) {
-          const galleryUrl = projectData.gallery[i];
-          const galleryImageId = await uploadImageFromUrl(
-            payload,
-            galleryUrl,
-            `gallery-${projectData.imageName.replace('.png', '')}-${i + 1}.png`,
-            `${projectData.title.en} - Gallery ${i + 1}`
-          );
-          if (galleryImageId) {
-            galleryItems.push({ image: galleryImageId });
-          }
+        for (const galleryUrl of projectData.gallery) {
+          galleryItems.push({ url: galleryUrl });
         }
       }
 
@@ -393,7 +371,7 @@ export async function POST(request: Request) {
           category: projectData.category,
           country: projectData.country,
           year: projectData.year,
-          image: imageId,
+          image: projectData.imageUrl, // Direct URL instead of media ID
           gallery: galleryItems.length > 0 ? galleryItems : undefined,
           featured: projectData.featured,
           order: projectData.order,
@@ -413,7 +391,7 @@ export async function POST(request: Request) {
         locale: 'pl',
       });
 
-      results.push(`Created project: ${projectData.title.en} (with image)`);
+      results.push(`Created project: ${projectData.title.en}`);
     }
 
     // Update global settings - English
