@@ -4,7 +4,6 @@ import { Geist, Geist_Mono, Sora } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import { cn } from '@/lib/utils';
 import '../globals.css';
-import DesignSwitcher from '@/components/DesignSwitcher';
 import { DesignProvider } from '@/context/DesignContext';
 import JsonLd from '@/components/JsonLd';
 import {
@@ -156,7 +155,6 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <DesignProvider>
             {children}
-            <DesignSwitcher />
           </DesignProvider>
           <Analytics />
         </NextIntlClientProvider>

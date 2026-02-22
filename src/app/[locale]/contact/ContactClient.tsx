@@ -2,9 +2,7 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { useDesign } from '@/context/DesignContext';
 import PageWrapper, { Section, Heading, Text } from '@/components/PageWrapper';
-import { cn } from '@/lib/utils';
 import {
   MapPin,
   Phone,
@@ -20,7 +18,6 @@ import {
 export default function ContactClient() {
   const t = useTranslations('Contact');
   const tLoc = useTranslations('Locations');
-  const { design } = useDesign();
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -34,19 +31,8 @@ export default function ContactClient() {
     }, 3000);
   };
 
-  const inputClasses = cn(
-    'w-full px-4 py-3 transition-colors focus:outline-none',
-    design === 'corporate' && 'rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-500 focus:border-orange-500 focus:ring-1 focus:ring-orange-500',
-    design === 'industrial' && 'bg-white border-4 border-slate-900 text-slate-900 placeholder-slate-400 focus:border-amber-500',
-    design === 'minimal' && 'rounded-xl bg-white border border-slate-200 text-slate-900 placeholder-slate-400 focus:border-orange-500 focus:ring-1 focus:ring-orange-500'
-  );
-
-  const labelClasses = cn(
-    'block text-sm font-medium mb-2',
-    design === 'corporate' && 'text-slate-300',
-    design === 'industrial' && 'text-slate-900 font-bold uppercase',
-    design === 'minimal' && 'text-slate-600'
-  );
+  const inputClasses = 'w-full px-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-900 placeholder-slate-400 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-colors focus:outline-none';
+  const labelClasses = 'block text-sm font-medium mb-2 text-slate-600';
 
   return (
     <PageWrapper>
@@ -54,15 +40,9 @@ export default function ContactClient() {
       <Section variant="primary" className="py-20">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl">
-            {design === 'industrial' ? (
-              <div className="inline-block bg-amber-500 text-slate-900 font-black px-4 py-2 mb-4 uppercase tracking-widest text-sm">
-                {t('title')}
-              </div>
-            ) : (
-              <Text variant="accent" className="font-medium mb-4 tracking-wide uppercase text-sm">
-                {t('title')}
-              </Text>
-            )}
+            <Text variant="accent" className="font-medium mb-4 tracking-wide uppercase text-sm">
+              {t('title')}
+            </Text>
             <Heading level={1} className="mb-6 leading-tight">
               {t('title')}
             </Heading>
@@ -78,145 +58,95 @@ export default function ContactClient() {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Form */}
-            <div className={cn(
-              'p-8 md:p-10',
-              design === 'corporate' && 'rounded-2xl bg-slate-900 border border-slate-800',
-              design === 'industrial' && 'bg-white border-4 border-slate-900',
-              design === 'minimal' && 'rounded-3xl bg-white shadow-2xl shadow-slate-200/50 border border-slate-100'
-            )}>
+            <div className="p-8 md:p-10 rounded-3xl bg-white shadow-2xl shadow-slate-200/50 border border-slate-100">
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Name */}
                 <div>
-                  <label htmlFor="name" className={labelClasses}>
-                    {t('form.name')} *
-                  </label>
+                  <label htmlFor="name" className={labelClasses}>{t('form.name')} *</label>
                   <div className="relative">
-                    <User className={cn(
-                      'absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5',
-                      design === 'corporate' && 'text-slate-500',
-                      design !== 'corporate' && 'text-slate-400'
-                    )} />
+                    <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
                     <input
                       type="text"
                       id="name"
                       name="name"
                       required
-                      className={cn(inputClasses, 'pl-12')}
+                      className={`${inputClasses} pl-12`}
                       placeholder={t('form.namePlaceholder')}
                     />
                   </div>
                 </div>
 
-                {/* Company */}
                 <div>
-                  <label htmlFor="company" className={labelClasses}>
-                    {t('form.company')}
-                  </label>
+                  <label htmlFor="company" className={labelClasses}>{t('form.company')}</label>
                   <div className="relative">
-                    <Building2 className={cn(
-                      'absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5',
-                      design === 'corporate' && 'text-slate-500',
-                      design !== 'corporate' && 'text-slate-400'
-                    )} />
+                    <Building2 className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
                     <input
                       type="text"
                       id="company"
                       name="company"
-                      className={cn(inputClasses, 'pl-12')}
+                      className={`${inputClasses} pl-12`}
                       placeholder={t('form.companyPlaceholder')}
                     />
                   </div>
                 </div>
 
-                {/* Email */}
                 <div>
-                  <label htmlFor="email" className={labelClasses}>
-                    {t('form.email')} *
-                  </label>
+                  <label htmlFor="email" className={labelClasses}>{t('form.email')} *</label>
                   <div className="relative">
-                    <Mail className={cn(
-                      'absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5',
-                      design === 'corporate' && 'text-slate-500',
-                      design !== 'corporate' && 'text-slate-400'
-                    )} />
+                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
                     <input
                       type="email"
                       id="email"
                       name="email"
                       required
-                      className={cn(inputClasses, 'pl-12')}
+                      className={`${inputClasses} pl-12`}
                       placeholder={t('form.emailPlaceholder')}
                     />
                   </div>
                 </div>
 
-                {/* Phone */}
                 <div>
-                  <label htmlFor="phone" className={labelClasses}>
-                    {t('form.phone')}
-                  </label>
+                  <label htmlFor="phone" className={labelClasses}>{t('form.phone')}</label>
                   <div className="relative">
-                    <Phone className={cn(
-                      'absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5',
-                      design === 'corporate' && 'text-slate-500',
-                      design !== 'corporate' && 'text-slate-400'
-                    )} />
+                    <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
                     <input
                       type="tel"
                       id="phone"
                       name="phone"
-                      className={cn(inputClasses, 'pl-12')}
+                      className={`${inputClasses} pl-12`}
                       placeholder={t('form.phonePlaceholder')}
                     />
                   </div>
                 </div>
 
-                {/* Message */}
                 <div>
-                  <label htmlFor="message" className={labelClasses}>
-                    {t('form.message')} *
-                  </label>
+                  <label htmlFor="message" className={labelClasses}>{t('form.message')} *</label>
                   <textarea
                     id="message"
                     name="message"
                     required
                     rows={5}
-                    className={cn(inputClasses, 'resize-none')}
+                    className={`${inputClasses} resize-none`}
                     placeholder={t('form.messagePlaceholder')}
                   />
                 </div>
 
-                {/* Submit Button */}
                 <button
                   type="submit"
                   disabled={status === 'submitting' || status === 'success'}
-                  className={cn(
-                    'w-full py-4 font-semibold flex items-center justify-center gap-2 transition-all',
-                    status === 'success' && 'bg-green-500 text-white',
-                    status === 'error' && 'bg-red-500 text-white',
-                    status !== 'success' && status !== 'error' && design === 'corporate' && 'rounded-xl bg-amber-500 text-slate-900 hover:bg-amber-400',
-                    status !== 'success' && status !== 'error' && design === 'industrial' && 'bg-slate-900 text-amber-500 hover:bg-slate-800 font-black uppercase',
-                    status !== 'success' && status !== 'error' && design === 'minimal' && 'rounded-xl bg-orange-600 text-white hover:bg-orange-700',
-                    design === 'industrial' && (status === 'success' || status === 'error') && 'font-black uppercase'
-                  )}
+                  className={`w-full py-4 font-semibold flex items-center justify-center gap-2 rounded-xl transition-all ${
+                    status === 'success' ? 'bg-green-500 text-white' :
+                    status === 'error' ? 'bg-red-500 text-white' :
+                    'bg-orange-600 text-white hover:bg-orange-700'
+                  }`}
                 >
                   {status === 'submitting' ? (
-                    <>
-                      <Loader2 className="w-5 h-5 animate-spin" />
-                      {t('form.submitting')}
-                    </>
+                    <><Loader2 className="w-5 h-5 animate-spin" />{t('form.submitting')}</>
                   ) : status === 'success' ? (
-                    <>
-                      <Check className="w-5 h-5" />
-                      {t('form.success')}
-                    </>
+                    <><Check className="w-5 h-5" />{t('form.success')}</>
                   ) : status === 'error' ? (
                     t('form.error')
                   ) : (
-                    <>
-                      <Send className="w-5 h-5" />
-                      {t('form.submit')}
-                    </>
+                    <><Send className="w-5 h-5" />{t('form.submit')}</>
                   )}
                 </button>
               </form>
@@ -224,22 +154,8 @@ export default function ContactClient() {
 
             {/* Contact Info */}
             <div className="space-y-8">
-              {/* Info Cards */}
-              <div className={cn(
-                'p-8',
-                design === 'corporate' && 'rounded-2xl bg-slate-900 border border-slate-800',
-                design === 'industrial' && 'bg-white border-4 border-slate-900',
-                design === 'minimal' && 'rounded-3xl bg-white shadow-2xl shadow-slate-200/50 border border-slate-100'
-              )}>
-                <h3 className={cn(
-                  'text-xl font-semibold mb-6',
-                  design === 'corporate' && 'text-white',
-                  design === 'industrial' && 'text-slate-900 font-black uppercase',
-                  design === 'minimal' && 'text-slate-900'
-                )}>
-                  {t('info.title')}
-                </h3>
-
+              <div className="p-8 rounded-3xl bg-white shadow-2xl shadow-slate-200/50 border border-slate-100">
+                <h3 className="text-xl font-semibold mb-6 text-slate-900">{t('info.title')}</h3>
                 <div className="space-y-6">
                   {[
                     { icon: MapPin, label: t('info.address'), value: 'Ul. Biala 4/87\n00-895 Warszawa, Poland' },
@@ -248,40 +164,24 @@ export default function ContactClient() {
                     { icon: User, label: t('info.director'), value: 'Vadym Lapin' },
                   ].map((item) => {
                     const Icon = item.icon;
-                    const content = item.href ? (
-                      <a href={item.href} className={cn(
-                        'transition-colors',
-                        design === 'corporate' && 'text-white hover:text-orange-400',
-                        design !== 'corporate' && 'text-slate-900 hover:text-orange-600'
-                      )}>
-                        {item.value}
-                      </a>
-                    ) : (
-                      <span className={design === 'corporate' ? 'text-white' : 'text-slate-900'}>
-                        {item.value.split('\n').map((line, i) => (
-                          <span key={i}>{line}{i === 0 && <br />}</span>
-                        ))}
-                      </span>
-                    );
-
                     return (
                       <div key={item.label} className="flex items-start gap-4">
-                        <div className={cn(
-                          'w-12 h-12 flex items-center justify-center flex-shrink-0',
-                          design === 'corporate' && 'rounded-xl bg-orange-500/10',
-                          design === 'industrial' && 'bg-slate-900',
-                          design === 'minimal' && 'rounded-xl bg-orange-100'
-                        )}>
-                          <Icon className={cn(
-                            'w-6 h-6',
-                            design === 'corporate' && 'text-orange-400',
-                            design === 'industrial' && 'text-amber-500',
-                            design === 'minimal' && 'text-orange-600'
-                          )} />
+                        <div className="w-12 h-12 flex items-center justify-center flex-shrink-0 rounded-xl bg-orange-100">
+                          <Icon className="w-6 h-6 text-orange-600" />
                         </div>
                         <div>
                           <Text variant="muted" className="text-sm mb-1">{item.label}</Text>
-                          {content}
+                          {item.href ? (
+                            <a href={item.href} className="text-slate-900 hover:text-orange-600 transition-colors">
+                              {item.value}
+                            </a>
+                          ) : (
+                            <span className="text-slate-900">
+                              {item.value.split('\n').map((line, i) => (
+                                <span key={i}>{line}{i === 0 && <br />}</span>
+                              ))}
+                            </span>
+                          )}
                         </div>
                       </div>
                     );
@@ -289,81 +189,31 @@ export default function ContactClient() {
                 </div>
               </div>
 
-              {/* Business Hours */}
-              <div className={cn(
-                'p-8',
-                design === 'corporate' && 'rounded-2xl bg-slate-900 border border-slate-800',
-                design === 'industrial' && 'bg-amber-500 border-4 border-slate-900',
-                design === 'minimal' && 'rounded-2xl bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-200'
-              )}>
-                <h3 className={cn(
-                  'text-xl font-semibold mb-6 flex items-center gap-3',
-                  design === 'corporate' && 'text-white',
-                  design === 'industrial' && 'text-slate-900 font-black uppercase',
-                  design === 'minimal' && 'text-slate-900'
-                )}>
-                  <Clock className={cn(
-                    'w-5 h-5',
-                    design === 'corporate' && 'text-orange-400',
-                    design === 'industrial' && 'text-slate-900',
-                    design === 'minimal' && 'text-orange-600'
-                  )} />
+              <div className="p-8 rounded-2xl bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-200">
+                <h3 className="text-xl font-semibold mb-6 flex items-center gap-3 text-slate-900">
+                  <Clock className="w-5 h-5 text-orange-600" />
                   {t('hours.title')}
                 </h3>
-
                 <div className="space-y-3">
-                  <p className={design === 'corporate' ? 'text-slate-300' : 'text-slate-700'}>
-                    {t('hours.weekdays')}
-                  </p>
-                  <p className={design === 'corporate' ? 'text-slate-500' : 'text-slate-500'}>
-                    {t('hours.weekend')}
-                  </p>
+                  <p className="text-slate-700">{t('hours.weekdays')}</p>
+                  <p className="text-slate-500">{t('hours.weekend')}</p>
                 </div>
               </div>
 
-              {/* Locations */}
-              <div className={cn(
-                'p-8',
-                design === 'corporate' && 'rounded-2xl bg-gradient-to-br from-orange-600/10 to-slate-900 border border-orange-500/20',
-                design === 'industrial' && 'bg-slate-900 border-4 border-slate-900',
-                design === 'minimal' && 'rounded-3xl bg-gradient-to-br from-orange-50 to-amber-50 border border-orange-100 shadow-lg shadow-orange-100/50'
-              )}>
-                <h3 className={cn(
-                  'text-xl font-semibold mb-6',
-                  design === 'corporate' && 'text-white',
-                  design === 'industrial' && 'text-amber-500 font-black uppercase',
-                  design === 'minimal' && 'text-slate-900'
-                )}>
-                  {tLoc('title')}
-                </h3>
-
+              <div className="p-8 rounded-3xl bg-gradient-to-br from-orange-50 to-amber-50 border border-orange-100 shadow-lg shadow-orange-100/50">
+                <h3 className="text-xl font-semibold mb-6 text-slate-900">{tLoc('title')}</h3>
                 <div className="flex flex-wrap gap-4">
-                  <div className={cn(
-                    'flex items-center gap-2 px-4 py-2',
-                    design === 'corporate' && 'rounded-full bg-slate-900/50',
-                    design === 'industrial' && 'bg-amber-500',
-                    design === 'minimal' && 'rounded-full bg-white'
-                  )}>
+                  <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white">
                     <img src="/coats/poland.png" alt="Poland" className="w-8 h-5 object-cover rounded" />
-                    <span className={design === 'corporate' ? 'text-white' : 'text-slate-900'}>{tLoc('poland')}</span>
+                    <span className="text-slate-900">{tLoc('poland')}</span>
                   </div>
-                  <div className={cn(
-                    'flex items-center gap-2 px-4 py-2',
-                    design === 'corporate' && 'rounded-full bg-slate-900/50',
-                    design === 'industrial' && 'bg-amber-500',
-                    design === 'minimal' && 'rounded-full bg-white'
-                  )}>
+                  <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white">
                     <img src="/coats/belgium.png" alt="Belgium" className="w-8 h-5 object-cover rounded" />
-                    <span className={design === 'corporate' ? 'text-white' : 'text-slate-900'}>{tLoc('belgium')}</span>
+                    <span className="text-slate-900">{tLoc('belgium')}</span>
                   </div>
-                  <div className={cn(
-                    'flex items-center gap-2 px-4 py-2',
-                    design === 'corporate' && 'rounded-full bg-slate-900/50',
-                    design === 'industrial' && 'bg-amber-500',
-                    design === 'minimal' && 'rounded-full bg-white'
-                  )}>
+                  <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white">
                     <img src="/coats/eu-flag.png" alt="EU" className="w-8 h-5 object-cover rounded" />
-                    <span className={design === 'corporate' ? 'text-white' : 'text-slate-900'}>{tLoc('eu')}</span>
+                    <span className="text-slate-900">{tLoc('eu')}</span>
                   </div>
                 </div>
               </div>
