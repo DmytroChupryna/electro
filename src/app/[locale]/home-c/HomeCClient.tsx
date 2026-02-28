@@ -636,7 +636,7 @@ export default function HomeCClient() {
         <PartnersSection />
         <CTASection />
       </main>
-      <Footer variant="light" />
+      <Footer />
     </div>
   );
 }
