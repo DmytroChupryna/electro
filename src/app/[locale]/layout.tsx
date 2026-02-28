@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import '../globals.css';
 import { DesignProvider } from '@/context/DesignContext';
 import JsonLd from '@/components/JsonLd';
+import CookieConsent from '@/components/CookieConsent';
 import {
   siteConfig,
   defaultKeywords,
@@ -156,6 +157,7 @@ export default async function LocaleLayout({
           <DesignProvider>
             {children}
           </DesignProvider>
+          <CookieConsent />
           <Analytics />
         </NextIntlClientProvider>
       </body>

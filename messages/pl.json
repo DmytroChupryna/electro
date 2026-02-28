@@ -315,5 +315,27 @@
       "role": "Infrastruktura sieciowa",
       "description": "Specjaliści od infrastruktury sieciowej. Okablowanie strukturalne, przełączniki, WiFi i rozwiązania serwerowe."
     }
+  },
+  "CookieConsent": {
+    "title": "Ustawienia plików cookie",
+    "description": "Używamy plików cookie, aby zapewnić prawidłowe działanie strony, poprawić Twoje doświadczenie i analizować ruch. Możesz zapoznać się z naszą Polityką Prywatności lub dostosować swoje preferencje.",
+    "acceptAll": "Zaakceptuj wszystkie",
+    "rejectAll": "Odrzuć wszystkie",
+    "manageSettings": "Zarządzaj ustawieniami",
+    "savePreferences": "Zapisz preferencje",
+    "necessary": {
+      "title": "Niezbędne pliki cookie",
+      "description": "Wymagane do działania strony. Nie można wyłączyć."
+    },
+    "analytics": {
+      "title": "Analityczne pliki cookie",
+      "description": "Pomagają nam zrozumieć, jak odwiedzający korzystają ze strony."
+    },
+    "marketing": {
+      "title": "Marketingowe pliki cookie",
+      "description": "Używane do wyświetlania odpowiednich reklam i śledzenia kampanii."
+    },
+    "privacyPolicy": "Polityka Prywatności",
+    "cookiePolicy": "Polityka Cookies"
   }
 }

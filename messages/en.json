@@ -315,5 +315,27 @@
       "role": "Network Infrastructure",
       "description": "Network infrastructure specialists. Structured cabling, switching, WiFi & server solutions."
     }
+  },
+  "CookieConsent": {
+    "title": "Cookie Settings",
+    "description": "We use cookies to ensure our website works properly, improve your experience, and analyze traffic. You can review our Privacy Policy or adjust your preferences.",
+    "acceptAll": "Accept All",
+    "rejectAll": "Reject All",
+    "manageSettings": "Manage Settings",
+    "savePreferences": "Save Preferences",
+    "necessary": {
+      "title": "Necessary Cookies",
+      "description": "Required for the website to function. Cannot be disabled."
+    },
+    "analytics": {
+      "title": "Analytics Cookies",
+      "description": "Help us understand how visitors use our website."
+    },
+    "marketing": {
+      "title": "Marketing Cookies",
+      "description": "Used to deliver relevant ads and track campaigns."
+    },
+    "privacyPolicy": "Privacy Policy",
+    "cookiePolicy": "Cookie Policy"
   }
 }

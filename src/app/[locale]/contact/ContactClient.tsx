@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useTranslations } from 'next-intl';
+import { Turnstile, type TurnstileInstance } from '@marsidev/react-turnstile';
 import PageWrapper, { Section, Heading, Text } from '@/components/PageWrapper';
 import {
   MapPin,
@@ -19,16 +20,55 @@ export default function ContactClient() {
   const t = useTranslations('Contact');
   const tLoc = useTranslations('Locations');
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const turnstileRef = useRef<TurnstileInstance>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+    if (!turnstileToken) {
+      return;
+    }
+    
     setStatus('submitting');
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setStatus('success');
-    setTimeout(() => {
-      setStatus('idle');
-      (e.target as HTMLFormElement).reset();
-    }, 3000);
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get('name') as string,
+      email: formData.get('email') as string,
+      phone: formData.get('phone') as string,
+      company: formData.get('company') as string,
+      message: formData.get('message') as string,
+      turnstileToken,
+    };
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        setTimeout(() => {
+          setStatus('idle');
+          (e.target as HTMLFormElement).reset();
+          turnstileRef.current?.reset();
+          setTurnstileToken(null);
+        }, 3000);
+      } else {
+        setStatus('error');
+        setTimeout(() => setStatus('idle'), 3000);
+        turnstileRef.current?.reset();
+        setTurnstileToken(null);
+      }
+    } catch {
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 3000);
+      turnstileRef.current?.reset();
+      setTurnstileToken(null);
+    }
   };
 
   const inputClasses = 'w-full px-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-900 placeholder-slate-400 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-colors focus:outline-none';
@@ -130,12 +170,25 @@ export default function ContactClient() {
                   />
                 </div>
 
+                <div className="flex justify-center">
+                  <Turnstile
+                    ref={turnstileRef}
+                    siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ''}
+                    onSuccess={setTurnstileToken}
+                    onExpire={() => setTurnstileToken(null)}
+                    options={{
+                      theme: 'light',
+                    }}
+                  />
+                </div>
+
                 <button
                   type="submit"
-                  disabled={status === 'submitting' || status === 'success'}
+                  disabled={status === 'submitting' || status === 'success' || !turnstileToken}
                   className={`w-full py-4 font-semibold flex items-center justify-center gap-2 rounded-xl transition-all ${
                     status === 'success' ? 'bg-green-500 text-white' :
                     status === 'error' ? 'bg-red-500 text-white' :
+                    !turnstileToken ? 'bg-slate-300 text-slate-500 cursor-not-allowed' :
                     'bg-orange-600 text-white hover:bg-orange-700'
                   }`}
                 >

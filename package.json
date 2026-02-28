@@ -10,6 +10,7 @@
     "seed": "curl -X POST 'http://localhost:3000/api/seed?secret='$PAYLOAD_SECRET"
   },
   "dependencies": {
+    "@marsidev/react-turnstile": "^1.4.2",
     "@payloadcms/db-postgres": "^3.74.0",
     "@payloadcms/next": "^3.74.0",
     "@payloadcms/richtext-lexical": "^3.74.0",
@@ -26,6 +27,7 @@
     "payload": "^3.74.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "resend": "^6.9.2",
     "sass": "^1.97.3",
     "sharp": "^0.34.5",
     "tailwind-merge": "^3.4.0"
