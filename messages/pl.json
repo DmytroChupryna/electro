@@ -574,5 +574,15 @@
       "item2": "Usługodawca zastrzega sobie prawo do zmiany Regulaminu",
       "item3": "W sprawach nieuregulowanych stosuje się przepisy prawa polskiego"
     }
+  },
+  "NotFound": {
+    "title": "Strona nie znaleziona",
+    "description": "Przepraszamy, strona której szukasz nie istnieje lub została przeniesiona.",
+    "goHome": "Strona główna",
+    "goBack": "Wróć",
+    "helpfulLinks": "Może to Ci pomoże:",
+    "services": "Usługi",
+    "portfolio": "Realizacje",
+    "contact": "Kontakt"
   }
 }

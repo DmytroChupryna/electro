@@ -574,5 +574,15 @@
       "item2": "The Service Provider reserves the right to modify these Terms",
       "item3": "Matters not regulated herein are governed by Polish law"
     }
+  },
+  "NotFound": {
+    "title": "Page Not Found",
+    "description": "Sorry, the page you are looking for does not exist or has been moved.",
+    "goHome": "Go Home",
+    "goBack": "Go Back",
+    "helpfulLinks": "This might help:",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "contact": "Contact"
   }
 }
