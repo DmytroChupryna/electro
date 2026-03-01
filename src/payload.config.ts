@@ -686,12 +686,12 @@ export default buildConfig({
   // CORS settings for production
   cors: [
     process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
-    'https://electro-a453.vercel.app',
+    'https://electro-rho.vercel.app',
   ].filter(Boolean),
 
   // CSRF protection
   csrf: [
     process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
-    'https://electro-a453.vercel.app',
+    'https://electro-rho.vercel.app',
   ].filter(Boolean),
 });
