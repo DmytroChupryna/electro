@@ -10,6 +10,9 @@ import { fileURLToPath } from 'url';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL 
+  || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
+
 /**
  * Payload CMS Configuration
  * With localization support (EN + PL)
@@ -682,18 +685,15 @@ export default buildConfig({
     }),
   ],
 
-  // Server URL - must match the deployment URL exactly
-  serverURL: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+  serverURL: siteUrl,
 
-  // CORS settings for production
   cors: [
-    process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+    siteUrl,
     'https://electro-rho.vercel.app',
   ].filter(Boolean),
 
-  // CSRF protection
   csrf: [
-    process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+    siteUrl,
     'https://electro-rho.vercel.app',
   ].filter(Boolean),
 
