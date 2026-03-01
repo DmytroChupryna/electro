@@ -3,6 +3,7 @@ import { postgresAdapter } from '@payloadcms/db-postgres';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import { ru } from '@payloadcms/translations/languages/ru';
+import sharp from 'sharp';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -75,7 +76,7 @@ export default buildConfig({
       },
       upload: {
         mimeTypes: ['image/*'],
-        staticDir: 'media',
+        disableLocalStorage: true,
         imageSizes: [
           {
             name: 'thumbnail',
@@ -694,4 +695,6 @@ export default buildConfig({
     process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
     'https://electro-rho.vercel.app',
   ].filter(Boolean),
+
+  sharp,
 });
