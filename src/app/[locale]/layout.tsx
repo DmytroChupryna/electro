@@ -98,7 +98,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     icons: {
       icon: [
-        { url: '/favicon.ico', sizes: 'any' },
         { url: '/icon.svg', type: 'image/svg+xml' },
       ],
       apple: '/apple-touch-icon.png',
