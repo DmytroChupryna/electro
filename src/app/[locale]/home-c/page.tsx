@@ -6,6 +6,7 @@
 import HomeCClient from './HomeCClient';
 import JsonLd from '@/components/JsonLd';
 import { siteConfig, generateFAQSchema } from '@/lib/seo';
+import { getProjects, getSettings } from '@/lib/payload';
 
 interface HomeCPageProps {
   params: Promise<{ locale: string }>;
@@ -13,6 +14,11 @@ interface HomeCPageProps {
 
 export default async function HomeCPage({ params }: HomeCPageProps) {
   const { locale } = await params;
+  
+  const [projects, settings] = await Promise.all([
+    getProjects(locale, true),
+    getSettings(locale),
+  ]);
 
   const faqData = generateFAQSchema([
     {
@@ -44,7 +50,7 @@ export default async function HomeCPage({ params }: HomeCPageProps) {
   return (
     <>
       <JsonLd data={faqData} />
-      <HomeCClient />
+      <HomeCClient projects={projects} settings={settings} />
     </>
   );
 }
