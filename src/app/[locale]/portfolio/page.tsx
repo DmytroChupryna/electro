@@ -3,7 +3,7 @@
  * Fetches projects data from Payload CMS and passes to client component
  */
 
-import { getProjects } from '@/lib/payload';
+import { getProjects, getSettings } from '@/lib/payload';
 import PortfolioClient from './PortfolioClient';
 import JsonLd from '@/components/JsonLd';
 import { siteConfig, generateBreadcrumbSchema, generateProjectSchema } from '@/lib/seo';
@@ -15,7 +15,10 @@ interface PortfolioPageProps {
 export default async function PortfolioPage({ params }: PortfolioPageProps) {
   const { locale } = await params;
   
-  const projects = await getProjects(locale);
+  const [projects, settings] = await Promise.all([
+    getProjects(locale),
+    getSettings(locale),
+  ]);
 
   const breadcrumbData = generateBreadcrumbSchema([
     { name: 'Home', url: `${siteConfig.url}/${locale}` },
@@ -26,7 +29,7 @@ export default async function PortfolioPage({ params }: PortfolioPageProps) {
     generateProjectSchema({
       name: project.title,
       description: project.description,
-      image: project.image || `${siteConfig.url}/og-image.png`,
+      image: project.image?.url || `${siteConfig.url}/og-image.png`,
       location: project.location,
       year: project.year,
     })
@@ -35,7 +38,7 @@ export default async function PortfolioPage({ params }: PortfolioPageProps) {
   return (
     <>
       <JsonLd data={[breadcrumbData, ...projectSchemas]} />
-      <PortfolioClient projects={projects} />
+      <PortfolioClient projects={projects} settings={settings} />
     </>
   );
 }

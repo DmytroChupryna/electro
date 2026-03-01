@@ -31,7 +31,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const projectData = generateProjectSchema({
     name: project.title,
     description: project.description,
-    image: project.image || `${siteConfig.url}/og-image.png`,
+    image: project.image?.url || `${siteConfig.url}/og-image.png`,
     location: project.location,
     year: project.year,
   });
@@ -89,7 +89,7 @@ export async function generateMetadata({ params }: ProjectPageProps) {
       description,
       url: `${siteConfig.url}/${locale}/portfolio/${slug}`,
       type: 'article',
-      images: project.image ? [{ url: project.image, alt: project.title }] : undefined,
+      images: project.image?.url ? [{ url: project.image.url, alt: project.image.alt || project.title }] : undefined,
     },
     alternates: {
       canonical: `${siteConfig.url}/${locale}/portfolio/${slug}`,

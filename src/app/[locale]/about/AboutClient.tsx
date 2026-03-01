@@ -13,15 +13,20 @@ import {
   ArrowUpRight,
   Zap,
 } from 'lucide-react';
+import type { CMSSettings } from '@/lib/payload';
 
-export default function AboutClient() {
+interface AboutClientProps {
+  settings?: CMSSettings;
+}
+
+export default function AboutClient({ settings }: AboutClientProps) {
   const t = useTranslations('About');
   const tCTA = useTranslations('CTA');
   const ui = useTranslations('UI');
   const p = useTranslations('Partners');
 
   return (
-    <PageWrapper>
+    <PageWrapper settings={settings}>
       {/* Hero Section */}
       <Section variant="primary" className="py-20">
         <div className="container mx-auto px-4 lg:px-8">

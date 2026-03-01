@@ -6,6 +6,7 @@
 import ReviewsClient from './ReviewsClient';
 import JsonLd from '@/components/JsonLd';
 import { siteConfig, generateBreadcrumbSchema } from '@/lib/seo';
+import { getReviews, getSettings } from '@/lib/payload';
 
 interface ReviewsPageProps {
   params: Promise<{ locale: string }>;
@@ -13,11 +14,19 @@ interface ReviewsPageProps {
 
 export default async function ReviewsPage({ params }: ReviewsPageProps) {
   const { locale } = await params;
+  const [reviews, settings] = await Promise.all([
+    getReviews(locale),
+    getSettings(locale),
+  ]);
 
   const breadcrumbData = generateBreadcrumbSchema([
     { name: 'Home', url: `${siteConfig.url}/${locale}` },
     { name: locale === 'pl' ? 'Opinie' : 'Reviews', url: `${siteConfig.url}/${locale}/reviews` },
   ]);
+
+  const avgRating = reviews.length > 0 
+    ? (reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1)
+    : '5';
 
   const aggregateRatingSchema = {
     '@context': 'https://schema.org',
@@ -26,18 +35,18 @@ export default async function ReviewsPage({ params }: ReviewsPageProps) {
     name: siteConfig.name,
     aggregateRating: {
       '@type': 'AggregateRating',
-      ratingValue: '5',
+      ratingValue: avgRating,
       bestRating: '5',
       worstRating: '1',
-      ratingCount: '50',
-      reviewCount: '50',
+      ratingCount: String(reviews.length || 50),
+      reviewCount: String(reviews.length || 50),
     },
   };
 
   return (
     <>
       <JsonLd data={[breadcrumbData, aggregateRatingSchema]} />
-      <ReviewsClient />
+      <ReviewsClient reviews={reviews} settings={settings} />
     </>
   );
 }

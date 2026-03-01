@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import PageWrapper, { Section, Heading, Text } from '@/components/PageWrapper';
 import { MapPin, ArrowRight, Building2, Factory, Home, LucideIcon } from 'lucide-react';
-import type { CMSProject, ProjectCategory } from '@/lib/payload';
+import type { CMSProject, CMSSettings, ProjectCategory } from '@/lib/payload';
 
 const categoryIcons: Record<ProjectCategory, LucideIcon> = {
   industrial: Factory,
@@ -14,14 +14,15 @@ const categoryIcons: Record<ProjectCategory, LucideIcon> = {
 
 interface PortfolioClientProps {
   projects: CMSProject[];
+  settings?: CMSSettings;
 }
 
-export default function PortfolioClient({ projects }: PortfolioClientProps) {
+export default function PortfolioClient({ projects, settings }: PortfolioClientProps) {
   const t = useTranslations('Portfolio');
   const tCTA = useTranslations('CTA');
 
   return (
-    <PageWrapper>
+    <PageWrapper settings={settings}>
       {/* Hero */}
       <Section variant="primary" className="py-20">
         <div className="container mx-auto px-4 lg:px-8">
@@ -54,8 +55,8 @@ export default function PortfolioClient({ projects }: PortfolioClientProps) {
                 >
                   <div className="relative overflow-hidden aspect-[4/3]">
                     <img
-                      src={project.image}
-                      alt={project.title}
+                      src={project.image?.url || '/projects/placeholder.jpg'}
+                      alt={project.image?.alt || project.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/20 to-transparent" />

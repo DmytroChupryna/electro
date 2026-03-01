@@ -15,8 +15,13 @@ import {
   Building2,
   User,
 } from 'lucide-react';
+import type { CMSSettings } from '@/lib/payload';
 
-export default function ContactClient() {
+interface ContactClientProps {
+  settings?: CMSSettings;
+}
+
+export default function ContactClient({ settings }: ContactClientProps) {
   const t = useTranslations('Contact');
   const tLoc = useTranslations('Locations');
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
@@ -74,8 +79,12 @@ export default function ContactClient() {
   const inputClasses = 'w-full px-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-900 placeholder-slate-400 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-colors focus:outline-none';
   const labelClasses = 'block text-sm font-medium mb-2 text-slate-600';
 
+  const addressPL = settings?.addressPL;
+  const companyPL = settings?.companyPL;
+  const workingHours = settings?.workingHours;
+
   return (
-    <PageWrapper>
+    <PageWrapper settings={settings}>
       {/* Hero */}
       <Section variant="primary" className="py-20">
         <div className="container mx-auto px-4 lg:px-8">
@@ -210,35 +219,61 @@ export default function ContactClient() {
               <div className="p-8 rounded-3xl bg-white shadow-2xl shadow-slate-200/50 border border-slate-100">
                 <h3 className="text-xl font-semibold mb-6 text-slate-900">{t('info.title')}</h3>
                 <div className="space-y-6">
-                  {[
-                    { icon: MapPin, label: t('info.address'), value: 'Ul. Biala 4/87\n00-895 Warszawa, Poland' },
-                    { icon: Phone, label: t('info.phone'), value: '+48 578 992 316', href: 'tel:+48578992316' },
-                    { icon: Mail, label: t('info.email'), value: 'info@technogroop.com', href: 'mailto:info@technogroop.com' },
-                    { icon: User, label: t('info.director'), value: 'Vadym Lapin' },
-                  ].map((item) => {
-                    const Icon = item.icon;
-                    return (
-                      <div key={item.label} className="flex items-start gap-4">
-                        <div className="w-12 h-12 flex items-center justify-center flex-shrink-0 rounded-xl bg-orange-100">
-                          <Icon className="w-6 h-6 text-orange-600" />
-                        </div>
-                        <div>
-                          <Text variant="muted" className="text-sm mb-1">{item.label}</Text>
-                          {item.href ? (
-                            <a href={item.href} className="text-slate-900 hover:text-orange-600 transition-colors">
-                              {item.value}
-                            </a>
-                          ) : (
-                            <span className="text-slate-900">
-                              {item.value.split('\n').map((line, i) => (
-                                <span key={i}>{line}{i === 0 && <br />}</span>
-                              ))}
-                            </span>
-                          )}
-                        </div>
+                  {/* Address */}
+                  {addressPL && (addressPL.street || addressPL.city) && (
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 flex items-center justify-center flex-shrink-0 rounded-xl bg-orange-100">
+                        <MapPin className="w-6 h-6 text-orange-600" />
                       </div>
-                    );
-                  })}
+                      <div>
+                        <Text variant="muted" className="text-sm mb-1">{t('info.address')}</Text>
+                        <span className="text-slate-900">
+                          {addressPL.street}<br />
+                          {addressPL.postalCode} {addressPL.city}, {addressPL.country}
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                  {/* Phone */}
+                  {settings?.phonePL && (
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 flex items-center justify-center flex-shrink-0 rounded-xl bg-orange-100">
+                        <Phone className="w-6 h-6 text-orange-600" />
+                      </div>
+                      <div>
+                        <Text variant="muted" className="text-sm mb-1">{t('info.phone')}</Text>
+                        <a href={`tel:${settings.phonePL.replace(/\s/g, '')}`} className="text-slate-900 hover:text-orange-600 transition-colors">
+                          {settings.phonePL}
+                        </a>
+                      </div>
+                    </div>
+                  )}
+                  {/* Email */}
+                  {settings?.contactEmail && (
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 flex items-center justify-center flex-shrink-0 rounded-xl bg-orange-100">
+                        <Mail className="w-6 h-6 text-orange-600" />
+                      </div>
+                      <div>
+                        <Text variant="muted" className="text-sm mb-1">{t('info.email')}</Text>
+                        <a href={`mailto:${settings.contactEmail}`} className="text-slate-900 hover:text-orange-600 transition-colors">
+                          {settings.contactEmail}
+                        </a>
+                      </div>
+                    </div>
+                  )}
+                  {/* Company */}
+                  {companyPL?.name && (
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 flex items-center justify-center flex-shrink-0 rounded-xl bg-orange-100">
+                        <Building2 className="w-6 h-6 text-orange-600" />
+                      </div>
+                      <div>
+                        <Text variant="muted" className="text-sm mb-1">{t('info.company')}</Text>
+                        <span className="text-slate-900">{companyPL.name}</span>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -248,8 +283,25 @@ export default function ContactClient() {
                   {t('hours.title')}
                 </h3>
                 <div className="space-y-3">
-                  <p className="text-slate-700">{t('hours.weekdays')}</p>
-                  <p className="text-slate-500">{t('hours.weekend')}</p>
+                  {workingHours?.weekdays ? (
+                    <p className="text-slate-700">
+                      {t('hours.weekdaysLabel')}: {workingHours.weekdays}
+                    </p>
+                  ) : (
+                    <p className="text-slate-700">{t('hours.weekdays')}</p>
+                  )}
+                  {(workingHours?.saturday || workingHours?.sunday) ? (
+                    <p className="text-slate-500">
+                      {workingHours.saturday && `${t('hours.saturdayLabel')}: ${workingHours.saturday}`}
+                      {workingHours.saturday && workingHours.sunday && ', '}
+                      {workingHours.sunday && `${t('hours.sundayLabel')}: ${workingHours.sunday}`}
+                    </p>
+                  ) : (
+                    <p className="text-slate-500">{t('hours.weekend')}</p>
+                  )}
+                  {workingHours?.note && (
+                    <p className="text-sm text-orange-600 mt-2">{workingHours.note}</p>
+                  )}
                 </div>
               </div>
 

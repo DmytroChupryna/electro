@@ -17,19 +17,34 @@ export const iconMap = {
 
 export type IconName = keyof typeof iconMap;
 
+// Media type from CMS
+export interface CMSMedia {
+  id: string;
+  url: string;
+  alt?: string;
+  width?: number;
+  height?: number;
+}
+
 // Service type from CMS
 export interface CMSService {
   id: string;
   title: string;
   description: string;
   icon: IconName;
-  image?: string | null;
+  image?: CMSMedia | null;
   order: number;
   isActive: boolean;
 }
 
 // Project category type
 export type ProjectCategory = 'industrial' | 'commercial' | 'residential';
+
+// Gallery item type
+export interface CMSGalleryItem {
+  image: CMSMedia;
+  caption?: string;
+}
 
 // Project type from CMS
 export interface CMSProject {
@@ -41,16 +56,104 @@ export interface CMSProject {
   category: ProjectCategory;
   country: 'PL' | 'BE';
   year: string;
-  image: string;
-  gallery?: string[];
+  image: CMSMedia | null;
+  gallery?: CMSGalleryItem[];
   featured: boolean;
   order: number;
 }
 
+// Review type from CMS
+export interface CMSReview {
+  id: string;
+  text: string;
+  author: string;
+  role: string;
+  company: string;
+  rating: number;
+  order: number;
+  isActive: boolean;
+}
+
+// Address type
+export interface CMSAddress {
+  street?: string;
+  city?: string;
+  postalCode?: string;
+  country?: string;
+}
+
+// Social links type
+export interface CMSSocialLinks {
+  facebook?: string;
+  linkedin?: string;
+  instagram?: string;
+  youtube?: string;
+}
+
+// Company info type
+export interface CMSCompanyPL {
+  name?: string;
+  nip?: string;
+  regon?: string;
+  krs?: string;
+}
+
+export interface CMSCompanyBE {
+  name?: string;
+  vat?: string;
+  companyNumber?: string;
+}
+
+// Working hours type
+export interface CMSWorkingHours {
+  weekdays?: string;
+  saturday?: string;
+  sunday?: string;
+  note?: string;
+}
+
 // Global settings type
 export interface CMSSettings {
+  // General
   title: string;
   description?: string | null;
+  tagline?: string | null;
+  // Contacts
+  contactEmail?: string;
+  salesEmail?: string;
+  phonePL?: string;
+  phoneBE?: string;
+  whatsapp?: string;
+  // Addresses
+  addressPL?: CMSAddress;
+  addressBE?: CMSAddress;
+  // Social
+  socialLinks?: CMSSocialLinks;
+  // Company info
+  companyPL?: CMSCompanyPL;
+  companyBE?: CMSCompanyBE;
+  // Working hours
+  workingHours?: CMSWorkingHours;
+}
+
+/**
+ * Helper to extract media URL from upload field
+ */
+function extractMedia(media: unknown): CMSMedia | null {
+  if (!media) return null;
+  if (typeof media === 'object' && media !== null) {
+    const m = media as Record<string, unknown>;
+    if (m.url) {
+      return {
+        id: String(m.id || ''),
+        url: m.url as string,
+        alt: (m.alt as string) || '',
+        width: m.width as number | undefined,
+        height: m.height as number | undefined,
+      };
+    }
+  }
+  return null;
 }
 
 /**
@@ -68,6 +171,7 @@ export async function getServices(locale: string = 'en'): Promise<CMSService[]> 
       sort: 'order',
       locale: locale as 'en' | 'pl',
       limit: 100,
+      depth: 1,
     });
 
     return result.docs.map((doc) => ({
@@ -75,7 +179,7 @@ export async function getServices(locale: string = 'en'): Promise<CMSService[]> 
       title: doc.title as string,
       description: doc.description as string,
       icon: doc.icon as IconName,
-      image: doc.image as string | null,
+      image: extractMedia(doc.image),
       order: doc.sortOrder as number,
       isActive: doc.isActive as boolean,
     }));
@@ -98,7 +202,7 @@ export async function getProjects(locale: string = 'en', featuredOnly: boolean =
       sort: 'order',
       locale: locale as 'en' | 'pl',
       limit: 100,
-      depth: 1, // Include related media
+      depth: 2,
     };
 
     // Add featured filter if needed
@@ -110,20 +214,36 @@ export async function getProjects(locale: string = 'en', featuredOnly: boolean =
 
     const result = await payload.find(queryOptions);
 
-    return result.docs.map((doc) => ({
-      id: String(doc.id),
-      slug: (doc.slug as string) || String(doc.id),
-      title: doc.title as string,
-      description: doc.description as string,
-      location: doc.location as string,
-      category: doc.category as ProjectCategory,
-      country: doc.country as 'PL' | 'BE',
-      year: doc.year as string,
-      image: (doc.image as string) || '',
-      featured: doc.featured as boolean,
-      order: (doc.sortOrder as number) || 0,
-      gallery: [], // Gallery loaded separately for detail page
-    }));
+    return result.docs.map((doc) => {
+      // Extract gallery items
+      const galleryItems: CMSGalleryItem[] = [];
+      if (doc.gallery && Array.isArray(doc.gallery)) {
+        for (const item of doc.gallery) {
+          const media = extractMedia((item as Record<string, unknown>).image);
+          if (media) {
+            galleryItems.push({
+              image: media,
+              caption: (item as Record<string, unknown>).caption as string | undefined,
+            });
+          }
+        }
+      }
+
+      return {
+        id: String(doc.id),
+        slug: (doc.slug as string) || String(doc.id),
+        title: doc.title as string,
+        description: doc.description as string,
+        location: doc.location as string,
+        category: doc.category as ProjectCategory,
+        country: doc.country as 'PL' | 'BE',
+        year: doc.year as string,
+        image: extractMedia(doc.image),
+        featured: doc.featured as boolean,
+        order: (doc.sortOrder as number) || 0,
+        gallery: galleryItems,
+      };
+    });
   } catch (error) {
     console.error('Error fetching projects:', error);
     return [];
@@ -141,17 +261,21 @@ export async function getProjectById(id: string, locale: string = 'en'): Promise
       collection: 'projects',
       id: id,
       locale: locale as 'en' | 'pl',
-      depth: 2, // Include nested media in gallery
+      depth: 2,
     });
 
     if (!doc) return null;
 
-    // Get gallery URLs
-    const galleryUrls: string[] = [];
+    // Extract gallery items
+    const galleryItems: CMSGalleryItem[] = [];
     if (doc.gallery && Array.isArray(doc.gallery)) {
       for (const item of doc.gallery) {
-        if (item.url) {
-          galleryUrls.push(item.url as string);
+        const media = extractMedia((item as Record<string, unknown>).image);
+        if (media) {
+          galleryItems.push({
+            image: media,
+            caption: (item as Record<string, unknown>).caption as string | undefined,
+          });
         }
       }
     }
@@ -165,8 +289,8 @@ export async function getProjectById(id: string, locale: string = 'en'): Promise
       category: doc.category as ProjectCategory,
       country: doc.country as 'PL' | 'BE',
       year: doc.year as string,
-      image: (doc.image as string) || '',
-      gallery: galleryUrls,
+      image: extractMedia(doc.image),
+      gallery: galleryItems,
       featured: doc.featured as boolean,
       order: (doc.sortOrder as number) || 0,
     };
@@ -197,12 +321,16 @@ export async function getProjectBySlug(slug: string, locale: string = 'en'): Pro
 
     const doc = result.docs[0];
 
-    // Get gallery URLs
-    const galleryUrls: string[] = [];
+    // Extract gallery items
+    const galleryItems: CMSGalleryItem[] = [];
     if (doc.gallery && Array.isArray(doc.gallery)) {
       for (const item of doc.gallery) {
-        if (item.url) {
-          galleryUrls.push(item.url as string);
+        const media = extractMedia((item as Record<string, unknown>).image);
+        if (media) {
+          galleryItems.push({
+            image: media,
+            caption: (item as Record<string, unknown>).caption as string | undefined,
+          });
         }
       }
     }
@@ -216,14 +344,47 @@ export async function getProjectBySlug(slug: string, locale: string = 'en'): Pro
       category: doc.category as ProjectCategory,
       country: doc.country as 'PL' | 'BE',
       year: doc.year as string,
-      image: (doc.image as string) || '',
-      gallery: galleryUrls,
+      image: extractMedia(doc.image),
+      gallery: galleryItems,
       featured: doc.featured as boolean,
       order: (doc.sortOrder as number) || 0,
     };
   } catch (error) {
     console.error('Error fetching project by slug:', error);
     return null;
+  }
+}
+
+/**
+ * Get all reviews from CMS
+ */
+export async function getReviews(locale: string = 'en'): Promise<CMSReview[]> {
+  try {
+    const payload = await getPayload({ config });
+
+    const result = await payload.find({
+      collection: 'reviews',
+      sort: 'sortOrder',
+      locale: locale as 'en' | 'pl',
+      limit: 100,
+      where: {
+        isActive: { equals: true },
+      },
+    });
+
+    return result.docs.map((doc) => ({
+      id: String(doc.id),
+      text: doc.text as string,
+      author: doc.author as string,
+      role: doc.role as string,
+      company: doc.company as string,
+      rating: (doc.rating as number) || 5,
+      order: (doc.sortOrder as number) || 0,
+      isActive: doc.isActive as boolean,
+    }));
+  } catch (error) {
+    console.error('Error fetching reviews:', error);
+    return [];
   }
 }
 
@@ -239,9 +400,29 @@ export async function getSettings(locale: string = 'en'): Promise<CMSSettings> {
       locale: locale as 'en' | 'pl',
     });
 
+    const s = settings as Record<string, unknown>;
+
     return {
-      title: settings.title as string,
-      description: settings.description as string | null,
+      // General
+      title: (s.title as string) || 'Techno Groop',
+      description: s.description as string | null,
+      tagline: s.tagline as string | null,
+      // Contacts
+      contactEmail: s.contactEmail as string | undefined,
+      salesEmail: s.salesEmail as string | undefined,
+      phonePL: s.phonePL as string | undefined,
+      phoneBE: s.phoneBE as string | undefined,
+      whatsapp: s.whatsapp as string | undefined,
+      // Addresses
+      addressPL: s.addressPL as CMSAddress | undefined,
+      addressBE: s.addressBE as CMSAddress | undefined,
+      // Social
+      socialLinks: s.socialLinks as CMSSocialLinks | undefined,
+      // Company info
+      companyPL: s.companyPL as CMSCompanyPL | undefined,
+      companyBE: s.companyBE as CMSCompanyBE | undefined,
+      // Working hours
+      workingHours: s.workingHours as CMSWorkingHours | undefined,
     };
   } catch (error) {
     console.error('Error fetching settings:', error);

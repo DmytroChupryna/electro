@@ -6,6 +6,7 @@
 import ContactClient from './ContactClient';
 import JsonLd from '@/components/JsonLd';
 import { siteConfig, generateBreadcrumbSchema, generateContactPageSchema } from '@/lib/seo';
+import { getSettings } from '@/lib/payload';
 
 interface ContactPageProps {
   params: Promise<{ locale: string }>;
@@ -13,6 +14,7 @@ interface ContactPageProps {
 
 export default async function ContactPage({ params }: ContactPageProps) {
   const { locale } = await params;
+  const settings = await getSettings(locale);
 
   const breadcrumbData = generateBreadcrumbSchema([
     { name: 'Home', url: `${siteConfig.url}/${locale}` },
@@ -24,7 +26,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
   return (
     <>
       <JsonLd data={[breadcrumbData, contactPageData]} />
-      <ContactClient />
+      <ContactClient settings={settings} />
     </>
   );
 }

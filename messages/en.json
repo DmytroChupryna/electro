@@ -191,7 +191,8 @@
       "satisfaction": "Client Satisfaction",
       "certified": "Certified Team",
       "countries": "Countries"
-    }
+    },
+    "noReviews": "No reviews yet. Be the first to share your experience!"
   },
   "Careers": {
     "title": "Join Our Team",
@@ -249,12 +250,16 @@
       "address": "Address",
       "phone": "Phone",
       "email": "Email",
-      "director": "Director"
+      "director": "Director",
+      "company": "Company"
     },
     "hours": {
       "title": "Business Hours",
       "weekdays": "Monday - Friday: 8:00 AM - 5:00 PM",
-      "weekend": "Saturday - Sunday: Closed"
+      "weekend": "Saturday - Sunday: Closed",
+      "weekdaysLabel": "Mon-Fri",
+      "saturdayLabel": "Sat",
+      "sundayLabel": "Sun"
     }
   },
   "Footer": {
@@ -337,5 +342,237 @@
     },
     "privacyPolicy": "Privacy Policy",
     "cookiePolicy": "Cookie Policy"
+  },
+  "Privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated",
+    "updateDate": "March 1, 2026",
+    "section1": {
+      "title": "1. Data Controller",
+      "intro": "The controller of your personal data is:",
+      "companyName": "Company name",
+      "address": "Address",
+      "email": "Contact email"
+    },
+    "section2": {
+      "title": "2. Legal Basis",
+      "intro": "Personal data processing is carried out in accordance with:",
+      "item1": "Regulation (EU) 2016/679 of the European Parliament and of the Council (GDPR)",
+      "item2": "Polish Act of May 10, 2018 on the protection of personal data",
+      "item3": "Polish Act of July 18, 2002 on the provision of electronic services"
+    },
+    "section3": {
+      "title": "3. Types of Data Collected",
+      "intro": "We collect the following categories of personal data:",
+      "item1": "Identification data (name, surname, company name)",
+      "item2": "Contact data (email address, phone number)",
+      "item3": "Technical data (IP address, browser type, operating system)",
+      "item4": "Usage data (visited pages, time of visit)"
+    },
+    "section4": {
+      "title": "4. Purposes of Processing",
+      "intro": "We process your personal data for the following purposes:",
+      "item1": "Responding to inquiries submitted via the contact form",
+      "item2": "Contract execution and service provision",
+      "item3": "Fulfilling legal obligations (e.g., tax, accounting)",
+      "item4": "Website analysis and improvement",
+      "item5": "Direct marketing of our products and services (with consent)"
+    },
+    "section5": {
+      "title": "5. Legal Bases for Processing",
+      "intro": "We process data based on:",
+      "item1": {
+        "title": "Art. 6(1)(a) GDPR",
+        "desc": "consent to data processing (e.g., newsletter, marketing)"
+      },
+      "item2": {
+        "title": "Art. 6(1)(b) GDPR",
+        "desc": "necessity for contract performance or pre-contractual measures"
+      },
+      "item3": {
+        "title": "Art. 6(1)(c) GDPR",
+        "desc": "legal obligation incumbent on the controller"
+      },
+      "item4": {
+        "title": "Art. 6(1)(f) GDPR",
+        "desc": "legitimate interests of the controller (e.g., analytics, protection against claims)"
+      }
+    },
+    "section6": {
+      "title": "6. Your Rights",
+      "intro": "You have the following rights:",
+      "item1": {
+        "title": "Right of access",
+        "desc": "you can obtain information about the processed data"
+      },
+      "item2": {
+        "title": "Right to rectification",
+        "desc": "you can request correction of inaccurate data"
+      },
+      "item3": {
+        "title": "Right to erasure",
+        "desc": "you can request deletion of data (\"right to be forgotten\")"
+      },
+      "item4": {
+        "title": "Right to restriction",
+        "desc": "you can request restriction of data processing"
+      },
+      "item5": {
+        "title": "Right to data portability",
+        "desc": "you can receive data in a machine-readable format"
+      },
+      "item6": {
+        "title": "Right to object",
+        "desc": "you can object to data processing for marketing purposes"
+      },
+      "item7": {
+        "title": "Right to withdraw consent",
+        "desc": "you can withdraw your consent at any time"
+      },
+      "contact": "To exercise your rights, contact us at:"
+    },
+    "section7": {
+      "title": "7. Cookies",
+      "intro": "Our website uses cookies, which are small text files stored on your device. They are used for the proper functioning of the website and analytical purposes.",
+      "types": {
+        "title": "Types of cookies:",
+        "item1": {
+          "title": "Necessary",
+          "desc": "essential for website functionality, cannot be disabled"
+        },
+        "item2": {
+          "title": "Analytics",
+          "desc": "help understand how users interact with the website"
+        },
+        "item3": {
+          "title": "Marketing",
+          "desc": "used for displaying personalized advertisements"
+        }
+      },
+      "manage": "You can manage cookie settings in your browser or through our cookie settings panel."
+    },
+    "section8": {
+      "title": "8. Data Security",
+      "content": "We implement appropriate technical and organizational measures to protect your personal data against unauthorized access, loss, destruction, or disclosure. Data is transmitted using SSL/TLS encryption."
+    },
+    "section9": {
+      "title": "9. Data Sharing",
+      "intro": "Your data may be shared with:",
+      "item1": "Hosting and IT service providers",
+      "item2": "Accounting and legal service providers",
+      "item3": "State authorities, when required by applicable law"
+    },
+    "section10": {
+      "title": "10. Data Retention Period",
+      "content": "We retain personal data for the period necessary to achieve the purposes for which they were collected, and then for the period required by law (e.g., 5 years for tax documentation) or until consent is withdrawn."
+    },
+    "section11": {
+      "title": "11. Right to Lodge a Complaint",
+      "content": "If you believe that the processing of your data violates GDPR, you have the right to lodge a complaint with the President of the Personal Data Protection Office (ul. Stawki 2, 00-193 Warsaw, Poland, www.uodo.gov.pl)."
+    },
+    "section12": {
+      "title": "12. Changes to Privacy Policy",
+      "content": "We reserve the right to make changes to this Privacy Policy. We will inform you of any changes by publishing a new version on our website."
+    }
+  },
+  "Terms": {
+    "title": "Terms of Service",
+    "lastUpdated": "Last updated",
+    "updateDate": "March 1, 2026",
+    "section1": {
+      "title": "1. General Provisions",
+      "intro": "The owner and operator of this website is:",
+      "companyName": "Company name",
+      "address": "Registered address",
+      "email": "Email",
+      "phone": "Phone"
+    },
+    "section2": {
+      "title": "2. Definitions",
+      "item1": {
+        "term": "Service Provider",
+        "def": "the owner of the website"
+      },
+      "item2": {
+        "term": "User",
+        "def": "a person using the website"
+      },
+      "item3": {
+        "term": "Website",
+        "def": "the website available at technogroop.com"
+      },
+      "item4": {
+        "term": "Electronic Service",
+        "def": "a service provided electronically through the Website"
+      },
+      "item5": {
+        "term": "Contact Form",
+        "def": "a form enabling sending messages to the Service Provider"
+      }
+    },
+    "section3": {
+      "title": "3. Scope of Services",
+      "intro": "Through our Website, we provide the following services:",
+      "item1": "Information about our company and electrical services offered",
+      "item2": "Presentation of our completed projects portfolio",
+      "item3": "Contact through the contact form",
+      "item4": "Providing contact details for direct communication"
+    },
+    "section4": {
+      "title": "4. Terms of Use",
+      "intro": "The User agrees to:",
+      "item1": "Use the Website in accordance with its intended purpose",
+      "item2": "Refrain from actions that may disrupt the Website's operation",
+      "item3": "Not transmit illegal content",
+      "item4": "Provide accurate information in contact forms"
+    },
+    "section5": {
+      "title": "5. Contact Form",
+      "intro": "By using the contact form, the User:",
+      "item1": "Consents to the processing of personal data for the purpose of responding to the inquiry",
+      "item2": "Confirms having read the Privacy Policy",
+      "item3": "Accepts that the response will be sent to the provided email address"
+    },
+    "section6": {
+      "title": "6. Copyright and Intellectual Property",
+      "intro": "All content on the Website is protected by copyright:",
+      "item1": "Texts, photos, graphics, and logos are the property of the Service Provider or used under license",
+      "item2": "Copying, distributing, or modifying content without permission is prohibited",
+      "item3": "Commercial use of materials requires written consent"
+    },
+    "section7": {
+      "title": "7. Liability",
+      "intro": "The Service Provider:",
+      "item1": "Makes every effort to ensure the information on the Website is current and accurate",
+      "item2": "Is not responsible for temporary unavailability of the Website due to technical reasons",
+      "item3": "Is not liable for consequences resulting from improper use of the Website by the User"
+    },
+    "section8": {
+      "title": "8. Consumer Rights",
+      "intro": "In accordance with the Polish Consumer Rights Act of May 30, 2014:",
+      "item1": "Consumers have the right to withdraw from a distance contract within 14 days without giving a reason",
+      "item2": "The right of withdrawal does not apply to services fully performed with explicit consumer consent",
+      "item3": "Detailed withdrawal conditions are specified in the service agreement"
+    },
+    "section9": {
+      "title": "9. Complaints",
+      "intro": "Complaint procedure:",
+      "item1": "Complaints can be submitted electronically or by post",
+      "item2": "A complaint should include a description of the issue and contact details",
+      "item3": "Complaints will be resolved within 14 days of receipt",
+      "contact": "Please send complaints to:"
+    },
+    "section10": {
+      "title": "10. Dispute Resolution",
+      "intro": "In case of disputes:",
+      "item1": "Consumers may use out-of-court complaint resolution methods (mediation, arbitration at the Trade Inspection)",
+      "item2": "ODR Platform (Online Dispute Resolution): https://ec.europa.eu/consumers/odr"
+    },
+    "section11": {
+      "title": "11. Final Provisions",
+      "item1": "These Terms come into effect upon publication on the website",
+      "item2": "The Service Provider reserves the right to modify these Terms",
+      "item3": "Matters not regulated herein are governed by Polish law"
+    }
   }
 }

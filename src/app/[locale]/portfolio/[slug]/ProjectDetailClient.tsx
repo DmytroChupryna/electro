@@ -23,7 +23,19 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const Icon = categoryIcons[project.category] || Building2;
-  const allImages = [project.image, ...(project.gallery || [])].filter(Boolean);
+  
+  // Extract all image URLs for gallery
+  const allImageUrls: string[] = [];
+  if (project.image?.url) {
+    allImageUrls.push(project.image.url);
+  }
+  if (project.gallery) {
+    for (const item of project.gallery) {
+      if (item.image?.url) {
+        allImageUrls.push(item.image.url);
+      }
+    }
+  }
 
   const openLightbox = (index: number) => {
     setCurrentImageIndex(index);
@@ -31,8 +43,8 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
   };
 
   const closeLightbox = () => setLightboxOpen(false);
-  const nextImage = () => setCurrentImageIndex((prev) => (prev + 1) % allImages.length);
-  const prevImage = () => setCurrentImageIndex((prev) => (prev - 1 + allImages.length) % allImages.length);
+  const nextImage = () => setCurrentImageIndex((prev) => (prev + 1) % allImageUrls.length);
+  const prevImage = () => setCurrentImageIndex((prev) => (prev - 1 + allImageUrls.length) % allImageUrls.length);
 
   return (
     <PageWrapper>
@@ -57,8 +69,8 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
             onClick={() => openLightbox(0)}
           >
             <img
-              src={project.image}
-              alt={project.title}
+              src={project.image?.url || '/projects/placeholder.jpg'}
+              alt={project.image?.alt || project.title}
               className="w-full h-[50vh] md:h-[60vh] object-cover transition-transform duration-500 group-hover:scale-[1.02]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/20 to-transparent" />
@@ -136,20 +148,20 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
       </Section>
 
       {/* Gallery */}
-      {allImages.length > 1 && (
+      {allImageUrls.length > 1 && (
         <Section variant="secondary" className="py-16">
           <div className="container mx-auto px-4 lg:px-8">
             <Heading level={2} className="mb-8">{t('gallery')}</Heading>
             
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {allImages.map((img, index) => (
+              {allImageUrls.map((imgUrl, index) => (
                 <div
                   key={index}
                   className="relative overflow-hidden cursor-pointer group aspect-square rounded-2xl"
                   onClick={() => openLightbox(index)}
                 >
                   <img
-                    src={img}
+                    src={imgUrl}
                     alt={`${project.title} - Image ${index + 1}`}
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                   />
@@ -189,7 +201,7 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
             <X className="w-8 h-8" />
           </button>
           
-          {allImages.length > 1 && (
+          {allImageUrls.length > 1 && (
             <>
               <button
                 onClick={(e) => { e.stopPropagation(); prevImage(); }}
@@ -207,14 +219,14 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
           )}
           
           <img
-            src={allImages[currentImageIndex]}
+            src={allImageUrls[currentImageIndex]}
             alt={`${project.title} - Image ${currentImageIndex + 1}`}
             className="max-w-[90vw] max-h-[90vh] object-contain"
             onClick={(e) => e.stopPropagation()}
           />
           
           <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white text-sm">
-            {currentImageIndex + 1} / {allImages.length}
+            {currentImageIndex + 1} / {allImageUrls.length}
           </div>
         </div>
       )}

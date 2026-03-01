@@ -191,7 +191,8 @@
       "satisfaction": "Satysfakcji klientów",
       "certified": "Certyfikowany zespół",
       "countries": "Kraje działalności"
-    }
+    },
+    "noReviews": "Brak opinii. Bądź pierwszy i podziel się swoim doświadczeniem!"
   },
   "Careers": {
     "title": "Dołącz do naszego zespołu",
@@ -249,12 +250,16 @@
       "address": "Adres",
       "phone": "Telefon",
       "email": "Email",
-      "director": "Dyrektor"
+      "director": "Dyrektor",
+      "company": "Firma"
     },
     "hours": {
       "title": "Godziny pracy",
       "weekdays": "Poniedziałek - Piątek: 8:00 - 17:00",
-      "weekend": "Sobota - Niedziela: Zamknięte"
+      "weekend": "Sobota - Niedziela: Zamknięte",
+      "weekdaysLabel": "Pn-Pt",
+      "saturdayLabel": "Sob",
+      "sundayLabel": "Nd"
     }
   },
   "Footer": {
@@ -337,5 +342,237 @@
     },
     "privacyPolicy": "Polityka Prywatności",
     "cookiePolicy": "Polityka Cookies"
+  },
+  "Privacy": {
+    "title": "Polityka Prywatności",
+    "lastUpdated": "Ostatnia aktualizacja",
+    "updateDate": "1 marca 2026",
+    "section1": {
+      "title": "1. Administrator danych osobowych",
+      "intro": "Administratorem Twoich danych osobowych jest:",
+      "companyName": "Nazwa firmy",
+      "address": "Adres",
+      "email": "E-mail kontaktowy"
+    },
+    "section2": {
+      "title": "2. Podstawa prawna przetwarzania",
+      "intro": "Przetwarzanie danych osobowych odbywa się zgodnie z:",
+      "item1": "Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. (RODO)",
+      "item2": "Ustawą z dnia 10 maja 2018 r. o ochronie danych osobowych",
+      "item3": "Ustawą z dnia 18 lipca 2002 r. o świadczeniu usług drogą elektroniczną"
+    },
+    "section3": {
+      "title": "3. Rodzaje zbieranych danych",
+      "intro": "Zbieramy następujące kategorie danych osobowych:",
+      "item1": "Dane identyfikacyjne (imię, nazwisko, nazwa firmy)",
+      "item2": "Dane kontaktowe (adres e-mail, numer telefonu)",
+      "item3": "Dane techniczne (adres IP, typ przeglądarki, system operacyjny)",
+      "item4": "Dane dotyczące korzystania ze strony (odwiedzane podstrony, czas wizyty)"
+    },
+    "section4": {
+      "title": "4. Cele przetwarzania danych",
+      "intro": "Twoje dane osobowe przetwarzamy w celu:",
+      "item1": "Odpowiedzi na zapytania przesłane przez formularz kontaktowy",
+      "item2": "Realizacji umów i świadczenia usług",
+      "item3": "Wypełnienia obowiązków prawnych (np. podatkowych, księgowych)",
+      "item4": "Analizy i poprawy funkcjonowania strony internetowej",
+      "item5": "Marketingu bezpośredniego własnych produktów i usług (za zgodą)"
+    },
+    "section5": {
+      "title": "5. Podstawy prawne przetwarzania",
+      "intro": "Przetwarzamy dane na podstawie:",
+      "item1": {
+        "title": "Art. 6 ust. 1 lit. a RODO",
+        "desc": "zgoda na przetwarzanie danych (np. newsletter, marketing)"
+      },
+      "item2": {
+        "title": "Art. 6 ust. 1 lit. b RODO",
+        "desc": "niezbędność do wykonania umowy lub podjęcia działań przed zawarciem umowy"
+      },
+      "item3": {
+        "title": "Art. 6 ust. 1 lit. c RODO",
+        "desc": "obowiązek prawny ciążący na administratorze"
+      },
+      "item4": {
+        "title": "Art. 6 ust. 1 lit. f RODO",
+        "desc": "prawnie uzasadnione interesy administratora (np. analityka, ochrona przed roszczeniami)"
+      }
+    },
+    "section6": {
+      "title": "6. Prawa użytkownika",
+      "intro": "Przysługują Ci następujące prawa:",
+      "item1": {
+        "title": "Prawo dostępu",
+        "desc": "możesz uzyskać informację o przetwarzanych danych"
+      },
+      "item2": {
+        "title": "Prawo do sprostowania",
+        "desc": "możesz żądać poprawienia nieprawidłowych danych"
+      },
+      "item3": {
+        "title": "Prawo do usunięcia",
+        "desc": "możesz żądać usunięcia danych (\"prawo do bycia zapomnianym\")"
+      },
+      "item4": {
+        "title": "Prawo do ograniczenia przetwarzania",
+        "desc": "możesz żądać ograniczenia przetwarzania danych"
+      },
+      "item5": {
+        "title": "Prawo do przenoszenia danych",
+        "desc": "możesz otrzymać dane w formacie nadającym się do odczytu maszynowego"
+      },
+      "item6": {
+        "title": "Prawo do sprzeciwu",
+        "desc": "możesz sprzeciwić się przetwarzaniu danych w celach marketingowych"
+      },
+      "item7": {
+        "title": "Prawo do cofnięcia zgody",
+        "desc": "możesz w każdej chwili cofnąć udzieloną zgodę"
+      },
+      "contact": "W celu realizacji swoich praw skontaktuj się z nami pod adresem:"
+    },
+    "section7": {
+      "title": "7. Pliki cookie",
+      "intro": "Nasza strona wykorzystuje pliki cookie, czyli małe pliki tekstowe zapisywane na Twoim urządzeniu. Służą one do prawidłowego działania strony oraz celów analitycznych.",
+      "types": {
+        "title": "Rodzaje plików cookie:",
+        "item1": {
+          "title": "Niezbędne",
+          "desc": "konieczne do funkcjonowania strony, nie można ich wyłączyć"
+        },
+        "item2": {
+          "title": "Analityczne",
+          "desc": "pomagają zrozumieć, jak użytkownicy korzystają ze strony"
+        },
+        "item3": {
+          "title": "Marketingowe",
+          "desc": "służą do wyświetlania spersonalizowanych reklam"
+        }
+      },
+      "manage": "Możesz zarządzać ustawieniami plików cookie w swojej przeglądarce lub za pomocą naszego panelu ustawień cookie."
+    },
+    "section8": {
+      "title": "8. Bezpieczeństwo danych",
+      "content": "Stosujemy odpowiednie środki techniczne i organizacyjne w celu ochrony Twoich danych osobowych przed nieautoryzowanym dostępem, utratą, zniszczeniem lub ujawnieniem. Dane przesyłane są z wykorzystaniem szyfrowania SSL/TLS."
+    },
+    "section9": {
+      "title": "9. Udostępnianie danych",
+      "intro": "Twoje dane mogą być udostępniane:",
+      "item1": "Podmiotom świadczącym usługi hostingowe i IT",
+      "item2": "Podmiotom świadczącym usługi księgowe i prawne",
+      "item3": "Organom państwowym, gdy wynika to z obowiązujących przepisów prawa"
+    },
+    "section10": {
+      "title": "10. Okres przechowywania danych",
+      "content": "Dane osobowe przechowujemy przez okres niezbędny do realizacji celów, dla których zostały zebrane, a następnie przez okres wymagany przepisami prawa (np. 5 lat dla dokumentacji podatkowej) lub do momentu wycofania zgody."
+    },
+    "section11": {
+      "title": "11. Prawo do wniesienia skargi",
+      "content": "Jeśli uważasz, że przetwarzanie Twoich danych narusza przepisy RODO, masz prawo wnieść skargę do Prezesa Urzędu Ochrony Danych Osobowych (ul. Stawki 2, 00-193 Warszawa, www.uodo.gov.pl)."
+    },
+    "section12": {
+      "title": "12. Zmiany polityki prywatności",
+      "content": "Zastrzegamy sobie prawo do wprowadzania zmian w niniejszej Polityce Prywatności. O wszelkich zmianach będziemy informować poprzez publikację nowej wersji na stronie internetowej."
+    }
+  },
+  "Terms": {
+    "title": "Regulamin",
+    "lastUpdated": "Ostatnia aktualizacja",
+    "updateDate": "1 marca 2026",
+    "section1": {
+      "title": "1. Postanowienia ogólne",
+      "intro": "Właścicielem i operatorem serwisu internetowego jest:",
+      "companyName": "Nazwa firmy",
+      "address": "Adres siedziby",
+      "email": "E-mail",
+      "phone": "Telefon"
+    },
+    "section2": {
+      "title": "2. Definicje",
+      "item1": {
+        "term": "Usługodawca",
+        "def": "właściciel serwisu internetowego"
+      },
+      "item2": {
+        "term": "Użytkownik",
+        "def": "osoba korzystająca z serwisu"
+      },
+      "item3": {
+        "term": "Serwis",
+        "def": "strona internetowa dostępna pod adresem technogroop.com"
+      },
+      "item4": {
+        "term": "Usługa elektroniczna",
+        "def": "usługa świadczona drogą elektroniczną za pośrednictwem Serwisu"
+      },
+      "item5": {
+        "term": "Formularz kontaktowy",
+        "def": "formularz umożliwiający przesłanie wiadomości do Usługodawcy"
+      }
+    },
+    "section3": {
+      "title": "3. Zakres usług",
+      "intro": "Za pośrednictwem Serwisu świadczymy następujące usługi:",
+      "item1": "Udostępnianie informacji o firmie i oferowanych usługach elektrycznych",
+      "item2": "Prezentacja portfolio zrealizowanych projektów",
+      "item3": "Możliwość kontaktu poprzez formularz kontaktowy",
+      "item4": "Udostępnianie danych kontaktowych do bezpośredniego kontaktu"
+    },
+    "section4": {
+      "title": "4. Warunki korzystania z serwisu",
+      "intro": "Użytkownik zobowiązuje się do:",
+      "item1": "Korzystania z Serwisu zgodnie z jego przeznaczeniem",
+      "item2": "Niepodejmowania działań mogących zakłócić funkcjonowanie Serwisu",
+      "item3": "Nieprzekazywania treści o charakterze bezprawnym",
+      "item4": "Podawania prawdziwych danych w formularzach kontaktowych"
+    },
+    "section5": {
+      "title": "5. Formularz kontaktowy",
+      "intro": "Korzystając z formularza kontaktowego, Użytkownik:",
+      "item1": "Wyraża zgodę na przetwarzanie danych osobowych w celu odpowiedzi na zapytanie",
+      "item2": "Potwierdza zapoznanie się z Polityką Prywatności",
+      "item3": "Akceptuje, że odpowiedź zostanie przesłana na podany adres e-mail"
+    },
+    "section6": {
+      "title": "6. Prawa autorskie i własność intelektualna",
+      "intro": "Wszystkie treści zamieszczone w Serwisie są chronione prawem autorskim:",
+      "item1": "Teksty, zdjęcia, grafiki i logotypy są własnością Usługodawcy lub wykorzystywane na podstawie licencji",
+      "item2": "Kopiowanie, rozpowszechnianie lub modyfikowanie treści bez zgody jest zabronione",
+      "item3": "Wykorzystanie materiałów w celach komercyjnych wymaga pisemnej zgody"
+    },
+    "section7": {
+      "title": "7. Odpowiedzialność",
+      "intro": "Usługodawca:",
+      "item1": "Dokłada starań, aby informacje w Serwisie były aktualne i rzetelne",
+      "item2": "Nie ponosi odpowiedzialności za czasową niedostępność Serwisu z przyczyn technicznych",
+      "item3": "Nie odpowiada za skutki wynikające z niewłaściwego korzystania z Serwisu przez Użytkownika"
+    },
+    "section8": {
+      "title": "8. Prawa konsumenta",
+      "intro": "Zgodnie z ustawą z dnia 30 maja 2014 r. o prawach konsumenta:",
+      "item1": "Konsument ma prawo do odstąpienia od umowy zawartej na odległość w terminie 14 dni bez podania przyczyny",
+      "item2": "Prawo odstąpienia nie przysługuje w przypadku usług w pełni wykonanych za wyraźną zgodą konsumenta",
+      "item3": "Szczegółowe warunki odstąpienia określa umowa o świadczenie usług"
+    },
+    "section9": {
+      "title": "9. Reklamacje",
+      "intro": "Procedura reklamacyjna:",
+      "item1": "Reklamacje można składać drogą elektroniczną lub listownie",
+      "item2": "Reklamacja powinna zawierać opis problemu oraz dane kontaktowe",
+      "item3": "Rozpatrzenie reklamacji nastąpi w terminie 14 dni od jej otrzymania",
+      "contact": "Reklamacje prosimy kierować na adres:"
+    },
+    "section10": {
+      "title": "10. Rozstrzyganie sporów",
+      "intro": "W przypadku sporów:",
+      "item1": "Konsument może skorzystać z pozasądowych sposobów rozpatrywania reklamacji (mediacja, arbitraż przy Inspekcji Handlowej)",
+      "item2": "Platforma ODR (Online Dispute Resolution): https://ec.europa.eu/consumers/odr"
+    },
+    "section11": {
+      "title": "11. Postanowienia końcowe",
+      "item1": "Regulamin wchodzi w życie z dniem publikacji na stronie",
+      "item2": "Usługodawca zastrzega sobie prawo do zmiany Regulaminu",
+      "item3": "W sprawach nieuregulowanych stosuje się przepisy prawa polskiego"
+    }
   }
 }

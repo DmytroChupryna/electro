@@ -13,7 +13,7 @@ import {
   ArrowRight,
   LucideIcon,
 } from 'lucide-react';
-import type { CMSService, IconName } from '@/lib/payload';
+import type { CMSService, CMSSettings, IconName } from '@/lib/payload';
 
 const serviceImages: Record<IconName, string> = {
   home: '/projects/residential-complex.jpg',
@@ -33,16 +33,17 @@ const iconComponents: Record<IconName, LucideIcon> = {
 
 interface ServicesClientProps {
   services: CMSService[];
+  settings?: CMSSettings;
 }
 
-export default function ServicesClient({ services }: ServicesClientProps) {
+export default function ServicesClient({ services, settings }: ServicesClientProps) {
   const t = useTranslations('Services');
   const tCTA = useTranslations('CTA');
   const tLoc = useTranslations('Locations');
   const ui = useTranslations('UI');
 
   return (
-    <PageWrapper>
+    <PageWrapper settings={settings}>
       {/* Hero */}
       <Section variant="primary" className="py-20">
         <div className="container mx-auto px-4 lg:px-8">
@@ -66,7 +67,7 @@ export default function ServicesClient({ services }: ServicesClientProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {services.map((service, index) => {
               const Icon = iconComponents[service.icon] || Home;
-              const bgImage = serviceImages[service.icon] || '/projects/logistics-center.jpg';
+              const bgImage = service.image?.url || serviceImages[service.icon] || '/projects/logistics-center.jpg';
               return (
                 <div
                   key={service.id}

@@ -3,7 +3,7 @@
  * Fetches services data from Payload CMS and passes to client component
  */
 
-import { getServices } from '@/lib/payload';
+import { getServices, getSettings } from '@/lib/payload';
 import ServicesClient from './ServicesClient';
 import JsonLd from '@/components/JsonLd';
 import {
@@ -19,7 +19,10 @@ interface ServicesPageProps {
 export default async function ServicesPage({ params }: ServicesPageProps) {
   const { locale } = await params;
   
-  const services = await getServices(locale);
+  const [services, settings] = await Promise.all([
+    getServices(locale),
+    getSettings(locale),
+  ]);
 
   const breadcrumbData = generateBreadcrumbSchema([
     { name: 'Home', url: `${siteConfig.url}/${locale}` },
@@ -33,7 +36,7 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
   return (
     <>
       <JsonLd data={[breadcrumbData, ...serviceSchemas]} />
-      <ServicesClient services={services} />
+      <ServicesClient services={services} settings={settings} />
     </>
   );
 }

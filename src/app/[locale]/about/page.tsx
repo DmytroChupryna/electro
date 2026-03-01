@@ -6,6 +6,7 @@
 import AboutClient from './AboutClient';
 import JsonLd from '@/components/JsonLd';
 import { siteConfig, generateBreadcrumbSchema, generateAboutPageSchema } from '@/lib/seo';
+import { getSettings } from '@/lib/payload';
 
 interface AboutPageProps {
   params: Promise<{ locale: string }>;
@@ -13,6 +14,7 @@ interface AboutPageProps {
 
 export default async function AboutPage({ params }: AboutPageProps) {
   const { locale } = await params;
+  const settings = await getSettings(locale);
 
   const breadcrumbData = generateBreadcrumbSchema([
     { name: 'Home', url: `${siteConfig.url}/${locale}` },
@@ -24,7 +26,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
   return (
     <>
       <JsonLd data={[breadcrumbData, aboutPageData]} />
-      <AboutClient />
+      <AboutClient settings={settings} />
     </>
   );
 }

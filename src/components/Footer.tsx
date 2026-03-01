@@ -2,11 +2,20 @@
 
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
-import { Phone, Mail, MapPin, ArrowUpRight } from 'lucide-react';
+import { Phone, Mail, MapPin, ArrowUpRight, Facebook, Linkedin, Instagram, Youtube } from 'lucide-react';
+import type { CMSSettings } from '@/lib/payload';
 
-export default function Footer() {
+interface FooterProps {
+  settings?: CMSSettings;
+}
+
+export default function Footer({ settings }: FooterProps) {
   const t = useTranslations('Footer');
   const tNav = useTranslations('Nav');
+
+  const addressPL = settings?.addressPL;
+  const companyPL = settings?.companyPL;
+  const social = settings?.socialLinks;
 
   return (
     <footer className="bg-gradient-to-b from-white to-slate-50 text-slate-900 border-t border-slate-100">
@@ -24,11 +33,38 @@ export default function Footer() {
             <p className="mb-6 max-w-md text-slate-600">
               {t('description')}
             </p>
-            <div className="flex flex-wrap gap-3">
-              <span className="px-3 py-1.5 rounded-full bg-slate-100 text-xs font-medium text-slate-600">REGON: 524314939</span>
-              <span className="px-3 py-1.5 rounded-full bg-slate-100 text-xs font-medium text-slate-600">NIP: 1231527015</span>
-              <span className="px-3 py-1.5 rounded-full bg-slate-100 text-xs font-medium text-slate-600">KRS: 0001016431</span>
-            </div>
+            {companyPL && (
+              <div className="flex flex-wrap gap-3 mb-6">
+                {companyPL.regon && <span className="px-3 py-1.5 rounded-full bg-slate-100 text-xs font-medium text-slate-600">REGON: {companyPL.regon}</span>}
+                {companyPL.nip && <span className="px-3 py-1.5 rounded-full bg-slate-100 text-xs font-medium text-slate-600">NIP: {companyPL.nip}</span>}
+                {companyPL.krs && <span className="px-3 py-1.5 rounded-full bg-slate-100 text-xs font-medium text-slate-600">KRS: {companyPL.krs}</span>}
+              </div>
+            )}
+            {/* Social Links */}
+            {social && (social.facebook || social.linkedin || social.instagram || social.youtube) && (
+              <div className="flex gap-3">
+                {social.facebook && (
+                  <a href={social.facebook} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center hover:bg-orange-100 hover:text-orange-600 transition-colors">
+                    <Facebook className="w-5 h-5" />
+                  </a>
+                )}
+                {social.linkedin && (
+                  <a href={social.linkedin} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center hover:bg-orange-100 hover:text-orange-600 transition-colors">
+                    <Linkedin className="w-5 h-5" />
+                  </a>
+                )}
+                {social.instagram && (
+                  <a href={social.instagram} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center hover:bg-orange-100 hover:text-orange-600 transition-colors">
+                    <Instagram className="w-5 h-5" />
+                  </a>
+                )}
+                {social.youtube && (
+                  <a href={social.youtube} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center hover:bg-orange-100 hover:text-orange-600 transition-colors">
+                    <Youtube className="w-5 h-5" />
+                  </a>
+                )}
+              </div>
+            )}
           </div>
 
           {/* Quick Links */}
@@ -53,38 +89,45 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-bold mb-6">{t('contact')}</h4>
             <ul className="space-y-4">
-              <li className="bg-slate-50 rounded-2xl p-4">
-                <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-5 h-5 text-white" />
+              {addressPL && (addressPL.street || addressPL.city) && (
+                <li className="bg-slate-50 rounded-2xl p-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center flex-shrink-0">
+                      <MapPin className="w-5 h-5 text-white" />
+                    </div>
+                    <span className="text-slate-600">
+                      {addressPL.street}<br />
+                      {addressPL.postalCode} {addressPL.city}, {addressPL.country}
+                    </span>
                   </div>
-                  <span className="text-slate-600">
-                    Ul. Biala 4/87<br />00-895 Warszawa, Poland
-                  </span>
-                </div>
-              </li>
-              <li>
-                <a
-                  href="tel:+48578992316"
-                  className="flex items-center gap-3 bg-slate-50 rounded-2xl p-4 hover:bg-orange-50 transition-colors text-slate-600"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-slate-200 flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-5 h-5 text-slate-700" />
-                  </div>
-                  <span className="font-medium">+48 578 992 316</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="mailto:info@technogroop.com"
-                  className="flex items-center gap-3 bg-slate-50 rounded-2xl p-4 hover:bg-orange-50 transition-colors text-slate-600"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-slate-200 flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-5 h-5 text-slate-700" />
-                  </div>
-                  <span className="font-medium">info@technogroop.com</span>
-                </a>
-              </li>
+                </li>
+              )}
+              {settings?.phonePL && (
+                <li>
+                  <a
+                    href={`tel:${settings.phonePL.replace(/\s/g, '')}`}
+                    className="flex items-center gap-3 bg-slate-50 rounded-2xl p-4 hover:bg-orange-50 transition-colors text-slate-600"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-slate-200 flex items-center justify-center flex-shrink-0">
+                      <Phone className="w-5 h-5 text-slate-700" />
+                    </div>
+                    <span className="font-medium">{settings.phonePL}</span>
+                  </a>
+                </li>
+              )}
+              {settings?.contactEmail && (
+                <li>
+                  <a
+                    href={`mailto:${settings.contactEmail}`}
+                    className="flex items-center gap-3 bg-slate-50 rounded-2xl p-4 hover:bg-orange-50 transition-colors text-slate-600"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-slate-200 flex items-center justify-center flex-shrink-0">
+                      <Mail className="w-5 h-5 text-slate-700" />
+                    </div>
+                    <span className="font-medium">{settings.contactEmail}</span>
+                  </a>
+                </li>
+              )}
             </ul>
           </div>
         </div>
@@ -92,7 +135,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-slate-500">
-            &copy; {new Date().getFullYear()} Techno Groop Sp. z o.o. {t('rights')}
+            &copy; {new Date().getFullYear()} {companyPL?.name || 'Techno Groop Sp. z o.o.'} {t('rights')}
           </p>
           <div className="flex gap-6">
             <Link

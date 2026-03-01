@@ -4,39 +4,24 @@ import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import PageWrapper, { Section, Heading, Text } from '@/components/PageWrapper';
 import { Quote, Star, ArrowRight, Building2 } from 'lucide-react';
+import type { CMSReview, CMSSettings } from '@/lib/payload';
 
-export default function ReviewsClient() {
+interface ReviewsClientProps {
+  reviews: CMSReview[];
+  settings?: CMSSettings;
+}
+
+export default function ReviewsClient({ reviews, settings }: ReviewsClientProps) {
   const t = useTranslations('Reviews');
   const tCTA = useTranslations('CTA');
 
-  const reviews = [
-    { key: 'review1' },
-    { key: 'review2' },
-    { key: 'review3' },
-  ];
-
-  const additionalReviews = [
-    {
-      text: 'Excellent technical skills and professional approach. The team completed our warehouse electrical installation ahead of schedule.',
-      author: 'Marc Van den Berg',
-      company: 'Logistics Plus NV',
-      role: 'Operations Director',
-    },
-    {
-      text: 'We have been impressed by the quality of work and attention to detail. Highly recommend for any industrial electrical project.',
-      author: 'Katarzyna Wiśniewska',
-      company: 'PolBuild Construction',
-      role: 'Project Coordinator',
-    },
-  ];
-
-  const ReviewCard = ({ text, author, company, role }: { text: string; author: string; company: string; role: string }) => (
+  const ReviewCard = ({ text, author, company, role, rating }: { text: string; author: string; company: string; role: string; rating: number }) => (
     <div className="p-8 rounded-3xl bg-white shadow-xl shadow-slate-200/50 border border-slate-100 hover:shadow-2xl hover:shadow-orange-200/30 hover:-translate-y-1 transition-all duration-300">
       <Quote className="w-10 h-10 mb-6 text-orange-200" />
 
       <div className="flex gap-1 mb-6">
         {[...Array(5)].map((_, i) => (
-          <Star key={i} className="w-5 h-5 fill-current text-amber-500" />
+          <Star key={i} className={`w-5 h-5 ${i < rating ? 'fill-current text-amber-500' : 'text-slate-200'}`} />
         ))}
       </div>
 
@@ -57,7 +42,7 @@ export default function ReviewsClient() {
   );
 
   return (
-    <PageWrapper>
+    <PageWrapper settings={settings}>
       {/* Hero */}
       <Section variant="primary" className="py-20">
         <div className="container mx-auto px-4 lg:px-8">
@@ -78,20 +63,26 @@ export default function ReviewsClient() {
       {/* Reviews Grid */}
       <Section variant="secondary" className="py-20">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {reviews.map((review) => (
-              <ReviewCard
-                key={review.key}
-                text={t(`reviews.${review.key}.text`)}
-                author={t(`reviews.${review.key}.author`)}
-                company={t(`reviews.${review.key}.company`)}
-                role={t(`reviews.${review.key}.role`)}
-              />
-            ))}
-            {additionalReviews.map((review, index) => (
-              <ReviewCard key={index} {...review} />
-            ))}
-          </div>
+          {reviews.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {reviews.map((review) => (
+                <ReviewCard
+                  key={review.id}
+                  text={review.text}
+                  author={review.author}
+                  company={review.company}
+                  role={review.role}
+                  rating={review.rating}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <Text variant="muted" className="text-lg">
+                {t('noReviews')}
+              </Text>
+            </div>
+          )}
         </div>
       </Section>
 

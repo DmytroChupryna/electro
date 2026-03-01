@@ -4,19 +4,21 @@ import { ReactNode } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import { cn } from '@/lib/utils';
+import type { CMSSettings } from '@/lib/payload';
 
 interface PageWrapperProps {
   children: ReactNode;
+  settings?: CMSSettings;
 }
 
-export default function PageWrapper({ children }: PageWrapperProps) {
+export default function PageWrapper({ children, settings }: PageWrapperProps) {
   return (
     <div className="min-h-screen bg-white">
       <Header />
       <main className="pt-24">
         {children}
       </main>
-      <Footer />
+      <Footer settings={settings} />
     </div>
   );
 }

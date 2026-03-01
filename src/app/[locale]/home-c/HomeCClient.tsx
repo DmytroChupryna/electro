@@ -5,6 +5,7 @@ import { Link } from '@/i18n/routing';
 import Image from 'next/image';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import type { CMSProject, CMSSettings } from '@/lib/payload';
 import {
   ArrowUpRight,
   ArrowRight,
@@ -20,7 +21,13 @@ import {
   MapPin,
   Factory,
   Quote,
+  Building2,
 } from 'lucide-react';
+
+interface HomeCClientProps {
+  projects: CMSProject[];
+  settings?: CMSSettings;
+}
 
 // Enhanced Minimal Hero with gradient background and better cards
 function HeroSection() {
@@ -234,27 +241,22 @@ function ServicesSection() {
 }
 
 // Enhanced Portfolio with cards
-function PortfolioSection() {
+const categoryIcons = {
+  industrial: Factory,
+  commercial: Building2,
+  residential: Home,
+};
+
+function PortfolioSection({ projects }: { projects: CMSProject[] }) {
   const t = useTranslations('Portfolio');
   const ui = useTranslations('UI');
 
-  const projects = [
-    {
-      key: 'prison',
-      image: '/projects/antwerp-prison/switchboard.png',
-      categoryKey: 'industrial',
-    },
-    {
-      key: 'logistics',
-      image: '/projects/antwerp-prison/control-panel.png',
-      categoryKey: 'commercial',
-    },
-    {
-      key: 'office',
-      image: '/projects/antwerp-prison/team-planning.png',
-      categoryKey: 'automation',
-    },
-  ];
+  // Show max 3 projects
+  const displayProjects = projects.slice(0, 3);
+
+  if (displayProjects.length === 0) {
+    return null;
+  }
 
   return (
     <section className="py-32 bg-gradient-to-b from-white to-slate-50">
@@ -277,43 +279,53 @@ function PortfolioSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <div key={project.key} className="group">
-              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden mb-6 bg-slate-100 shadow-xl shadow-slate-200/50 ring-1 ring-slate-200">
-                <img
-                  src={project.image}
-                  alt={t(`projects.${project.key}.title`)}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                {/* Category badge */}
-                <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-sm text-xs font-medium text-slate-700 shadow-lg">
-                    {t(`categories.${project.categoryKey}`)}
-                  </span>
+          {displayProjects.map((project, index) => {
+            const Icon = categoryIcons[project.category] || Building2;
+            return (
+              <Link key={project.id} href={`/portfolio/${project.slug}`} className="group block">
+                <div className="relative aspect-[4/3] rounded-3xl overflow-hidden mb-6 bg-slate-100 shadow-xl shadow-slate-200/50 ring-1 ring-slate-200">
+                  <img
+                    src={project.image?.url || '/projects/placeholder.jpg'}
+                    alt={project.image?.alt || project.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  {/* Category badge */}
+                  <div className="absolute top-4 left-4">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-sm text-xs font-medium text-slate-700 shadow-lg">
+                      <Icon className="w-3.5 h-3.5 text-orange-500" />
+                      {t(`categories.${project.category}`)}
+                    </span>
+                  </div>
+                  {/* Year badge */}
+                  <div className="absolute top-4 right-4">
+                    <span className="px-3 py-1.5 rounded-full bg-orange-500 text-white text-xs font-medium shadow-lg">
+                      {project.year}
+                    </span>
+                  </div>
+                  {/* View button on hover */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="px-6 py-3 rounded-full bg-white text-slate-900 font-medium shadow-xl">
+                      {ui('viewProject')}
+                    </span>
+                  </div>
                 </div>
-                {/* View button on hover */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <span className="px-6 py-3 rounded-full bg-white text-slate-900 font-medium shadow-xl">
-                    {ui('viewProject')}
-                  </span>
+                <div className="flex items-start justify-between">
+                  <div>
+                    <h3 className="text-lg font-bold text-slate-900 mb-1 group-hover:text-orange-600 transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-sm text-slate-500 flex items-center gap-1.5">
+                      <MapPin className="w-3.5 h-3.5 text-orange-500" />
+                      {project.location}
+                    </p>
+                  </div>
+                  <span className="text-xs font-bold text-slate-400 bg-slate-100 px-3 py-1 rounded-full">0{index + 1}</span>
                 </div>
-              </div>
-              <div className="flex items-start justify-between">
-                <div>
-                  <h3 className="text-lg font-bold text-slate-900 mb-1 group-hover:text-orange-600 transition-colors">
-                    {t(`projects.${project.key}.title`)}
-                  </h3>
-                  <p className="text-sm text-slate-500 flex items-center gap-1.5">
-                    <MapPin className="w-3.5 h-3.5 text-orange-500" />
-                    {t(`projects.${project.key}.location`)}
-                  </p>
-                </div>
-                <span className="text-xs font-bold text-slate-400 bg-slate-100 px-3 py-1 rounded-full">0{index + 1}</span>
-              </div>
-            </div>
-          ))}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -542,20 +554,20 @@ function CTASection() {
 }
 
 // Main Page
-export default function HomeCClient() {
+export default function HomeCClient({ projects, settings }: HomeCClientProps) {
   return (
     <div className="min-h-screen bg-white">
       <Header />
       <main>
         <HeroSection />
         <ServicesSection />
-        <PortfolioSection />
+        <PortfolioSection projects={projects} />
         <CertificatesSection />
         <LocationsSection />
         <PartnersSection />
         <CTASection />
       </main>
-      <Footer />
+      <Footer settings={settings} />
     </div>
   );
 }

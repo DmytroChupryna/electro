@@ -7,7 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "seed": "curl -X POST 'http://localhost:3000/api/seed?secret='$PAYLOAD_SECRET"
+    "seed": "curl -X POST 'http://localhost:3000/api/seed?secret='$PAYLOAD_SECRET",
+    "payload": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload",
+    "db:push": "npx drizzle-kit push",
+    "db:migrate": "npx payload migrate",
+    "db:migrate:create": "npx payload migrate:create"
   },
   "dependencies": {
     "@marsidev/react-turnstile": "^1.4.2",
@@ -37,6 +41,8 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cross-env": "^10.1.0",
+    "drizzle-kit": "^0.31.9",
     "eslint": "^9",
     "eslint-config-next": "15.5.11",
     "tailwindcss": "^4",

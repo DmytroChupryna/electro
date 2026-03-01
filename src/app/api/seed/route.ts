@@ -63,122 +63,36 @@ const servicesData = [
   },
 ];
 
-// Projects data from prototypes
+// Projects data - only Antwerp Prison project
 const projectsData = [
   {
-    slug: 'logistics-center-antwerp',
-    title: { en: 'Logistics Center', pl: 'Centrum logistyczne' },
+    slug: 'antwerp-prison-government-project',
+    title: { en: 'Antwerp Prison - Government Project', pl: 'Więzienie w Antwerpii - Projekt Rządowy' },
     description: {
-      en: 'Complete electrical and lighting installation for a 15,000 m² warehouse facility.',
-      pl: 'Kompletna instalacja elektryczna i oświetleniowa hali magazynowej 15 000 m².',
+      en: 'Complete electrical and low-current installation for a new government correctional facility. High-security infrastructure including power distribution, structured cabling (Cat6a), control panels, cable tray systems, and building automation.',
+      pl: 'Kompleksowa instalacja elektryczna i niskoprądowa dla nowego rządowego zakładu karnego. Infrastruktura wysokiego bezpieczeństwa obejmująca dystrybucję mocy, okablowanie strukturalne (Cat6a), rozdzielnie, systemy korytek kablowych i automatykę budynkową.',
     },
     location: { en: 'Antwerp, Belgium', pl: 'Antwerpia, Belgia' },
     category: 'industrial',
     country: 'BE',
     year: '2024',
-    imageUrl: '/projects/logistics-center.jpg',
     featured: true,
     order: 1,
   },
+];
+
+// Reviews data - one example
+const reviewsData = [
   {
-    slug: 'office-building-warsaw',
-    title: { en: 'Class A Office Building', pl: 'Biurowiec klasy A' },
-    description: {
-      en: 'Low-current installations, access control, and BMS system.',
-      pl: 'Instalacje niskoprądowe, kontrola dostępu i system BMS.',
+    text: {
+      en: 'Excellent technical skills and professional approach. The team completed our warehouse electrical installation ahead of schedule. Communication was clear throughout the project.',
+      pl: 'Doskonałe umiejętności techniczne i profesjonalne podejście. Zespół zakończył instalację elektryczną naszego magazynu przed terminem. Komunikacja była jasna przez cały projekt.',
     },
-    location: { en: 'Warsaw, Poland', pl: 'Warszawa, Polska' },
-    category: 'commercial',
-    country: 'PL',
-    year: '2024',
-    imageUrl: '/projects/office-building.jpg',
-    featured: true,
-    order: 2,
-  },
-  {
-    slug: 'residential-complex-bruges',
-    title: { en: 'Residential Complex', pl: 'Osiedle mieszkaniowe' },
-    description: {
-      en: 'Electrical installations and smart home systems in 48 apartments.',
-      pl: 'Elektroinstalacje i systemy smart home w 48 apartamentach.',
-    },
-    location: { en: 'Bruges, Belgium', pl: 'Brugia, Belgia' },
-    category: 'residential',
-    country: 'BE',
-    year: '2023',
-    imageUrl: '/projects/residential-complex.jpg',
-    featured: true,
-    order: 3,
-  },
-  {
-    slug: 'shopping-mall-brussels',
-    title: { en: 'Shopping Mall Electrical', pl: 'Centrum handlowe' },
-    description: {
-      en: 'Complete electrical infrastructure for a 25,000 m² shopping center.',
-      pl: 'Kompletna infrastruktura elektryczna centrum handlowego 25 000 m².',
-    },
-    location: { en: 'Brussels, Belgium', pl: 'Bruksela, Belgia' },
-    category: 'commercial',
-    country: 'BE',
-    year: '2024',
-    imageUrl: '/projects/shopping-mall.jpg',
-    featured: false,
-    order: 4,
-  },
-  {
-    slug: 'solar-farm-warsaw',
-    title: { en: 'Solar Farm Installation', pl: 'Farma fotowoltaiczna' },
-    description: {
-      en: 'Photovoltaic system installation for agricultural complex.',
-      pl: 'Montaż instalacji fotowoltaicznej dla kompleksu rolniczego.',
-    },
-    location: { en: 'Warsaw Region, Poland', pl: 'Okolice Warszawy, Polska' },
-    category: 'industrial',
-    country: 'PL',
-    year: '2023',
-    imageUrl: '/projects/solar-farm.jpg',
-    featured: false,
-    order: 5,
-  },
-  {
-    slug: 'smart-building-automation-antwerp',
-    title: { en: 'Smart Building Automation', pl: 'Automatyka inteligentnego budynku' },
-    description: {
-      en: 'KNX and BMS integration for modern office complex.',
-      pl: 'Integracja KNX i BMS dla nowoczesnego kompleksu biurowego.',
-    },
-    location: { en: 'Antwerp, Belgium', pl: 'Antwerpia, Belgia' },
-    category: 'commercial',
-    country: 'BE',
-    year: '2024',
-    imageUrl: '/projects/smart-building.jpg',
-    featured: false,
-    order: 6,
-  },
-  {
-    slug: 'antwerp-prison-government-project',
-    title: { en: 'Antwerp Prison - Government Project', pl: 'Wiezienie w Antwerpii - Projekt Rzadowy' },
-    description: {
-      en: 'Complete electrical and low-current installation for a new government correctional facility. High-security infrastructure including power distribution, structured cabling (Cat6a), control panels, cable tray systems, and building automation.',
-      pl: 'Kompleksowa instalacja elektryczna i niskopradowa dla nowego rzadowego zakladu karnego. Infrastruktura wysokiego bezpieczenstwa obejmujaca dystrybucje mocy, okablowanie strukturalne (Cat6a), rozdzielnie, systemy korytek kablowych i automatyke budynkowa.',
-    },
-    location: { en: 'Antwerp, Belgium', pl: 'Antwerpia, Belgia' },
-    category: 'industrial',
-    country: 'BE',
-    year: '2024',
-    imageUrl: '/projects/antwerp-prison/switchboard.png',
-    featured: true,
-    order: 7,
-    gallery: [
-      '/projects/antwerp-prison/cable-routing-1.png',
-      '/projects/antwerp-prison/conduit-installation.png',
-      '/projects/antwerp-prison/switchboard.png',
-      '/projects/antwerp-prison/control-panel.png',
-      '/projects/antwerp-prison/data-cabling.png',
-      '/projects/antwerp-prison/cable-routing-2.png',
-      '/projects/antwerp-prison/team-planning.png',
-      '/projects/antwerp-prison/team-work.png',
-    ],
+    author: 'Marc Van den Berg',
+    role: { en: 'Operations Director', pl: 'Dyrektor Operacyjny' },
+    company: 'Logistics Plus NV',
+    rating: 5,
+    order: 1,
   },
 ];
 
@@ -273,10 +187,9 @@ async function uploadImageFromUrl(
 }
 
 export async function POST(request: Request) {
-  // Check for secret key (basic protection)
-  // Temporarily disabled for initial seeding
   const { searchParams } = new URL(request.url);
   const secret = searchParams.get('secret');
+  const force = searchParams.get('force') === 'true';
   
   // Allow seeding with hardcoded secret or env variable
   const validSecrets = ['technogroop-seed-2024', process.env.PAYLOAD_SECRET];
@@ -288,129 +201,179 @@ export async function POST(request: Request) {
     const payload = await getPayload({ config });
     const results: string[] = [];
 
-    // 1. Clear existing projects FIRST (they reference media)
+    // Check existing data counts
+    const existingServices = await payload.find({ collection: 'services', limit: 1 });
+    const existingProjects = await payload.find({ collection: 'projects', limit: 1 });
+    let existingReviews = { totalDocs: 0 };
     try {
-      const existingProjects = await payload.find({
-        collection: 'projects',
-        limit: 100,
-      });
-      for (const project of existingProjects.docs) {
-        await payload.delete({
-          collection: 'projects',
-          id: project.id,
-        });
-      }
-      results.push(`Deleted ${existingProjects.docs.length} existing projects`);
+      existingReviews = await payload.find({ collection: 'reviews', limit: 1 });
     } catch {
-      results.push('Projects table created (was empty)');
+      // Reviews table might not exist yet
     }
 
-    // 2. Clear existing services (they might reference media)
-    try {
-      const existingServices = await payload.find({
-        collection: 'services',
-        limit: 100,
+    // If force mode, clear everything first
+    if (force) {
+      // Clear existing projects FIRST (they reference media)
+      try {
+        const projects = await payload.find({ collection: 'projects', limit: 100 });
+        for (const project of projects.docs) {
+          await payload.delete({ collection: 'projects', id: project.id });
+        }
+        results.push(`Deleted ${projects.docs.length} existing projects`);
+      } catch {
+        results.push('Projects table was empty');
+      }
+
+      // Clear existing services
+      try {
+        const services = await payload.find({ collection: 'services', limit: 100 });
+        for (const service of services.docs) {
+          await payload.delete({ collection: 'services', id: service.id });
+        }
+        results.push(`Deleted ${services.docs.length} existing services`);
+      } catch {
+        results.push('Services table was empty');
+      }
+
+      // Clear existing reviews
+      try {
+        const reviews = await payload.find({ collection: 'reviews', limit: 100 });
+        for (const review of reviews.docs) {
+          await payload.delete({ collection: 'reviews', id: review.id });
+        }
+        results.push(`Deleted ${reviews.docs.length} existing reviews`);
+      } catch {
+        results.push('Reviews table was empty');
+      }
+
+      // Clear existing media LAST
+      try {
+        const media = await payload.find({ collection: 'media', limit: 100 });
+        for (const m of media.docs) {
+          await payload.delete({ collection: 'media', id: m.id });
+        }
+        results.push(`Deleted ${media.docs.length} existing media`);
+      } catch {
+        results.push('Media table was empty');
+      }
+    } else {
+      // Non-force mode: skip collections that already have data
+      if (existingServices.totalDocs > 0) {
+        results.push(`Skipped services (${existingServices.totalDocs} already exist)`);
+      }
+      if (existingProjects.totalDocs > 0) {
+        results.push(`Skipped projects (${existingProjects.totalDocs} already exist)`);
+      }
+      if (existingReviews.totalDocs > 0) {
+        results.push(`Skipped reviews (${existingReviews.totalDocs} already exist)`);
+      }
+    }
+
+    // Only seed if force mode OR collection is empty
+    const shouldSeedServices = force || existingServices.totalDocs === 0;
+    const shouldSeedProjects = force || existingProjects.totalDocs === 0;
+    const shouldSeedReviews = force || existingReviews.totalDocs === 0;
+
+    if (!shouldSeedServices && !shouldSeedProjects && !shouldSeedReviews) {
+      return NextResponse.json({
+        success: true,
+        message: 'Database already has data. Use ?force=true to reseed.',
+        results,
       });
-      for (const service of existingServices.docs) {
-        await payload.delete({
+    }
+
+    // Seed services if needed
+    if (shouldSeedServices) {
+      for (const serviceData of servicesData) {
+        const service = await payload.create({
+          collection: 'services',
+          data: {
+            title: serviceData.title.en,
+            description: serviceData.description.en,
+            icon: serviceData.icon,
+            sortOrder: serviceData.order,
+            isActive: true,
+          },
+          locale: 'en',
+        });
+
+        await payload.update({
           collection: 'services',
           id: service.id,
+          data: {
+            title: serviceData.title.pl,
+            description: serviceData.description.pl,
+          },
+          locale: 'pl',
         });
+
+        results.push(`Created service: ${serviceData.title.en}`);
       }
-      results.push(`Deleted ${existingServices.docs.length} existing services`);
-    } catch {
-      results.push('Services table created (was empty)');
     }
 
-    // 3. Clear existing media LAST (after references are removed)
-    try {
-      const existingMedia = await payload.find({
-        collection: 'media',
-        limit: 100,
-      });
-      for (const media of existingMedia.docs) {
-        await payload.delete({
-          collection: 'media',
-          id: media.id,
+    // Seed projects if needed
+    if (shouldSeedProjects) {
+      for (const projectData of projectsData) {
+        const project = await payload.create({
+          collection: 'projects',
+          data: {
+            slug: projectData.slug,
+            title: projectData.title.en,
+            description: projectData.description.en,
+            location: projectData.location.en,
+            category: projectData.category,
+            country: projectData.country,
+            year: projectData.year,
+            featured: projectData.featured,
+            sortOrder: projectData.order,
+          },
+          locale: 'en',
         });
+
+        await payload.update({
+          collection: 'projects',
+          id: project.id,
+          data: {
+            title: projectData.title.pl,
+            description: projectData.description.pl,
+            location: projectData.location.pl,
+          },
+          locale: 'pl',
+        });
+
+        results.push(`Created project: ${projectData.title.en}`);
       }
-      results.push(`Deleted ${existingMedia.docs.length} existing media`);
-    } catch {
-      results.push('Media table created (was empty)');
     }
 
-    // Create services with localization
-    for (const serviceData of servicesData) {
-      // Create with English locale
-      const service = await payload.create({
-        collection: 'services',
-        data: {
-          title: serviceData.title.en,
-          description: serviceData.description.en,
-          icon: serviceData.icon,
-          image: serviceData.image,
-          sortOrder: serviceData.order,
-          isActive: true,
-        },
-        locale: 'en',
-      });
+    // Seed reviews if needed
+    if (shouldSeedReviews) {
+      for (const reviewData of reviewsData) {
+        const review = await payload.create({
+          collection: 'reviews',
+          data: {
+            text: reviewData.text.en,
+            author: reviewData.author,
+            role: reviewData.role.en,
+            company: reviewData.company,
+            rating: reviewData.rating,
+            sortOrder: reviewData.order,
+            isActive: true,
+          },
+          locale: 'en',
+        });
 
-      // Update with Polish locale
-      await payload.update({
-        collection: 'services',
-        id: service.id,
-        data: {
-          title: serviceData.title.pl,
-          description: serviceData.description.pl,
-        },
-        locale: 'pl',
-      });
+        await payload.update({
+          collection: 'reviews',
+          id: review.id,
+          data: {
+            text: reviewData.text.pl,
+            role: reviewData.role.pl,
+          },
+          locale: 'pl',
+        });
 
-      results.push(`Created service: ${serviceData.title.en}`);
-    }
-
-    // Create projects with localization (using static URLs)
-    for (const projectData of projectsData) {
-      // Build gallery items from URLs
-      const galleryItems: { url: string }[] = [];
-      if (projectData.gallery && Array.isArray(projectData.gallery)) {
-        for (const galleryUrl of projectData.gallery) {
-          galleryItems.push({ url: galleryUrl });
-        }
+        results.push(`Created review from: ${reviewData.author}`);
       }
-
-      // Create with English locale
-      const project = await payload.create({
-        collection: 'projects',
-        data: {
-          slug: projectData.slug,
-          title: projectData.title.en,
-          description: projectData.description.en,
-          location: projectData.location.en,
-          category: projectData.category,
-          country: projectData.country,
-          year: projectData.year,
-          image: projectData.imageUrl,
-          gallery: galleryItems.length > 0 ? galleryItems : undefined,
-          featured: projectData.featured,
-          sortOrder: projectData.order,
-        },
-        locale: 'en',
-      });
-
-      // Update with Polish locale
-      await payload.update({
-        collection: 'projects',
-        id: project.id,
-        data: {
-          title: projectData.title.pl,
-          description: projectData.description.pl,
-          location: projectData.location.pl,
-        },
-        locale: 'pl',
-      });
-
-      results.push(`Created project: ${projectData.title.en}`);
     }
 
     // Update global settings - English
@@ -453,6 +416,10 @@ export async function POST(request: Request) {
 export async function GET() {
   return NextResponse.json({
     message: 'Send POST request to seed the database',
-    usage: 'POST /api/seed?secret=YOUR_PAYLOAD_SECRET',
+    usage: {
+      seedIfEmpty: 'POST /api/seed?secret=YOUR_SECRET',
+      forceReseed: 'POST /api/seed?secret=YOUR_SECRET&force=true',
+    },
+    note: 'Without force=true, only empty collections will be seeded',
   });
 }
