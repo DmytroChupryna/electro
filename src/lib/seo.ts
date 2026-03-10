@@ -103,6 +103,7 @@ export function generateOrganizationSchema() {
       width: 294,
       height: 88,
     },
+    image: `${siteConfig.url}/og-image.png`,
     foundingDate: siteConfig.foundingDate,
     telephone: siteConfig.phone,
     email: siteConfig.email,
@@ -113,6 +114,27 @@ export function generateOrganizationSchema() {
     sameAs: [siteConfig.social.linkedin],
     taxID: siteConfig.registration.nip,
     vatID: `PL${siteConfig.registration.nip}`,
+    numberOfEmployees: {
+      '@type': 'QuantitativeValue',
+      minValue: 20,
+      maxValue: 30,
+    },
+    knowsLanguage: ['pl', 'en', 'uk', 'ru'],
+    hasCredential: siteConfig.certifications.map((cert) => ({
+      '@type': 'EducationalOccupationalCredential',
+      credentialCategory: 'certification',
+      name: cert,
+    })),
+    contactPoint: [
+      {
+        '@type': 'ContactPoint',
+        telephone: siteConfig.phone,
+        contactType: 'customer service',
+        email: siteConfig.email,
+        availableLanguage: ['Polish', 'English', 'Ukrainian', 'Russian'],
+        areaServed: ['PL', 'BE'],
+      },
+    ],
   };
 }
 
@@ -161,12 +183,22 @@ export function generateLocalBusinessSchema(locale: string = 'en') {
       credentialCategory: 'certification',
       name: cert,
     })),
-    openingHoursSpecification: {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-      opens: '08:00',
-      closes: '18:00',
-    },
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        opens: '08:00',
+        closes: '18:00',
+      },
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: 'Saturday',
+        opens: '09:00',
+        closes: '14:00',
+      },
+    ],
+    paymentAccepted: ['Cash', 'Bank Transfer', 'Invoice'],
+    currenciesAccepted: 'PLN, EUR',
   };
 }
 
@@ -183,14 +215,6 @@ export function generateWebSiteSchema(locale: string = 'en') {
     inLanguage: locale === 'pl' ? 'pl-PL' : 'en-US',
     publisher: {
       '@id': `${siteConfig.url}/#organization`,
-    },
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: `${siteConfig.url}/search?q={search_term_string}`,
-      },
-      'query-input': 'required name=search_term_string',
     },
   };
 }
@@ -302,6 +326,45 @@ export function generateAboutPageSchema(locale: string = 'en') {
     mainEntity: {
       '@id': `${siteConfig.url}/#organization`,
     },
+  };
+}
+
+/**
+ * Generate Review structured data (JSON-LD) for individual reviews
+ */
+export function generateReviewSchema(reviews: {
+  author: string;
+  company: string;
+  rating: number;
+  text: string;
+  date?: string;
+}[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    '@id': `${siteConfig.url}/#localbusiness`,
+    name: siteConfig.name,
+    review: reviews.map((r) => ({
+      '@type': 'Review',
+      author: {
+        '@type': 'Person',
+        name: r.author,
+      },
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: String(r.rating),
+        bestRating: '5',
+        worstRating: '1',
+      },
+      reviewBody: r.text,
+      ...(r.date && { datePublished: r.date }),
+      ...(r.company && {
+        publisher: {
+          '@type': 'Organization',
+          name: r.company,
+        },
+      }),
+    })),
   };
 }
 

@@ -5,7 +5,7 @@
 
 import ReviewsClient from './ReviewsClient';
 import JsonLd from '@/components/JsonLd';
-import { siteConfig, generateBreadcrumbSchema } from '@/lib/seo';
+import { siteConfig, generateBreadcrumbSchema, generateReviewSchema } from '@/lib/seo';
 import { getReviews, getSettings } from '@/lib/payload';
 
 interface ReviewsPageProps {
@@ -43,9 +43,18 @@ export default async function ReviewsPage({ params }: ReviewsPageProps) {
     },
   };
 
+  const reviewSchemas = reviews.length > 0
+    ? generateReviewSchema(reviews.map((r) => ({
+        author: r.author,
+        company: r.company,
+        rating: r.rating,
+        text: r.text,
+      })))
+    : null;
+
   return (
     <>
-      <JsonLd data={[breadcrumbData, aggregateRatingSchema]} />
+      <JsonLd data={[breadcrumbData, aggregateRatingSchema, ...(reviewSchemas ? [reviewSchemas] : [])]} />
       <ReviewsClient reviews={reviews} settings={settings} />
     </>
   );
