@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import Image from 'next/image';
@@ -22,6 +23,8 @@ import {
   Factory,
   Quote,
   Building2,
+  HelpCircle,
+  ChevronDown,
 } from 'lucide-react';
 
 interface HomeCClientProps {
@@ -513,6 +516,74 @@ function PartnersSection() {
   );
 }
 
+// FAQ Accordion Section
+function FAQSection() {
+  const t = useTranslations('FAQ');
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const faqs = Array.from({ length: 10 }, (_, i) => ({
+    question: t(`q${i + 1}`),
+    answer: t(`a${i + 1}`),
+  }));
+
+  return (
+    <section className="py-32 bg-white">
+      <div className="container mx-auto px-4 lg:px-8">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-100 text-orange-600 text-sm font-medium mb-6">
+              <HelpCircle className="w-4 h-4" />
+              FAQ
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+              {t('title')}
+            </h2>
+            <p className="text-slate-600">{t('subtitle')}</p>
+          </div>
+
+          <div className="space-y-3">
+            {faqs.map((faq, index) => (
+              <div
+                key={index}
+                className={`rounded-2xl border transition-all duration-300 ${
+                  openIndex === index
+                    ? 'border-orange-200 bg-orange-50/50 shadow-lg shadow-orange-100/50'
+                    : 'border-slate-200 bg-white hover:border-slate-300'
+                }`}
+              >
+                <button
+                  onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                  className="w-full text-left px-6 py-5 flex items-center justify-between gap-4"
+                >
+                  <span className={`font-semibold transition-colors ${
+                    openIndex === index ? 'text-orange-600' : 'text-slate-900'
+                  }`}>
+                    {faq.question}
+                  </span>
+                  <ChevronDown
+                    className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 ${
+                      openIndex === index ? 'rotate-180 text-orange-500' : 'text-slate-400'
+                    }`}
+                  />
+                </button>
+                <div
+                  className={`overflow-hidden transition-all duration-300 ${
+                    openIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                  }`}
+                >
+                  <div className="px-6 pb-5 text-slate-600 leading-relaxed">
+                    {faq.answer}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // Enhanced CTA with gradient
 function CTASection() {
   const t = useTranslations('CTA');
@@ -565,6 +636,7 @@ export default function HomeCClient({ projects, settings }: HomeCClientProps) {
         <CertificatesSection />
         <LocationsSection />
         <PartnersSection />
+        <FAQSection />
         <CTASection />
       </main>
       <Footer settings={settings} />

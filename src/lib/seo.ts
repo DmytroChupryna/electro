@@ -369,6 +369,48 @@ export function generateReviewSchema(reviews: {
 }
 
 /**
+ * Generate Article structured data (JSON-LD) for blog posts
+ */
+export function generateArticleSchema(article: {
+  title: string;
+  excerpt: string;
+  url: string;
+  image?: string;
+  datePublished: string;
+  author: string;
+  locale: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: article.title,
+    description: article.excerpt,
+    url: article.url,
+    ...(article.image && { image: article.image }),
+    datePublished: article.datePublished,
+    dateModified: article.datePublished,
+    inLanguage: article.locale === 'pl' ? 'pl-PL' : 'en-US',
+    author: {
+      '@type': 'Organization',
+      name: article.author,
+      '@id': `${siteConfig.url}/#organization`,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      logo: {
+        '@type': 'ImageObject',
+        url: siteConfig.logo,
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': article.url,
+    },
+  };
+}
+
+/**
  * Generate Project/Work structured data (JSON-LD)
  */
 export function generateProjectSchema(project: {

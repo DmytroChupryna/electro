@@ -15,6 +15,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/about', priority: 0.8, changeFrequency: 'monthly' as const },
     { path: '/contact', priority: 0.8, changeFrequency: 'monthly' as const },
     { path: '/reviews', priority: 0.7, changeFrequency: 'monthly' as const },
+    { path: '/blog', priority: 0.8, changeFrequency: 'weekly' as const },
     { path: '/privacy', priority: 0.3, changeFrequency: 'yearly' as const },
     { path: '/terms', priority: 0.3, changeFrequency: 'yearly' as const },
   ];
@@ -65,8 +66,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         });
       }
     }
+    const posts = await payload.find({
+      collection: 'posts',
+      where: { isPublished: { equals: true } },
+      limit: 1000,
+      depth: 0,
+    });
+
+    for (const post of posts.docs) {
+      for (const locale of locales) {
+        dynamicSitemapEntries.push({
+          url: `${baseUrl}/${locale}/blog/${post.slug}`,
+          lastModified: post.updatedAt ? new Date(post.updatedAt) : now,
+          changeFrequency: 'monthly',
+          priority: 0.7,
+          alternates: {
+            languages: {
+              en: `${baseUrl}/en/blog/${post.slug}`,
+              pl: `${baseUrl}/pl/blog/${post.slug}`,
+            },
+          },
+        });
+      }
+    }
   } catch (error) {
-    console.error('Error fetching projects for sitemap:', error);
+    console.error('Error fetching data for sitemap:', error);
   }
 
   return [...staticSitemapEntries, ...dynamicSitemapEntries];

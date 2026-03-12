@@ -422,6 +422,126 @@ export default buildConfig({
         },
       ],
     },
+    // Blog posts collection
+    {
+      slug: 'posts',
+      labels: {
+        singular: 'Стаття',
+        plural: 'Статті',
+      },
+      access: {
+        read: () => true,
+        create: ({ req }) => !!req.user,
+        update: ({ req }) => !!req.user,
+        delete: ({ req }) => !!req.user,
+      },
+      admin: {
+        useAsTitle: 'title',
+        defaultColumns: ['title', 'category', 'isPublished', 'publishedAt'],
+        description: 'Manage blog articles (Blog)',
+      },
+      fields: [
+        {
+          name: 'title',
+          label: 'Title',
+          type: 'text',
+          required: true,
+          localized: true,
+        },
+        {
+          name: 'slug',
+          label: 'URL Slug',
+          type: 'text',
+          required: true,
+          unique: true,
+          index: true,
+          admin: {
+            description: 'SEO-friendly URL slug (e.g., "structured-cabling-guide")',
+          },
+        },
+        {
+          name: 'excerpt',
+          label: 'Excerpt',
+          type: 'textarea',
+          localized: true,
+          admin: {
+            description: 'Short description for listing pages and SEO',
+          },
+        },
+        {
+          name: 'content',
+          label: 'Content',
+          type: 'richText',
+          required: true,
+          localized: true,
+        },
+        {
+          name: 'coverImage',
+          label: 'Cover Image',
+          type: 'upload',
+          relationTo: 'media',
+        },
+        {
+          name: 'category',
+          label: 'Category',
+          type: 'select',
+          required: true,
+          defaultValue: 'guides',
+          options: [
+            { label: '📖 Guides', value: 'guides' },
+            { label: '📰 News', value: 'news' },
+            { label: '💡 Tips & Tricks', value: 'tips' },
+            { label: '🏗️ Case Studies', value: 'projects' },
+          ],
+        },
+        {
+          name: 'tags',
+          label: 'Tags',
+          type: 'array',
+          fields: [
+            {
+              name: 'tag',
+              label: 'Tag',
+              type: 'text',
+              required: true,
+              localized: true,
+            },
+          ],
+        },
+        {
+          name: 'author',
+          label: 'Author',
+          type: 'text',
+          defaultValue: 'Techno Groop',
+        },
+        {
+          name: 'publishedAt',
+          label: 'Published Date',
+          type: 'date',
+          required: true,
+          admin: {
+            date: {
+              pickerAppearance: 'dayOnly',
+            },
+          },
+        },
+        {
+          name: 'isPublished',
+          label: 'Published',
+          type: 'checkbox',
+          defaultValue: false,
+          admin: {
+            description: 'Only published articles appear on the website',
+          },
+        },
+        {
+          name: 'sortOrder',
+          label: 'Display Order',
+          type: 'number',
+          defaultValue: 0,
+        },
+      ],
+    },
   ],
 
   // Global settings with localized Title field

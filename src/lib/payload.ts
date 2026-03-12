@@ -74,6 +74,24 @@ export interface CMSReview {
   isActive: boolean;
 }
 
+// Post category type
+export type PostCategory = 'guides' | 'news' | 'tips' | 'projects';
+
+// Post type from CMS
+export interface CMSPost {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  content: unknown;
+  coverImage: CMSMedia | null;
+  category: PostCategory;
+  tags: string[];
+  author: string;
+  publishedAt: string;
+  isPublished: boolean;
+}
+
 // Address type
 export interface CMSAddress {
   street?: string;
@@ -385,6 +403,97 @@ export async function getReviews(locale: string = 'en'): Promise<CMSReview[]> {
   } catch (error) {
     console.error('Error fetching reviews:', error);
     return [];
+  }
+}
+
+/**
+ * Get all published blog posts from CMS
+ */
+export async function getPosts(locale: string = 'en', category?: string, limit: number = 100): Promise<CMSPost[]> {
+  try {
+    const payload = await getPayload({ config });
+
+    const result =
+      category && category !== 'all'
+        ? await payload.find({
+            collection: 'posts',
+            where: {
+              isPublished: { equals: true },
+              category: { equals: category },
+            },
+            sort: '-publishedAt',
+            locale: locale as 'en' | 'pl',
+            limit,
+            depth: 1,
+          })
+        : await payload.find({
+            collection: 'posts',
+            where: {
+              isPublished: { equals: true },
+            },
+            sort: '-publishedAt',
+            locale: locale as 'en' | 'pl',
+            limit,
+            depth: 1,
+          });
+
+    return result.docs.map((doc) => ({
+      id: String(doc.id),
+      slug: (doc.slug as string) || String(doc.id),
+      title: doc.title as string,
+      excerpt: (doc.excerpt as string) || '',
+      content: doc.content,
+      coverImage: extractMedia(doc.coverImage),
+      category: doc.category as PostCategory,
+      tags: Array.isArray(doc.tags) ? doc.tags.map((t: Record<string, unknown>) => t.tag as string) : [],
+      author: (doc.author as string) || 'Techno Groop',
+      publishedAt: doc.publishedAt as string,
+      isPublished: doc.isPublished as boolean,
+    }));
+  } catch (error) {
+    console.error('Error fetching posts:', error);
+    return [];
+  }
+}
+
+/**
+ * Get single blog post by slug from CMS
+ */
+export async function getPostBySlug(slug: string, locale: string = 'en'): Promise<CMSPost | null> {
+  try {
+    const payload = await getPayload({ config });
+
+    const result = await payload.find({
+      collection: 'posts',
+      where: {
+        slug: { equals: slug },
+        isPublished: { equals: true },
+      },
+      locale: locale as 'en' | 'pl',
+      depth: 1,
+      limit: 1,
+    });
+
+    if (!result.docs || result.docs.length === 0) return null;
+
+    const doc = result.docs[0];
+
+    return {
+      id: String(doc.id),
+      slug: (doc.slug as string) || String(doc.id),
+      title: doc.title as string,
+      excerpt: (doc.excerpt as string) || '',
+      content: doc.content,
+      coverImage: extractMedia(doc.coverImage),
+      category: doc.category as PostCategory,
+      tags: Array.isArray(doc.tags) ? doc.tags.map((t: Record<string, unknown>) => t.tag as string) : [],
+      author: (doc.author as string) || 'Techno Groop',
+      publishedAt: doc.publishedAt as string,
+      isPublished: doc.isPublished as boolean,
+    };
+  } catch (error) {
+    console.error('Error fetching post by slug:', error);
+    return null;
   }
 }
 

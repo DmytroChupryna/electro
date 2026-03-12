@@ -11,7 +11,8 @@
     "reviews": "Opinie",
     "careers": "Kariera",
     "contact": "Kontakt",
-    "getQuote": "Wycena"
+    "getQuote": "Wycena",
+    "blog": "Blog"
   },
   "Hero": {
     "tagline": "Profesjonalne instalacje elektryczne",
@@ -584,5 +585,48 @@
     "services": "Usługi",
     "portfolio": "Realizacje",
     "contact": "Kontakt"
+  },
+  "Blog": {
+    "title": "Blog",
+    "subtitle": "Eksperckie artykuły o instalacjach elektrycznych, automatyce i trendach branżowych",
+    "readMore": "Czytaj więcej",
+    "readTime": "min czytania",
+    "publishedOn": "Opublikowano",
+    "allPosts": "Wszystkie artykuły",
+    "categories": {
+      "all": "Wszystkie",
+      "guides": "Poradniki",
+      "news": "Aktualności",
+      "tips": "Porady",
+      "projects": "Realizacje"
+    },
+    "noPosts": "Brak artykułów. Sprawdź ponownie wkrótce!",
+    "backToBlog": "Powrót do bloga",
+    "shareArticle": "Udostępnij artykuł",
+    "relatedPosts": "Powiązane artykuły"
+  },
+  "FAQ": {
+    "title": "Najczęściej zadawane pytania",
+    "subtitle": "Znajdź odpowiedzi na najczęstsze pytania dotyczące naszych usług elektrycznych",
+    "q1": "Jakie usługi elektryczne oferujecie?",
+    "a1": "Oferujemy kompleksowe usługi elektryczne, w tym instalacje mieszkaniowe i przemysłowe, systemy niskoprądowe (Cat6, światłowody), automatykę budynkową (KNX, BMS) oraz instalacje fotowoltaiczne. Nasz zespół zajmuje się wszystkim — od projektu po końcowy odbiór.",
+    "q2": "W jakich krajach działacie?",
+    "a2": "Działamy w Polsce (Warszawa, Łódź, Wrocław) i Belgii (Antwerpia, Bruggia, Bruksela, Gandawa). Nasze zespoły są mobilne i mogą pracować na projektach w obu krajach.",
+    "q3": "Czy macie certyfikat VCA?",
+    "a3": "Tak, cały nasz zespół posiada certyfikat VCA, co gwarantuje najwyższe standardy bezpieczeństwa na budowie. Posiadamy również pełne ubezpieczenie dla wszystkich projektów.",
+    "q4": "Ile kosztują instalacje elektryczne?",
+    "a4": "Koszt zależy od zakresu i złożoności projektu. Zapewniamy bezpłatne, szczegółowe wyceny po wizji lokalnej. Skontaktuj się z nami, aby umówić konsultację i otrzymać konkurencyjną ofertę dopasowaną do Twoich potrzeb.",
+    "q5": "Jak długo trwa realizacja projektu elektrycznego?",
+    "a5": "Czas realizacji zależy od zakresu — instalacja mieszkaniowa trwa zazwyczaj 2-4 tygodnie, natomiast duże projekty przemysłowe mogą trwać kilka miesięcy. Zawsze przedstawiamy szczegółowy harmonogram przed rozpoczęciem prac.",
+    "q6": "Czy wykonujecie instalacje fotowoltaiczne?",
+    "a6": "Tak, projektujemy i instalujemy systemy fotowoltaiczne dla budynków mieszkalnych, komercyjnych i przemysłowych. Zajmujemy się całym procesem — od audytu energetycznego, przez instalację, po przyłączenie do sieci.",
+    "q7": "Jakie certyfikaty posiada Wasz zespół?",
+    "a7": "Nasz zespół posiada certyfikaty bezpieczeństwa VCA, uprawnienia elektryczne (SEP) oraz certyfikaty pracy na wysokościach. Jesteśmy również ubezpieczeni kompleksowym ubezpieczeniem odpowiedzialności cywilnej na wszystkie rodzaje prac elektrycznych.",
+    "q8": "Czy pracujecie z generalnymi wykonawcami?",
+    "a8": "Tak, generalni wykonawcy to nasi główni klienci. Specjalizujemy się w podwykonawstwie elektrycznym na dużych projektach budowlanych, oferując niezawodne terminy, profesjonalną dokumentację i płynną koordynację z innymi branżami.",
+    "q9": "Jaki jest zakres usług niskoprądowych?",
+    "a9": "Nasze usługi niskoprądowe obejmują okablowanie strukturalne (Cat6/Cat6a/światłowody), wyposażenie serwerowni, systemy kontroli dostępu, instalacje CCTV, automatykę domową KNX, systemy zarządzania budynkiem BMS oraz systemy domofonowe.",
+    "q10": "Czy oferujecie serwis gwarancyjny?",
+    "a10": "Tak, wszystkie nasze instalacje objęte są okresem gwarancyjnym. Oferujemy również serwis pogwarancyjny i umowy serwisowe. Nasz zespół zapewnia szybki czas reakcji na wszelkie zgłoszenia."
   }
 }

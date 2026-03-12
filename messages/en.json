@@ -11,7 +11,8 @@
     "reviews": "Reviews",
     "careers": "Careers",
     "contact": "Contact",
-    "getQuote": "Get Quote"
+    "getQuote": "Get Quote",
+    "blog": "Blog"
   },
   "Hero": {
     "tagline": "Professional Electrical Installation",
@@ -584,5 +585,48 @@
     "services": "Services",
     "portfolio": "Portfolio",
     "contact": "Contact"
+  },
+  "Blog": {
+    "title": "Blog",
+    "subtitle": "Expert insights on electrical installations, automation, and industry trends",
+    "readMore": "Read more",
+    "readTime": "min read",
+    "publishedOn": "Published on",
+    "allPosts": "All articles",
+    "categories": {
+      "all": "All",
+      "guides": "Guides",
+      "news": "News",
+      "tips": "Tips & Tricks",
+      "projects": "Case Studies"
+    },
+    "noPosts": "No articles yet. Check back soon!",
+    "backToBlog": "Back to blog",
+    "shareArticle": "Share this article",
+    "relatedPosts": "Related articles"
+  },
+  "FAQ": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Find answers to common questions about our electrical services",
+    "q1": "What electrical services do you offer?",
+    "a1": "We provide comprehensive electrical services including residential and industrial installations, low-current systems (Cat6, fiber optics), building automation (KNX, BMS), and photovoltaic installations. Our team handles everything from design to final commissioning.",
+    "q2": "In which countries do you operate?",
+    "a2": "We operate in Poland (Warsaw, Łódź, Wrocław) and Belgium (Antwerp, Bruges, Brussels, Ghent). Our teams are mobile and can work on projects across both countries.",
+    "q3": "Do you have VCA certification?",
+    "a3": "Yes, our entire team holds VCA certification, which guarantees the highest safety standards on construction sites. We also maintain full insurance coverage for all projects.",
+    "q4": "How much do electrical installations cost?",
+    "a4": "The cost depends on the scope and complexity of the project. We provide free, detailed quotes after an on-site assessment. Contact us to schedule a consultation and receive a competitive offer tailored to your needs.",
+    "q5": "How long does an electrical project take?",
+    "a5": "Project timelines vary based on scope — a residential installation typically takes 2-4 weeks, while large industrial projects may take several months. We always provide a detailed schedule before starting work.",
+    "q6": "Do you install photovoltaic systems?",
+    "a6": "Yes, we design and install photovoltaic (solar) systems for residential, commercial, and industrial buildings. We handle the full process from energy audit through installation to grid connection.",
+    "q7": "What certifications does your team hold?",
+    "a7": "Our team holds VCA safety certificates, electrical qualification permits (SEP), and certificates for working at heights. We are also insured with comprehensive liability coverage for all types of electrical work.",
+    "q8": "Do you work with general contractors?",
+    "a8": "Yes, general contractors are our primary clients. We specialize in electrical subcontracting for large construction projects, offering reliable timelines, professional documentation, and seamless coordination with other trades.",
+    "q9": "What low-current services do you provide?",
+    "a9": "Our low-current services include structured cabling (Cat6/Cat6a/fiber), server room setup, access control systems, CCTV installation, KNX home automation, BMS building management systems, and intercom systems.",
+    "q10": "Do you offer warranty service?",
+    "a10": "Yes, all our installations come with a warranty period. We also offer post-warranty maintenance and service contracts. Our team provides fast response times for any issues that may arise."
   }
 }

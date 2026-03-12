@@ -25,6 +25,7 @@ export default function Header() {
     { href: '/services', label: t('services') },
     { href: '/portfolio', label: t('portfolio') },
     { href: '/reviews', label: t('reviews') },
+    { href: '/blog', label: t('blog') },
     { href: '/contact', label: t('contact') },
   ];
 
